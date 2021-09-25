@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>API</name>
+    </assembly>
+    <members>
+        <member name="T:API.Controllers.IdentityController">
+            <summary>
+            seluruh proses dari registrai, login, logout ada disini semua
+            </summary>
+        </member>
+        <member name="M:API.Controllers.IdentityController.RegisterByEmail(Application.Identity.Commands.RegisterByEmail.RegisterByEmailCommand)">
+            <summary>
+            register by email
+            </summary>
+        </member>
+        <member name="M:API.Controllers.IdentityController.LoginByEmail(Application.Identity.Queries.LoginByEmail.LoginByEmailQuery)">
+            <summary>
+            Login By Email
+            </summary>
+        </member>
+        <member name="T:API.Controllers.V1.TodosController">
+            <summary>
+            aplikasi todo list
+            </summary>
+        </member>
+        <member name="M:API.Controllers.V1.TodosController.Get(Application.Todos.Queries.GetTodos.GetTodosQuery)">
+            <summary>
+            get todo list
+            </summary>
+        </member>
+        <member name="M:API.Controllers.V1.TodosController.Create(Application.Todos.Commands.CreateTodo.CreateTodoCommand)">
+            <summary>
+            Create
+            </summary>
+        </member>
+        <member name="M:API.Controllers.V1.TodosController.Delete(Application.Todos.Commands.DeleteTodo.DeleteTodoCommand)">
+            <summary>
+            Delete
+            </summary>
+        </member>
+        <member name="M:API.Controllers.V1.TodosController.Update(Application.Todos.Commands.UpdateTodo.UpdateTodoCommand)">
+            <summary>
+            Update
+            </summary>
+        </member>
+    </members>
+</doc>

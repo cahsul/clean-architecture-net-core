@@ -1,0 +1,38 @@
+API
+- versioning API
+- swagger
+	- masih hardocode
+	- remove schema di swagger AIP nya
+
+- appseting
+	- bisa pilih koneksi pake apa
+
+- audit trail
+
+
+
+
+
+dotnet ef migrations add Todo --context MsSqlTodoDbContext --project Infrastructure --startup-project API --output-dir Persistence/Providers/MsSql/Todo/Migrations
+dotnet ef migrations add Todo --context MsSqlTodoDbContext --project Infrastructure --startup-project Presentations/API --output-dir Persistence/Providers/MsSql/Todo/Migrations
+
+
+
+Add-Migration CreateTable_Todo -Context MsSqlTodoDbContext -Project Infrastructure -OutputDir Persistence/Providers/MsSql/Todo/Migrations
+Remove-Migration -Context MsSqlTodoDbContext -Project Infrastructure
+Update-Database  -Context MsSqlTodoDbContext -Project Infrastructure
+
+
+# TODO #
+Remove-Migration -Context MsSqlTodoDbContext -Project Infrastructure
+Update-Database  -Context MsSqlTodoDbContext -Project Infrastructure
+
+Add-Migration TODO -Context MsSqlTodoDbContext -Project Infrastructure -OutputDir Persistence/Providers/MsSql/Todo/Migrations
+
+
+# IDENTITY #
+Remove-Migration -Context MsSqlIdentityDbContext -Project Infrastructure
+Update-Database -Context MsSqlIdentityDbContext -Project Infrastructure
+
+Add-Migration IDENTITY -Context MsSqlIdentityDbContext -Project Infrastructure -OutputDir Persistence/Providers/MsSql/Identity/Migrations
+Add-Migration RefreshToken -Context MsSqlIdentityDbContext -Project Infrastructure -OutputDir Persistence/Providers/MsSql/Identity/Migrations
