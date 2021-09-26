@@ -48,3 +48,16 @@ a, .btn-link {
         right: 0.75rem;
         top: 0.5rem;
     }
+
+
+.ant-notificationzzzz {
+    background-color: #ffccc7 !important;
+}
+
+#app {
+    height: 100%;
+}
+
+.ant-notification-notice {
+    background-color: #ffccc7 !important;
+}

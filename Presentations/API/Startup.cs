@@ -39,6 +39,13 @@ namespace API
 
             services.AddSwagger();
 
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
+
             services.AddControllers(options =>
             {
                 options.Filters.Add<ExceptionFilter>();
@@ -59,10 +66,14 @@ namespace API
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors("MyPolicy");
+
             app.UseRouting();
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+
 
             app.UseSwagger(Configuration);
 

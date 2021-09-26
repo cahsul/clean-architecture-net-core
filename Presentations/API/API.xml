@@ -19,27 +19,27 @@
             Login By Email
             </summary>
         </member>
-        <member name="T:API.Controllers.V1.TodosController">
+        <member name="T:API.Controllers.V1.TodoController">
             <summary>
             aplikasi todo list
             </summary>
         </member>
-        <member name="M:API.Controllers.V1.TodosController.Get(Application.Todos.Queries.GetTodos.GetTodosQuery)">
+        <member name="M:API.Controllers.V1.TodoController.Get(Application.Todos.Queries.GetTodos.GetTodosQuery)">
             <summary>
             get todo list
             </summary>
         </member>
-        <member name="M:API.Controllers.V1.TodosController.Create(Application.Todos.Commands.CreateTodo.CreateTodoCommand)">
+        <member name="M:API.Controllers.V1.TodoController.Create(Application.Todos.Commands.CreateTodo.CreateTodoCommand)">
             <summary>
             Create
             </summary>
         </member>
-        <member name="M:API.Controllers.V1.TodosController.Delete(Application.Todos.Commands.DeleteTodo.DeleteTodoCommand)">
+        <member name="M:API.Controllers.V1.TodoController.Delete(Application.Todos.Commands.DeleteTodo.DeleteTodoCommand)">
             <summary>
             Delete
             </summary>
         </member>
-        <member name="M:API.Controllers.V1.TodosController.Update(Application.Todos.Commands.UpdateTodo.UpdateTodoCommand)">
+        <member name="M:API.Controllers.V1.TodoController.Update(Application.Todos.Commands.UpdateTodo.UpdateTodoCommand)">
             <summary>
             Update
             </summary>

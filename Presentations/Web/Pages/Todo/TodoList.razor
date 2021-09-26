@@ -1,0 +1,53 @@
+﻿@page "/todo"
+@using global::Shared.Todos.Queries.GetTodos
+
+
+@if (_todos == null)
+{
+	<Skeleton Active="true"></Skeleton>
+	return;
+}
+
+
+<Card Title="Todo">
+	<Extra>
+		<Button Type="@ButtonType.Primary" Icon="@IconType.Fill.PlusCircle" OnClick="@(()=>{ _visible = true; })">Create New Data</Button>
+	</Extra>
+	<Body>
+		<Table TItem="GetTodosResponse" DataSource="@_todos" Bordered=true Size=@TableSize.Small>
+			<Column @bind-Field="@context.Id" Sortable></Column>
+			<Column @bind-Field="@context.Title" Sortable></Column>
+			<TableActionComponent OnClickDelete="() => DeleteData(context.Id)" OnClickEdit="() => DeleteData(context.Id) " />
+		</Table>
+	</Body>
+</Card>
+
+<Modal Title="@title" MaskClosable="false" DestroyOnClose="true"
+	   Visible="@_visible"
+	   OnOk="@HandleOk"
+	   OnCancel="@HandleCancel">
+	<TodoCreate ReloadData=LoadDateAsync />
+</Modal>
+
+
+@code{
+	string title = "BasicModal";
+	bool _visible = false;
+
+	private void HandleOk(MouseEventArgs e)
+	{
+		Console.WriteLine(e);
+		_visible = false;
+	}
+
+	private void HandleCancel(MouseEventArgs e)
+	{
+		Console.WriteLine(e);
+		_visible = false;
+	}
+}
+
+
+
+
+
