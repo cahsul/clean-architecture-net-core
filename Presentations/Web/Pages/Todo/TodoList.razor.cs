@@ -23,9 +23,23 @@ namespace Web.Pages.Todo
             await LoadDateAsync();
         }
 
-        public void DeleteData(Guid id)
+        public async Task<bool> DeleteDataAsync(Guid id)
         {
-            _todos = _todos.Where(w => w.Id != id).ToList();
+            var result = await todoApi.DeleteTodoAsync(id);
+
+            if (result == null)
+            { return false; }
+
+            if (result.IsError == true)
+            {
+                await notification.Error(result.ErrorsMessage[0]);
+                return false;
+            }
+            // reload data
+            await LoadDateAsync();
+
+            return true;
+
         }
 
         private async Task LoadDateAsync()

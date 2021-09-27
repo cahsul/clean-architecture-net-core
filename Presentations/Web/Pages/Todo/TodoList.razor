@@ -17,7 +17,7 @@
 		<Table TItem="GetTodosResponse" DataSource="@_todos" Bordered=true Size=@TableSize.Small>
 			<Column @bind-Field="@context.Id" Sortable></Column>
 			<Column @bind-Field="@context.Title" Sortable></Column>
-			<TableActionComponent OnClickDelete="() => DeleteData(context.Id)" OnClickEdit="() => DeleteData(context.Id) " />
+			<TableActionComponent OnClickDelete="(e) => DeleteDataAsync(context.Id)" OnClickEdit="() => DeleteDataAsync(context.Id) " />
 		</Table>
 	</Body>
 </Card>

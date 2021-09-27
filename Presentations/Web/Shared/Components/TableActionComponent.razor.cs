@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -10,15 +11,25 @@ namespace Web.Shared.Components
 
 
 
-        [Parameter] public EventCallback<MouseEventArgs> OnClickDelete { get; set; }
+        [Parameter] public Func<MouseEventArgs, Task<bool>> OnClickDelete { get; set; }
         [Parameter] public EventCallback<MouseEventArgs> OnClickEdit { get; set; }
+
+
+        private bool _onClickDeleteLoading = false;
 
 
         private async Task HandleOnClickDelete(MouseEventArgs args)
         {
-            if (OnClickDelete.HasDelegate)
+            if (OnClickDelete != null)
             {
-                await OnClickDelete.InvokeAsync(args);
+                _onClickDeleteLoading = true;
+                var isSuccess = await OnClickDelete.Invoke(args);
+                _onClickDeleteLoading = false;
+
+                if (isSuccess)
+                {
+                    await notification.Success("hapus data sukses");
+                }
             }
         }
 

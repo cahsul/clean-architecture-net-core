@@ -16,7 +16,7 @@ namespace Shared.Todos.Commands.CreateTodo
     {
         public CreateTodoRequestValidator()
         {
-            RuleFor(r => r.Title).NotEmpty().EmailAddress();
+            RuleFor(r => r.Title).NotEmpty();
         }
     }
 }

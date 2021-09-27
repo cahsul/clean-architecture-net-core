@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Shared._.Responses;
 using Shared.Todos.Commands.CreateTodo;
+using Shared.Todos.Commands.DeleteTodo;
 using Shared.Todos.Queries.GetTodos;
 using Shared.Todos.Resources;
 using Web._.Extensions;
@@ -37,6 +38,12 @@ namespace Web.Api
             return resulr.ToObject<ResponseBuilder<CreateTodoResponse>>();
         }
 
+        public async Task<ResponseBuilder<DeleteTodoResponse>> DeleteTodoAsync(Guid id)
+        {
+            var resulr = await DeleteAsync(@$"http://localhost:5000/{TodoEndpoint.V1.Todo.Delete.Path}/{id}");
+            return resulr.ToObject<ResponseBuilder<DeleteTodoResponse>>();
+        }
+
 
 
 
@@ -58,7 +65,7 @@ namespace Web.Api
             }
             catch (Exception ex)
             {
-                await _notification.Error("Gagal Mengambil data dari server..", 0);
+                await _notification.Error(ex.Message, 0);
                 return null;
             }
 
@@ -82,7 +89,31 @@ namespace Web.Api
             }
             catch (Exception ex)
             {
-                await _notification.Error("Gagal Menyimpan Data..", 0);
+                await _notification.Error(ex.Message, 0);
+                return null;
+            }
+
+        }
+
+        private async Task<string> DeleteAsync(string url)
+        {
+            try
+            {
+                var response = await _client.DeleteAsync(url);
+                response.EnsureSuccessStatusCode();
+                var content = await response.Content.ReadAsStringAsync();
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    await _notification.Error("Gagal Menghapus Data..");
+                    return null;
+                }
+
+                return content;
+            }
+            catch (Exception ex)
+            {
+                await _notification.Error(ex.Message, 0);
                 return null;
             }
 

@@ -10,6 +10,9 @@ API
 - audit trail
 
 
+dotnet run --configuration Debug
+dotnet watch run
+
 
 
 
@@ -36,3 +39,6 @@ Update-Database -Context MsSqlIdentityDbContext -Project Infrastructure
 
 Add-Migration IDENTITY -Context MsSqlIdentityDbContext -Project Infrastructure -OutputDir Persistence/Providers/MsSql/Identity/Migrations
 Add-Migration RefreshToken -Context MsSqlIdentityDbContext -Project Infrastructure -OutputDir Persistence/Providers/MsSql/Identity/Migrations
+
+
+

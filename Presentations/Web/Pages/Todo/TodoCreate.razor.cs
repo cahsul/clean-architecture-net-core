@@ -23,8 +23,8 @@ namespace Web.Pages.Todo
             var result = await todoApi.CreateTodoAsync(_model);
             if (result?.IsError == false)
             {
-                await notification.Error("HOREEEEEEEEEEEEEEE");
                 await ReloadData.InvokeAsync(new MouseEventArgs());
+                await notification.Success("Tambah Data Berhasil");
             }
         }
 

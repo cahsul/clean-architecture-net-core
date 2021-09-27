@@ -1,11 +1,12 @@
 ﻿<ActionColumn>
 	<Space>
 
-		@if (OnClickDelete.HasDelegate)
+		@if (OnClickDelete != null)
 		{
 			<SpaceItem>
 				<Tooltip Title=@("Delete")>
-					<Button Danger Type="@ButtonType.Primary" Shape="round" Icon="@IconType.TwoTone.Delete" OnClick="HandleOnClickDelete" Size="@ButtonSize.Small" />
+					<Button OnClick="HandleOnClickDelete" Loading=_onClickDeleteLoading
+							Danger Type="@ButtonType.Primary" Shape="round" Icon="@IconType.TwoTone.Delete" Size="@ButtonSize.Small" />
 				</Tooltip>
 			</SpaceItem>
 		}
@@ -13,14 +14,14 @@
 		@if (OnClickEdit.HasDelegate)
 		{
 			<SpaceItem>
-				<Tooltip Title=@("Edit")>
+				<Tooltip Title=@("Edit.")>
 					<Button Shape="round" Icon="@IconType.TwoTone.Edit" OnClick="HandleOnClickEdit" Size="@ButtonSize.Small" />
 				</Tooltip>
 			</SpaceItem>
 		}
 
 
-		
+
 
 
 
