@@ -9,8 +9,7 @@
 		<Input @bind-Value="@context.Title" />
 	</FormItem>
 	<FormItem WrapperColOffset="8" WrapperColSpan="16">
-		<Button Type="@ButtonType.Primary" HtmlType="submit">
-			Submit
-		</Button>
+		<Button Type="@ButtonType.Primary" HtmlType="submit"> Submit </Button>
+		<Button OnClick="HandleHideModal" > Cancel </Button>
 	</FormItem>
 </Form>

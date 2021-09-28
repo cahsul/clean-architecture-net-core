@@ -12,7 +12,7 @@ namespace Web.Shared.Components
 
 
         [Parameter] public Func<MouseEventArgs, Task<bool>> OnClickDelete { get; set; }
-        [Parameter] public EventCallback<MouseEventArgs> OnClickEdit { get; set; }
+        [Parameter] public EventCallback<MouseEventArgs> OnClickUpdate { get; set; }
 
 
         private bool _onClickDeleteLoading = false;
@@ -33,11 +33,11 @@ namespace Web.Shared.Components
             }
         }
 
-        private async Task HandleOnClickEdit(MouseEventArgs args)
+        private async Task HandleOnClickUpdate(MouseEventArgs args)
         {
-            if (OnClickEdit.HasDelegate)
+            if (OnClickUpdate.HasDelegate)
             {
-                await OnClickEdit.InvokeAsync(args);
+                await OnClickUpdate.InvokeAsync(args);
             }
         }
     }

@@ -11,6 +11,7 @@ using Shared.Todos.Queries.GetTodos;
 using Shared.Todos.Resources;
 using Web._.Extensions;
 using Web.Shared.Components;
+using Shared._.Extensions;
 
 namespace Web.Api
 {
@@ -76,8 +77,16 @@ namespace Web.Api
             try
             {
                 var response = await _client.PostAsync(url, httpContent);
-                response.EnsureSuccessStatusCode();
                 var content = await response.Content.ReadAsStringAsync();
+
+                var contentObject = content.ToObject<ResponseBuilder<CreateTodoResponse>>();
+
+                // return pesan error yang di dapat dari API
+                if (contentObject?.IsError == true && contentObject?.ErrorsMessage?.Count > 0)
+                {
+                    await _notification.Error(contentObject.ErrorsMessage.ToString("<br/>"), 0);
+                    return null;
+                }
 
                 if (!response.IsSuccessStatusCode)
                 {

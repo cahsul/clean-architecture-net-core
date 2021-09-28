@@ -15,6 +15,7 @@ namespace Web.Pages.Todo
     {
 
         [Parameter] public EventCallback<MouseEventArgs> ReloadData { get; set; }
+        [Parameter] public EventCallback<MouseEventArgs> HideModal { get; set; }
 
         private readonly CreateTodoRequest _model = new();
 
@@ -38,6 +39,14 @@ namespace Web.Pages.Todo
             if (ReloadData.HasDelegate)
             {
                 await ReloadData.InvokeAsync(args);
+            }
+        }
+
+        private async Task HandleHideModal(MouseEventArgs args)
+        {
+            if (HideModal.HasDelegate)
+            {
+                await HideModal.InvokeAsync(args);
             }
         }
     }

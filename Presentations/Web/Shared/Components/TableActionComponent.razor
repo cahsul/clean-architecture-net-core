@@ -11,11 +11,11 @@
 			</SpaceItem>
 		}
 
-		@if (OnClickEdit.HasDelegate)
+		@if (OnClickUpdate.HasDelegate)
 		{
 			<SpaceItem>
 				<Tooltip Title=@("Edit.")>
-					<Button Shape="round" Icon="@IconType.TwoTone.Edit" OnClick="HandleOnClickEdit" Size="@ButtonSize.Small" />
+					<Button Shape="round" Icon="@IconType.TwoTone.Edit" OnClick="OnClickUpdate" Size="@ButtonSize.Small" />
 				</Tooltip>
 			</SpaceItem>
 		}

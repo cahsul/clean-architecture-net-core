@@ -2,6 +2,8 @@
 @using global::Shared.Todos.Queries.GetTodos
 
 
+
+
 @if (_todos == null)
 {
 	<Skeleton Active="true"></Skeleton>
@@ -11,43 +13,22 @@
 
 <Card Title="Todo">
 	<Extra>
-		<Button Type="@ButtonType.Primary" Icon="@IconType.Fill.PlusCircle" OnClick="@(()=>{ _visible = true; })">Create New Data</Button>
+		<Button Type="@ButtonType.Primary" Icon="@IconType.Fill.PlusCircle" OnClick="_modalCreate.ShowModal">Create New Data</Button>
 	</Extra>
 	<Body>
 		<Table TItem="GetTodosResponse" DataSource="@_todos" Bordered=true Size=@TableSize.Small>
 			<Column @bind-Field="@context.Id" Sortable></Column>
 			<Column @bind-Field="@context.Title" Sortable></Column>
-			<TableActionComponent OnClickDelete="(e) => DeleteDataAsync(context.Id)" OnClickEdit="() => DeleteDataAsync(context.Id) " />
+			<TableActionComponent OnClickDelete="(e) => DeleteDataAsync(context.Id)" OnClickUpdate="(e) => UpdateDataAsync(context.Id)" />
 		</Table>
 	</Body>
 </Card>
 
-<Modal Title="@title" MaskClosable="false" DestroyOnClose="true"
-	   Visible="@_visible"
-	   OnOk="@HandleOk"
-	   OnCancel="@HandleCancel">
-	<TodoCreate ReloadData=LoadDateAsync />
-</Modal>
 
+<CModal @ref="_modalCreate" Title="Todo Create">
+	<TodoCreate ReloadData=LoadDateAsync HideModal="_modalCreate.HideModal" />
+</CModal>
 
-@code{
-	string title = "BasicModal";
-	bool _visible = false;
-
-	private void HandleOk(MouseEventArgs e)
-	{
-		Console.WriteLine(e);
-		_visible = false;
-	}
-
-	private void HandleCancel(MouseEventArgs e)
-	{
-		Console.WriteLine(e);
-		_visible = false;
-	}
-}
-
-
-
-
-
+<CModal @ref="_modalUpdate" Title="Todo Update">
+	<TodoUpdate HideModal="_modalUpdate.HideModal" />
+</CModal>

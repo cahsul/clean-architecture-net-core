@@ -1,3 +1,4 @@
+using Fluxor;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +19,11 @@ namespace Web
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("#app");
+
+
+            // AddFluxor
+            var currentAssembly = typeof(Program).Assembly;
+            builder.Services.AddFluxor(options => options.ScanAssemblies(currentAssembly));
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
