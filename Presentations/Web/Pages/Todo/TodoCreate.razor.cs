@@ -17,22 +17,24 @@ namespace Web.Pages.Todo
         [Parameter] public EventCallback<MouseEventArgs> ReloadData { get; set; }
         [Parameter] public EventCallback<MouseEventArgs> HideModal { get; set; }
 
+        private bool _submitLoading = false;
         private readonly CreateTodoRequest _model = new();
 
-        private async Task OnFinishAsync(EditContext editContext)
+        private async Task Save(EditContext editContext)
         {
+            _submitLoading = true;
             var result = await todoApi.CreateTodoAsync(_model);
             if (result?.IsError == false)
             {
-                await ReloadData.InvokeAsync(new MouseEventArgs());
+                _submitLoading = false;
+                await HandleHideModal(new MouseEventArgs());
                 await notification.Success("Tambah Data Berhasil");
+                await HandleReloadData(new MouseEventArgs());
             }
+            _submitLoading = false;
+
         }
 
-        private void OnFinishFailed(EditContext editContext)
-        {
-            Console.WriteLine($"Failed:{JsonSerializer.Serialize(_model)}");
-        }
 
         private async Task HandleReloadData(MouseEventArgs args)
         {
