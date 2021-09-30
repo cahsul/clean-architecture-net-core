@@ -1,6 +1,7 @@
 ﻿using Application._.Interfaces.Persistence;
 using Infrastructure.Persistence.Providers.MsSql.Identity;
 using Infrastructure.Persistence.Providers.MsSql.Todo;
+using Infrastructure.Persistence.Providers.PostgreSql;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -22,24 +23,24 @@ namespace Infrastructure.Persistence.Providers.MsSql
             services.AddDbContext<MsSqlTodoDbContext>(options => { options.UseSqlServer("Data Source=194.233.70.37,7433;Initial Catalog=Todo;User ID=sa;Password=Cay.12123;"); });
             services.AddScoped<ITodoDbContext>(provider => provider.GetService<MsSqlTodoDbContext>());
 
-            services.AddDbContext<MsSqlIdentityDbContext>(options => { options.UseSqlServer("Data Source=194.233.70.37,7433;Initial Catalog=Todo;User ID=sa;Password=Cay.12123;"); });
-            services.AddScoped<IIdentityDbContext>(provider => provider.GetService<MsSqlIdentityDbContext>());
+            //services.AddDbContext<IdentityPostgreSqlDbContext>(options => { options.UseNpgsql("User ID=postgres;Password=Cay.12123;Host=194.233.70.37;Port=7232;Database=Serti;"); });
+            //services.AddScoped<IIdentityDbContext>(provider => provider.GetService<IdentityPostgreSqlDbContext>());
 
 
-            services.AddIdentityCore<IdentityUser>(options =>
-            {
-                options.Password.RequireDigit = false;
-                options.Password.RequireLowercase = false;
-                options.Password.RequiredLength = 1;
-                options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequireUppercase = false;
+            //services.AddIdentityCore<IdentityUser>(options =>
+            //{
+            //    options.Password.RequireDigit = false;
+            //    options.Password.RequireLowercase = false;
+            //    options.Password.RequiredLength = 1;
+            //    options.Password.RequireNonAlphanumeric = false;
+            //    options.Password.RequireUppercase = false;
 
-                options.SignIn.RequireConfirmedAccount = false;
-                options.SignIn.RequireConfirmedEmail = false;
-                options.SignIn.RequireConfirmedPhoneNumber = false;
+            //    options.SignIn.RequireConfirmedAccount = false;
+            //    options.SignIn.RequireConfirmedEmail = false;
+            //    options.SignIn.RequireConfirmedPhoneNumber = false;
 
-            }).AddEntityFrameworkStores<MsSqlIdentityDbContext>()
-               .AddDefaultTokenProviders();
+            //}).AddEntityFrameworkStores<IdentityPostgreSqlDbContext>()
+            //   .AddDefaultTokenProviders();
 
             //DatabaseConnectionsConfig databaseConnections = configuration.GetSection("DatabaseConnections").Get<DatabaseConnectionsConfig>();
 

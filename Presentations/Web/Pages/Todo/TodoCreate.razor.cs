@@ -28,8 +28,8 @@ namespace Web.Pages.Todo
             {
                 _submitLoading = false;
                 await HandleHideModal(new MouseEventArgs());
-                await notification.Success("Tambah Data Berhasil");
                 await HandleReloadData(new MouseEventArgs());
+                await notification.Success("Tambah Data Berhasil");
             }
             _submitLoading = false;
 

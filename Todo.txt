@@ -41,4 +41,10 @@ Add-Migration IDENTITY -Context MsSqlIdentityDbContext -Project Infrastructure -
 Add-Migration RefreshToken -Context MsSqlIdentityDbContext -Project Infrastructure -OutputDir Persistence/Providers/MsSql/Identity/Migrations
 
 
+# SERTI Identity #
+Remove-Migration -Context IdentityPostgreSqlDbContext -Project Infrastructure
+Update-Database -Context IdentityPostgreSqlDbContext -Project Infrastructure
+
+Add-Migration IDENTITY -Context IdentityPostgreSqlDbContext -Project Infrastructure -OutputDir Persistence/Providers/PostgreSql/Identity/Migrations
+
 

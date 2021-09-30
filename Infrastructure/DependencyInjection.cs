@@ -1,7 +1,10 @@
 ﻿using Application._.Interfaces.Identity;
 using Application._.Interfaces.Jwt;
+using Application._.Interfaces.Persistence;
 using Infrastructure.Jwt;
+using Infrastructure.Persistence.DbContexts;
 using Infrastructure.Persistence.Providers.MsSql;
+using Infrastructure.Persistence.Providers.MySql;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,9 +23,12 @@ namespace Infrastructure
         {
 
             services.AddMsSqlDatabase(configuration);
+            services.AddPostgreSqlDatabase(configuration);
 
             services.AddScoped<IJwtGenerator, JwtGenerator>();
             services.AddSingleton<IIdentity, Identity>();
+
+            services.AddSingleton<ITodoDbContextDapper, TodoDbContextDapper>();
 
             // autentikasi menggunan JWT 
 
