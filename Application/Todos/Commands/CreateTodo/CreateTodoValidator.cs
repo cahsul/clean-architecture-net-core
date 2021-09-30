@@ -20,7 +20,7 @@ namespace Application.Todos.Commands.CreateTodo
             When(r => !string.IsNullOrEmpty(r.Title), () =>
             {
                 RuleFor(r => r.Title)
-                .MustAsync((command, value, ctx, a) => CheckDuplicateAsync(command, value, ctx, a)).WithMessage(".");
+                .MustAsync((command, value, ctx, a) => CheckDuplicateAsync(command, value, ctx, a)).WithMessage("_");
             });
         }
 

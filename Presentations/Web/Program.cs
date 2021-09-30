@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Web.Api;
 using Web.Shared.Components;
+using Web.Extensions;
+using Blazored.LocalStorage;
 
 namespace Web
 {
@@ -19,6 +21,8 @@ namespace Web
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("#app");
+            builder.Services.AddLocalization();
+            builder.Services.AddBlazoredLocalStorage();
 
 
             // AddFluxor
@@ -33,7 +37,10 @@ namespace Web
             // AddAntDesign
             builder.Services.AddAntDesign();
 
-            await builder.Build().RunAsync();
+            var host = builder.Build();
+            await host.SetDefaultCulture();
+
+            await host.RunAsync();
         }
     }
 }

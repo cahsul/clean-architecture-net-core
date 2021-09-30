@@ -20,12 +20,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Event\Commands\EventCreate\" />
+    <Folder Include="Event\Commands\EventUpdate\" />
+    <Folder Include="Event\Commands\EventDelete\" />
+    <Folder Include="Event\Queries\EventList\" />
     <Folder Include="Identity\Commands\ConfirmEmail\" />
     <Folder Include="Identity\Commands\ForgetPassword\" />
     <Folder Include="Identity\Commands\ResetPassword\" />
     <Folder Include="Identity\Queries\GetUsers\" />
     <Folder Include="Identity\Queries\GetUser\" />
     <Folder Include="Identity\Queries\GetNewToken\" />
+    <Folder Include="Organizer\Commands\Login\" />
+    <Folder Include="Organizer\Commands\Registration\" />
+    <Folder Include="Organizer\Queries\" />
     <Folder Include="Todos\Queries\GetTodo\" />
     <Folder Include="Todos\Queries\GetTodosList\" />
   </ItemGroup>
