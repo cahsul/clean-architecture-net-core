@@ -9,7 +9,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Web.Api;
-using Web.Shared.Components;
+//using Web.Shared.Components;
 using Web.Extensions;
 using Blazored.LocalStorage;
 
@@ -31,11 +31,11 @@ namespace Web
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-            builder.Services.AddTransient<NotificationComponent>();
+            //builder.Services.AddTransient<NotificationComponent>();
             builder.Services.AddTransient<TodoApi>();
 
             // AddAntDesign
-            builder.Services.AddAntDesign();
+            //builder.Services.AddAntDesign();
 
             var host = builder.Build();
             await host.SetDefaultCulture();

@@ -1,90 +1,65 @@
 ﻿@inherits LayoutComponentBase
 @namespace Web.Shared
+@inject IJSRuntime js
 
-
-<div Style="height: 100%;">
-
-	<Layout Style="height: 100%;">
-		<Sider Collapsible Collapsed=@_collapsed NoTrigger OnCollapse="OnCollapse" Width="250">
-			<div class="logo" />
-
-			<Menu Theme="MenuTheme.Dark"
-				  DefaultSelectedKeys=@(new[] { "1" })
-				  DefaultOpenKeys=@(new[] { "sub1" })
-				  Mode=@MenuMode.Inline>
-				<SubMenu Key="sub1" TitleTemplate=@sub1Title>
-					<MenuItemGroup Key="g1" Title="Item 1">
-						<MenuItem Key="1" RouterLink="/">Option 1</MenuItem>
-						<MenuItem Key="2" RouterLink="/todo">Option 2</MenuItem>
-					</MenuItemGroup>
-					<MenuItemGroup Key="g2" Title="Item 2">
-						<MenuItem Key="3" RouterLink="/dashboard" >Dashboard</MenuItem>
-						<MenuItem Key="4">Option 4</MenuItem>
-					</MenuItemGroup>
-				</SubMenu>
-				<SubMenu Key="sub2" TitleTemplate=@sub2Title>
-					<MenuItem Key="5">Option 5</MenuItem>
-					<MenuItem Key="6">Option 6</MenuItem>
-					<SubMenu Key="sub3" Title="Submenu">
-						<MenuItem Key="7">Option 7</MenuItem>
-						<MenuItem Key="8">Option 8</MenuItem>
-					</SubMenu>
-				</SubMenu>
-				<SubMenu Key="sub4" TitleTemplate=@sub4Title>
-					<MenuItem Key="9">Option 9</MenuItem>
-					<MenuItem Key="10">Option 10</MenuItem>
-					<MenuItem Key="11">Option 11</MenuItem>
-					<MenuItem Key="12">Option 12</MenuItem>
-				</SubMenu>
-			</Menu>
-		</Sider>
-		<Layout Class="site-layout">
-			<Header Class="site-layout-background" Style="padding: 0;">
-				<Row Justify="space-between">
-					<Col Span="12">
-					@if (_collapsed)
-					{
-						<Icon Type="menu-unfold" Theme="outline" Class="trigger" OnClick="Toggle" />
-					}
-					else
-					{
-						<Icon Type="menu-fold" Theme="outline" Class="trigger" OnClick="Toggle" />
-					}
-					</Col>
-					<Col Span="12">
-					<Culture />
-
-					</Col>
-				</Row>
-
-
-
-			</Header>
-			<Content Style="margin: 24px 16px;padding: 24px;min-height: 280px;">
-				@Body
-			</Content>
-		</Layout>
-	</Layout>
-</div>
-
-@code
-{
-	RenderFragment sub1Title =
-	@<span>
-		<Icon Type="mail" Theme="outline"></Icon>
-		<span>Navigation One</span>
-	</span>;
-
-
-RenderFragment sub2Title =
-@<span>
-	<Icon Type="appstore" Theme="outline"></Icon>
-	<span>Navigation Two</span>
-</span>;
-
-RenderFragment sub4Title =
-@<span>
-	<Icon Type="setting" Theme="outline"></Icon>
-	<span>Navigation Three</span>
-</span>;
+@code {
+	protected async override Task OnAfterRenderAsync(bool firstRender)
+	{
+		if (firstRender)
+		{
+			await js.InvokeVoidAsync("onBlazorReady");
+		}
+	}
 }
+
+
+
+
+
+
+<body>
+
+	<!-- Main navbar -->
+	<NavBar />
+	<!-- /main navbar -->
+	<!-- Page content -->
+	<div class="page-content">
+
+		<!-- Main sidebar -->
+		<SideBar />
+		<!-- /main sidebar -->
+		<!-- Main content -->
+		<div class="content-wrapper">
+
+			@Body
+			 
+			<!-- Footer -->
+			<div class="navbar navbar-expand-lg navbar-light">
+				<div class="text-center d-lg-none w-100">
+					<button type="button" class="navbar-toggler dropdown-toggle" data-toggle="collapse" data-target="#navbar-footer">
+						<i class="icon-unfold mr-2"></i>
+						Footer
+					</button>
+				</div>
+
+				<div class="navbar-collapse collapse" id="navbar-footer">
+					<span class="navbar-text">
+						&copy; 2015 - 2018. <a href="#">Limitless Web App Kit</a> by <a href="https://themeforest.net/user/Kopyov" target="_blank">Eugene Kopyov</a>
+					</span>
+
+					<ul class="navbar-nav ml-lg-auto">
+						<li class="nav-item"><a href="https://kopyov.ticksy.com/" class="navbar-nav-link" target="_blank"><i class="icon-lifebuoy mr-2"></i> Support</a></li>
+						<li class="nav-item"><a href="https://demo.interface.club/limitless/docs/" class="navbar-nav-link" target="_blank"><i class="icon-file-text2 mr-2"></i> Docs</a></li>
+						<li class="nav-item"><a href="https://themeforest.net/item/limitless-responsive-web-application-kit/13080328?ref=kopyov" class="navbar-nav-link font-weight-semibold"><span class="text-pink"><i class="icon-cart2 mr-2"></i> Purchase</span></a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- /footer -->
+
+		</div>
+		<!-- /main content -->
+
+	</div>
+	<!-- /page content -->
+
+</body>

@@ -10,7 +10,7 @@ using Shared.Todos.Commands.DeleteTodo;
 using Shared.Todos.Queries.GetTodos;
 using Shared.Todos.Resources;
 using Web._.Extensions;
-using Web.Shared.Components;
+//using Web.Shared.Components;
 using Shared._.Extensions;
 
 namespace Web.Api
@@ -18,12 +18,13 @@ namespace Web.Api
     public class TodoApi
     {
         private readonly HttpClient _client;
-        private readonly NotificationComponent _notification;
+        //private readonly NotificationComponent _notification;
 
-        public TodoApi(HttpClient client, NotificationComponent notification)
+        //public TodoApi(HttpClient client, NotificationComponent notification)
+        public TodoApi(HttpClient client)
         {
             _client = client;
-            _notification = notification;
+            //_notification = notification;
         }
 
         public async Task<ResponseBuilder<List<GetTodosResponse>>> GetTodosAsync()
@@ -58,7 +59,7 @@ namespace Web.Api
 
                 if (!response.IsSuccessStatusCode)
                 {
-                    await _notification.Error("Gagal Mengambil data dari server..");
+                    //await _notification.Error("Gagal Mengambil data dari server..");
                     return null;
                 }
 
@@ -66,7 +67,7 @@ namespace Web.Api
             }
             catch (Exception ex)
             {
-                await _notification.Error(ex.Message, 0);
+                //await _notification.Error(ex.Message, 0);
                 return null;
             }
 
@@ -84,13 +85,13 @@ namespace Web.Api
                 // return pesan error yang di dapat dari API
                 if (contentObject?.IsError == true && contentObject?.ErrorsMessage?.Count > 0)
                 {
-                    await _notification.Error(contentObject.ErrorsMessage.ToString("<br/>"), 0);
+                    //await _notification.Error(contentObject.ErrorsMessage.ToString("<br/>"), 0);
                     return null;
                 }
 
                 if (!response.IsSuccessStatusCode)
                 {
-                    await _notification.Error("Gagal Menyimpan Data..");
+                    //await _notification.Error("Gagal Menyimpan Data..");
                     return null;
                 }
 
@@ -98,7 +99,7 @@ namespace Web.Api
             }
             catch (Exception ex)
             {
-                await _notification.Error(ex.Message, 0);
+                //await _notification.Error(ex.Message, 0);
                 return null;
             }
 
@@ -114,7 +115,7 @@ namespace Web.Api
 
                 if (!response.IsSuccessStatusCode)
                 {
-                    await _notification.Error("Gagal Menghapus Data..");
+                    //await _notification.Error("Gagal Menghapus Data..");
                     return null;
                 }
 
@@ -122,7 +123,7 @@ namespace Web.Api
             }
             catch (Exception ex)
             {
-                await _notification.Error(ex.Message, 0);
+                //await _notification.Error(ex.Message, 0);
                 return null;
             }
 
