@@ -8,9 +8,15 @@
 
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="10.3.3" />
+    <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="6.0.0-rc.1.21452.15" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Event\Resources\EventLang.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>EventLang.resx</DependentUpon>
+    </Compile>
     <Compile Update="Todos\Resources\TodoLang.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -19,6 +25,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Event\Resources\EventLang.id.resx">
+      <LastGenOutput>EventLang.id.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Event\Resources\EventLang.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EventLang.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Todos\Resources\TodoLang.es.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>

@@ -8,6 +8,7 @@
         if (firstRender)
         {
             await js.InvokeVoidAsync("onBlazorReady");
+            await js.InvokeVoidAsync("componentPopups");
         }
     }
 }
