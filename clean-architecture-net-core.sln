@@ -43,7 +43,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyAntDesignApp", "Presentat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyAntDesignAppFull", "Presentations\tesss\MyAntDesignAppFull\MyAntDesignAppFull.csproj", "{0F1D0BEB-EA3C-4A58-B3B1-F279839D9C9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Presentations\Client\Client.csproj", "{5F36E437-D326-4E56-A17A-2FA7F0915B7C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client", "Presentations\Client\Client.csproj", "{5F36E437-D326-4E56-A17A-2FA7F0915B7C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

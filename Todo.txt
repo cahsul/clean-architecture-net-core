@@ -14,6 +14,8 @@ dotnet run --configuration Debug
 dotnet watch run
 
 
+https://www.emekaemego.com/posts/blazor-component-js/
+
 
 
 dotnet ef migrations add Todo --context MsSqlTodoDbContext --project Infrastructure --startup-project API --output-dir Persistence/Providers/MsSql/Todo/Migrations

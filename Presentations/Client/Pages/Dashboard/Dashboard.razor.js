@@ -135,7 +135,7 @@ export function dashboardReady(obj) {
             togglers.addEventListener('click', triggerChartResize);
         });
     }
-   
+
     // On window resize
     var resizeCharts;
     window.addEventListener('resize', function () {
@@ -248,4 +248,4 @@ export function pieChart(obj) {
         }, 200);
     });
 
-} 
+}

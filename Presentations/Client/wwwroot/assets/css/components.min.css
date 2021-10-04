@@ -1,4 +1,4 @@
-
+﻿
 /* ------------------------------------------------------------------------------
 *
 *  # Chart styling
@@ -48,4 +48,791 @@
 	width: 100%;
 	height: 400px;
 	min-width: 31.25rem;
+}
+
+
+
+
+
+
+/* ------------------------------------------------------------------------------
+*
+*  # Daterange picker
+*
+*  Date range picker component for Bootstrap
+*
+* ---------------------------------------------------------------------------- */
+.daterangepicker {
+	position: absolute;
+	color: inherit;
+	background-color: #fff;
+	border-radius: 0.25rem;
+	border: 0 solid rgba(0, 0, 0, 0.15);
+	width: auto;
+	max-width: none;
+	padding: 0;
+	margin-top: 0.125rem;
+	top: 0;
+	left: 0;
+	z-index: 1070;
+	display: none;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+	.daterangepicker.drop-up {
+		margin-top: -0.5rem;
+	}
+
+	.daterangepicker.single .daterangepicker .ranges,
+	.daterangepicker.single .drp-calendar {
+		float: none;
+	}
+
+	.daterangepicker.single .drp-selected,
+	.daterangepicker.auto-apply .drp-buttons {
+		display: none;
+	}
+
+	.daterangepicker.show-calendar .drp-calendar {
+		display: block;
+	}
+
+	.daterangepicker.show-calendar .drp-buttons {
+		display: -ms-flexbox;
+		display: flex;
+		-ms-flex-align: center;
+		align-items: center;
+		-ms-flex-pack: end;
+		justify-content: flex-end;
+		-ms-flex-wrap: wrap;
+		flex-wrap: wrap;
+	}
+
+	.daterangepicker .drp-calendar {
+		display: none;
+	}
+
+		.daterangepicker .drp-calendar.left, .daterangepicker .drp-calendar.right {
+			padding: 0.9375rem;
+		}
+
+	.daterangepicker .calendar-table .prev,
+	.daterangepicker .calendar-table .next {
+		cursor: pointer;
+	}
+
+		.daterangepicker .calendar-table .prev span,
+		.daterangepicker .calendar-table .next span {
+			border: solid #333;
+			border-width: 0 0.125rem 0.125rem 0;
+			border-radius: 0;
+			display: inline-block;
+			padding: 0.1875rem;
+		}
+
+		.daterangepicker .calendar-table .next span {
+			-webkit-transform: rotate(-45deg);
+			transform: rotate(-45deg);
+		}
+
+		.daterangepicker .calendar-table .prev span {
+			-webkit-transform: rotate(135deg);
+			transform: rotate(135deg);
+		}
+
+	.daterangepicker .calendar-table table {
+		width: 100%;
+		margin: 0;
+		border-spacing: 0;
+		border-collapse: collapse;
+	}
+
+	.daterangepicker th {
+		font-weight: 400;
+	}
+
+		.daterangepicker th.month {
+			width: auto;
+			padding-top: 0;
+			padding-bottom: 0;
+			font-size: 1rem;
+		}
+
+	.daterangepicker td,
+	.daterangepicker th {
+		white-space: nowrap;
+		text-align: center;
+		vertical-align: middle;
+		padding: 0.5rem;
+		min-width: 2.375rem;
+		cursor: default;
+		font-size: 0.8125rem;
+		border-radius: 0.25rem;
+		transition: color ease-in-out 0.15s, background-color ease-in-out 0.15s;
+	}
+
+		.daterangepicker td.available:hover,
+		.daterangepicker th.available:hover {
+			background-color: #eee;
+			color: #333;
+		}
+
+		.daterangepicker td.week,
+		.daterangepicker th.week {
+			font-size: 80%;
+			color: #999;
+		}
+
+		.daterangepicker td.off, .daterangepicker td.off.in-range, .daterangepicker td.off.start-date, .daterangepicker td.off.end-date {
+			background-color: transparent;
+			color: #ccc;
+		}
+
+		.daterangepicker td.in-range {
+			background-color: #eee;
+			color: #333;
+			border-radius: 0;
+		}
+
+		.daterangepicker td.start-date {
+			border-radius: 0.25rem 0 0 0.25rem;
+		}
+
+		.daterangepicker td.end-date {
+			border-radius: 0 0.25rem 0.25rem 0;
+		}
+
+		.daterangepicker td.start-date.end-date {
+			border-radius: 0.25rem;
+		}
+
+		.daterangepicker td.active:not(.off), .daterangepicker td.active:not(.off):hover {
+			color: #fff;
+			background-color: #009688;
+		}
+
+		.daterangepicker td.disabled,
+		.daterangepicker option.disabled {
+			color: #ccc;
+			cursor: default;
+		}
+
+	.daterangepicker select {
+		display: inline-block;
+		font-weight: 400;
+		font-size: 0.8125rem;
+		line-height: 1.6924;
+		color: #333;
+		vertical-align: middle;
+		height: calc(1.6924em + 0.75rem + 2px);
+		background: #fff url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23333' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") right 1rem center/8px 10px no-repeat;
+		border: 1px solid #ccc;
+		padding: 0.375rem 2.375rem 0.375rem 0.875rem;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		border-radius: 0.25rem;
+		box-shadow: none;
+		transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, opacity 0.15s ease-in-out;
+	}
+
+@media (prefers-reduced-motion: reduce) {
+	.daterangepicker select {
+		transition: none;
+	}
+}
+
+.daterangepicker select:focus {
+	border-color: #3F51B5;
+	background-color: #fff;
+	outline: 0;
+}
+
+.daterangepicker select.monthselect, .daterangepicker select.yearselect {
+	margin: 0;
+	cursor: default;
+	width: 49%;
+}
+
+.daterangepicker select.monthselect {
+	margin-right: 2%;
+}
+
+.daterangepicker .calendar-time {
+	text-align: center;
+	margin: 0.9375rem auto 0 auto;
+	position: relative;
+}
+
+	.daterangepicker .calendar-time select.disabled {
+		color: #999;
+		background-color: transparent;
+		cursor: default;
+	}
+
+.daterangepicker .drp-buttons {
+	clear: both;
+	padding: 0.9375rem;
+	border-top: 1px solid #ddd;
+	display: none;
+}
+
+	.daterangepicker .drp-buttons .btn {
+		margin-left: 0.625rem;
+	}
+
+.daterangepicker .drp-selected {
+	display: inline-block;
+	font-size: 0.8125rem;
+	margin-right: auto;
+}
+
+.daterangepicker .ranges {
+	float: none;
+	text-align: left;
+	margin: 0;
+	padding: 0.5rem 0;
+}
+
+	.daterangepicker .ranges:empty {
+		display: none;
+	}
+
+	.daterangepicker .ranges ul {
+		list-style: none;
+		margin: 0 auto;
+		padding: 0;
+		width: 100%;
+	}
+
+	.daterangepicker .ranges li {
+		color: #333;
+		font-size: 0.8125rem;
+		padding: 0.5rem 1.25rem;
+		cursor: pointer;
+		transition: color ease-in-out 0.15s, background-color ease-in-out 0.15s;
+	}
+
+		.daterangepicker .ranges li:hover {
+			color: #333;
+			background-color: #eee;
+		}
+
+		.daterangepicker .ranges li.active {
+			color: #333;
+			background-color: #ddd;
+		}
+
+@media (max-width: 767.98px) {
+	.daterangepicker {
+		margin-left: 1.25rem;
+		margin-right: 1.25rem;
+	}
+
+		.daterangepicker.opensleft, .daterangepicker.opensright {
+			left: 0 !important;
+			right: 0 !important;
+		}
+
+			.daterangepicker.opensleft .ranges,
+			.daterangepicker.opensleft .calendar,
+			.daterangepicker.opensleft .calendars, .daterangepicker.opensright .ranges,
+			.daterangepicker.opensright .calendar,
+			.daterangepicker.opensright .calendars {
+				float: none;
+			}
+
+		.daterangepicker .calendar {
+			margin-left: 0;
+			margin-right: 0;
+		}
+
+		.daterangepicker .ranges {
+			width: 100%;
+		}
+
+		.daterangepicker .drp-selected {
+			width: 100%;
+			margin-bottom: 0.625rem;
+		}
+
+		.daterangepicker.show-calendar.show-ranges .ranges {
+			border-bottom: 1px solid #ddd;
+		}
+
+		.daterangepicker.show-calendar .drp-buttons {
+			-ms-flex-pack: center;
+			justify-content: center;
+			text-align: center;
+		}
+}
+
+@media (min-width: 576px) {
+	.daterangepicker.show-ranges.single.rtl .drp-calendar.left,
+	.daterangepicker.show-ranges.rtl .drp-calendar.right {
+		border-right: 1px solid #ddd;
+	}
+
+	.daterangepicker.show-ranges.single.ltr .drp-calendar.left,
+	.daterangepicker.show-ranges.ltr .drp-calendar.left {
+		border-left: 1px solid #ddd;
+	}
+
+	.daterangepicker .ranges,
+	.daterangepicker .drp-calendar {
+		float: left;
+	}
+
+	.daterangepicker .ranges {
+		min-width: 12.5rem;
+	}
+}
+
+/* ------------------------------------------------------------------------------
+*
+*  # Pick-a-date - Picker base
+*
+*  The mobile-friendly, responsive, and lightweight jQuery date & time input picker
+*
+* ---------------------------------------------------------------------------- */
+.picker {
+	width: 100%;
+	text-align: left;
+	position: absolute;
+	top: 100%;
+	margin-top: 0;
+	z-index: 1070;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.picker__input {
+	cursor: default;
+}
+
+.picker__holder {
+	width: 100%;
+	overflow-y: auto;
+	position: absolute;
+	display: none;
+	background-color: #fff;
+	border: 0 solid rgba(0, 0, 0, 0.15);
+	border-top-width: 0;
+	border-bottom-width: 0;
+	min-width: 18rem;
+	max-width: 20rem;
+	outline: 0;
+	-webkit-overflow-scrolling: touch;
+	border-bottom-right-radius: 0.25rem;
+	border-bottom-left-radius: 0.25rem;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.picker--opened .picker__holder {
+	max-height: 480px;
+	border-top-width: 0;
+	border-bottom-width: 0;
+	display: block;
+}
+
+/* ------------------------------------------------------------------------------
+*
+*  # Pick-a-date - Date picker
+*
+*  The mobile-friendly, responsive, and lightweight jQuery date & time input picker
+*
+* ---------------------------------------------------------------------------- */
+.picker__box {
+	padding: 0.9375rem;
+}
+
+.picker__header {
+	text-align: center;
+	position: relative;
+	font-size: 1rem;
+	line-height: 1;
+	padding-top: 0.9375rem;
+	padding-bottom: 0.9375rem;
+}
+
+.picker__month,
+.picker__year {
+	font-weight: 500;
+	display: inline-block;
+	margin-left: 0.3125rem;
+	margin-right: 0.3125rem;
+}
+
+.picker__year {
+	color: #999;
+	font-size: 0.8125rem;
+	font-weight: normal;
+}
+
+.picker__select--month,
+.picker__select--year {
+	border: 1px solid #ccc;
+	padding: 0.5rem 1rem;
+	font-size: 0.875rem;
+	line-height: 1.5715;
+	color: #333;
+	background-color: #fff;
+	background-clip: padding-box;
+	margin-left: 0.3125rem;
+	margin-right: 0.3125rem;
+	outline: 0;
+	white-space: nowrap;
+	border-radius: 0.25rem;
+	border-radius: 0.25rem;
+}
+
+.picker__nav--prev,
+.picker__nav--next {
+	position: absolute;
+	padding: 0.5rem;
+	top: 50%;
+	margin-top: -1rem;
+	line-height: 1;
+	border-radius: 0.25rem;
+	transition: all ease-in-out 0.15s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.picker__nav--prev,
+	.picker__nav--next {
+		transition: none;
+	}
+}
+
+.picker__nav--prev:before,
+.picker__nav--next:before {
+	font-family: "icomoon";
+	display: block;
+	font-size: 1rem;
+	width: 1rem;
+	text-align: center;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.picker__nav--prev:hover,
+.picker__nav--next:hover {
+	cursor: pointer;
+	color: #333;
+	background-color: #eee;
+}
+
+.picker__nav--prev {
+	left: 0;
+}
+
+	.picker__nav--prev:before {
+		content: "";
+	}
+
+[dir=rtl] .picker__nav--prev:before {
+	content: "";
+}
+
+.picker__nav--next {
+	right: 0;
+}
+
+	.picker__nav--next:before {
+		content: "";
+	}
+
+[dir=rtl] .picker__nav--next:before {
+	content: "";
+}
+
+.picker__nav--disabled, .picker__nav--disabled:hover, .picker__nav--disabled:before, .picker__nav--disabled:before:hover {
+	cursor: default;
+	background-color: transparent;
+}
+
+.picker__table {
+	text-align: center;
+	border-collapse: collapse;
+	border-spacing: 0;
+	table-layout: fixed;
+	font-size: inherit;
+	width: 100%;
+	margin-bottom: 0.9375rem;
+}
+
+	.picker__table td {
+		margin: 0;
+		padding: 0;
+	}
+
+.picker__weekday {
+	width: 14.285714286%;
+	text-align: center;
+	padding-bottom: 0.46875rem;
+	padding-top: 0.9375rem;
+	color: #999;
+	font-weight: 400;
+}
+
+.picker__day {
+	padding: 0.5rem;
+	min-width: 2.375rem;
+	border-radius: 0.25rem;
+}
+
+.picker__day--today {
+	position: relative;
+	background-color: #eee;
+}
+
+	.picker__day--today:before {
+		content: "";
+		position: absolute;
+		top: 0.125rem;
+		right: 0.125rem;
+		width: 0;
+		height: 0;
+		border-top: 0.375rem solid #009688;
+		border-left: 0.375rem solid transparent;
+	}
+
+.picker__day--outfocus {
+	color: #ccc;
+}
+
+.picker__day--infocus,
+.picker__day--outfocus {
+	transition: all ease-in-out 0.15s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.picker__day--infocus,
+	.picker__day--outfocus {
+		transition: none;
+	}
+}
+
+.picker__day--infocus:hover,
+.picker__day--outfocus:hover {
+	cursor: pointer;
+	color: #333;
+	background-color: #eee;
+}
+
+.picker__day--highlighted:before {
+	border-top-color: #fff;
+}
+
+.picker__day--highlighted,
+.picker__day--highlighted:hover,
+.picker--focused .picker__day--highlighted {
+	cursor: pointer;
+	color: #fff;
+	background-color: #009688;
+}
+
+.picker__day--selected,
+.picker__day--selected:hover,
+.picker--focused .picker__day--selected {
+	background-color: #009688;
+	color: #fff;
+}
+
+.picker__day--disabled, .picker__day--disabled:hover {
+	background-color: transparent;
+	color: #999;
+	cursor: default;
+}
+
+	.picker__day--disabled:before {
+		border-top-color: #999;
+	}
+
+.picker__day--highlighted .picker__day--disabled, .picker__day--highlighted .picker__day--disabled:hover {
+	background-color: transparent;
+}
+
+.picker__footer {
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-pack: between;
+	justify-content: between;
+}
+
+	.picker__footer button {
+		color: #333;
+		background-color: #eee;
+		padding: 0.5rem 1rem;
+		border: 1px solid #eee;
+		font-weight: 500;
+		cursor: pointer;
+		-ms-flex: 1;
+		flex: 1;
+		display: inline-block;
+		border-radius: 0.25rem;
+		transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+	}
+
+@media (prefers-reduced-motion: reduce) {
+	.picker__footer button {
+		transition: none;
+	}
+}
+
+.picker__footer button + button {
+	margin-left: 0.625rem;
+}
+
+.picker__footer button:hover, .picker__footer button:focus {
+	outline: 0;
+	color: #333;
+	background-color: #dbdbdb;
+	border-color: #dbdbdb;
+}
+
+.picker__footer button:active {
+	color: #333;
+	background-color: #dbdbdb;
+	border-color: #dbdbdb;
+}
+
+.picker__footer button:before {
+	height: 0;
+}
+
+.picker__footer button:disabled, .picker__footer button:disabled:hover, .picker__footer button:disabled:focus {
+	background-color: transparent;
+	color: #333;
+	cursor: default;
+}
+
+.picker__button--today:before {
+	content: '';
+	margin-right: 0.625rem;
+	position: relative;
+	display: inline-block;
+	top: -0.0625rem;
+	width: 0;
+	border-top: 0.375rem solid #2196F3;
+	border-left: 0.375rem solid transparent;
+}
+
+.picker__button--close:before {
+	content: '\D7';
+	display: inline-block;
+	position: relative;
+	margin-right: 0.625rem;
+	top: 0.0625rem;
+	line-height: 1;
+	font-size: 1rem;
+}
+
+.picker__button--clear:before {
+	content: '';
+	display: inline-block;
+	position: relative;
+	top: -0.1875rem;
+	width: 0.5rem;
+	margin-right: 0.625rem;
+	border-top: 0.125rem solid #ef5350;
+}
+
+/* ------------------------------------------------------------------------------
+*
+*  # Pick-a-date - Time picker
+*
+*  The mobile-friendly, responsive, and lightweight jQuery date & time input picker
+*
+* ---------------------------------------------------------------------------- */
+.picker--time {
+	min-width: 16rem;
+	max-width: 20rem;
+}
+
+	.picker--time .picker__box {
+		padding: 0;
+	}
+
+.picker__list {
+	list-style: none;
+	padding: 0.5rem 0;
+	margin: 0;
+	max-height: 250px;
+	overflow-y: auto;
+}
+
+.picker__list-item {
+	position: relative;
+	padding: 0.5rem 1.25rem;
+	transition: all ease-in-out 0.15s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.picker__list-item {
+		transition: none;
+	}
+}
+
+.picker__list-item:hover, .picker__list-item:focus {
+	cursor: pointer;
+	color: #333;
+	background-color: #eee;
+}
+
+.picker--time .picker__button--clear {
+	display: block;
+	width: 100%;
+	margin: 0;
+	color: #333;
+	background-color: #eee;
+	padding: 0.5rem 1rem;
+	outline: 0;
+	border: 0;
+	border-top: 1px solid #ddd;
+	text-align: center;
+	cursor: pointer;
+	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.picker--time .picker__button--clear {
+		transition: none;
+	}
+}
+
+.picker--time .picker__button--clear:hover, .picker--time .picker__button--clear:focus {
+	background-color: #dbdbdb;
+	color: #333;
+}
+
+.picker--time .picker__button--clear:active {
+	background-color: #dbdbdb;
+	color: #333;
+}
+
+.picker__list-item--highlighted,
+.picker__list-item--highlighted:hover,
+.picker--focused .picker__list-item--highlighted {
+	cursor: pointer;
+	color: #333;
+	background-color: #eee;
+}
+
+.picker__list-item--selected,
+.picker__list-item--selected:hover,
+.picker--focused .picker__list-item--selected {
+	color: #333;
+	background-color: #ddd;
+}
+
+.picker__list-item--disabled,
+.picker__list-item--disabled:hover,
+.picker--focused .picker__list-item--disabled {
+	color: #999;
+	background-color: transparent;
+	cursor: default;
+	z-index: auto;
 }

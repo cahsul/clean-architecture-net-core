@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Client.Extensions;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
 namespace Client.Pages.Dashboard
 {
-    public partial class Index : ComponentBase
+    public partial class Dashboard : ComponentBase
     {
         [Inject] public IJSRuntime JSRuntime { get; set; }
 
@@ -22,9 +23,11 @@ namespace Client.Pages.Dashboard
         {
             if (firstRender)
             {
-                _jsModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", "./app-js/dashboard.js");
+                _jsModule = await JSRuntime.ReadJsFile<Dashboard>();
                 await _jsModule.InvokeVoidAsync("dashboardReady", _divChart);
                 await _jsModule.InvokeVoidAsync("pieChart", _divChart2);
+
+
             }
         }
     }

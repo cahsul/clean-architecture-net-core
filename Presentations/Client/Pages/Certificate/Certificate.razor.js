@@ -95,7 +95,7 @@ export function fabrik() {
             left: 240,
             top: 50,
         }));
-    }, { crossOrigin: 'anonymous'});
+    }, { crossOrigin: 'anonymous' });
 
 
     var text2 = new fabric.Textbox('yooo apa kabar', {
@@ -109,7 +109,7 @@ export function fabrik() {
     var bola = new fabric.Circle({ radius: 30, fill: '#f55', top: 100, left: 100 });
     canvas.add(bola);
 
-    
+
 
 
 }
@@ -121,7 +121,7 @@ export function SaveImage() {
     console.log(json);
 
     var imageqwe = canvaszzz.toDataURL("image/jpg");
-   // document.write('<img src="' + imageqwe + '"/>');
+    // document.write('<img src="' + imageqwe + '"/>');
     //var img = canvas.toDataURL("image/png");
     window.open("data:application/pdf;base64," + imageqwe);
 }

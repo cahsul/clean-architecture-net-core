@@ -16,10 +16,10 @@ namespace Shared.Event.Commands.EventCreate
     public class EventCreateRequest
     {
         public string EventName { get; set; }
-        public string DateStart { get; set; }
+        public DateTimeOffset? DateStart { get; set; }
         public string TimeStart { get; set; }
 
-        public string DateFinish { get; set; }
+        public DateTimeOffset? DateFinish { get; set; }
         public string TimeFinish { get; set; }
     }
 

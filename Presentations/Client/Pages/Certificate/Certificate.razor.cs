@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Client.Extensions;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
 namespace Client.Pages.Certificate
 {
-    public partial class Index : ComponentBase
+    public partial class Certificate : ComponentBase
     {
         [Inject] public IJSRuntime JSRuntime { get; set; }
 
@@ -22,8 +23,9 @@ namespace Client.Pages.Certificate
         {
             if (firstRender)
             {
-                _jsModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", "./app-js/Certificate.js");
+                _jsModule = await JSRuntime.ReadJsFile<Certificate>();
                 await _jsModule.InvokeVoidAsync("fabrik");
+
             }
         }
 
