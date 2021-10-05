@@ -30,50 +30,7 @@
                             </div>
                         </div>
 
-                        <fieldset class="mt-3">
-                            <legend class="text-uppercase font-size-lg font-weight-bold border-bottom">
-                                <div class="row">
-                                    <div class="col-auto mr-auto mt-2"> Pembicara </div>
-                                    <div class="col-auto">
-                                        <button type="button" class="btn btn-success-100 text-success btn-sm"><i class="icon-add"></i> Tambah</button>
-                                    </div>
-                                </div>
-                            </legend>
-
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group form-group-floating">
-                                        <div class="position-relative">
-                                            <InputText @bind-Value="@_createModel.EventName" class="form-control form-control-outline-within" />
-                                            <label class="label-floating">Nama Pembicara</label>
-                                        </div>
-                                        <ValidationMessage For="@(() => _createModel.TimeFinish)" />
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-12 col-lg-6">
-                                    <div class="form-group form-group-floating">
-                                        <div class="position-relative">
-                                            <InputText @bind-Value="@_createModel.EventName" class="form-control form-control-outline-within" />
-                                            <label class="label-floating">Topik</label>
-                                        </div>
-                                        <ValidationMessage For="@(() => _createModel.TimeFinish)" />
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-12 col-lg-6">
-                                    <div class="form-group form-group-floating">
-                                        <div class="position-relative">
-                                            <InputText @bind-Value="@_createModel.EventName" class="form-control form-control-outline-within" />
-                                            <label class="label-floating">Institusi</label>
-                                        </div>
-                                        <ValidationMessage For="@(() => _createModel.TimeFinish)" />
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </fieldset>
+                        <EventCreate_Speaker />
 
 
                         <fieldset class="mt-3">

@@ -106,6 +106,15 @@ namespace Shared.Event.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Speaker.
+        /// </summary>
+        public static string Form_Speaker {
+            get {
+                return ResourceManager.GetString("Form.Speaker", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Time Finish.
         /// </summary>
         public static string Form_TimeFinish {

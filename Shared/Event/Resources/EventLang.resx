@@ -132,6 +132,9 @@
   <data name="Form.EventName" xml:space="preserve">
     <value>Event Name</value>
   </data>
+  <data name="Form.Speaker" xml:space="preserve">
+    <value>Speaker</value>
+  </data>
   <data name="Form.TimeFinish" xml:space="preserve">
     <value>Time Finish</value>
   </data>

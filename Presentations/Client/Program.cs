@@ -1,6 +1,7 @@
 using Blazored.LocalStorage;
 using Client;
 using Client.Extensions;
+using Fluxor;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
@@ -13,6 +14,10 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 //
 builder.Services.AddLocalization();
 builder.Services.AddBlazoredLocalStorage();
+
+// AddFluxor
+var currentAssembly = typeof(Program).Assembly;
+builder.Services.AddFluxor(options => options.ScanAssemblies(currentAssembly));
 
 
 //await builder.Build().RunAsync();

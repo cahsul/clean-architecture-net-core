@@ -20,6 +20,7 @@
 	<ItemGroup>
 		<PackageReference Include="Blazored.FluentValidation" Version="2.0.1" />
 		<PackageReference Include="Blazored.LocalStorage" Version="4.1.5" />
+		<PackageReference Include="Fluxor.Blazor.Web" Version="4.1.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0-rc.1.21452.15" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0-rc.1.21452.15" PrivateAssets="all" />
 		<PackageReference Include="Microsoft.Extensions.Localization" Version="6.0.0-rc.1.21452.15" />
@@ -34,6 +35,10 @@
 			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
 			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
 		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Store\Event\" />
 	</ItemGroup>
 
 </Project>

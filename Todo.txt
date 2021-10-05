@@ -15,6 +15,7 @@ dotnet watch run
 
 
 https://www.emekaemego.com/posts/blazor-component-js/
+rollup --config
 
 
 
