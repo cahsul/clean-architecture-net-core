@@ -1,0 +1,40 @@
+﻿<tr>
+    <td>
+        <button type="submit" class="btn btn-outline-primary border-transparent btn-icon rounded-pill ml-2"><i class="icon-floppy-disk"></i></button>
+        <button onclick="@(() => CCancel.InvokeAsync())" class="btn btn-outline-dark border-transparent btn-icon rounded-pill ml-2"><i class="icon-cancel-square2"></i></button>
+    </td>
+    <td>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group form-group-floating">
+                    <div class="position-relative">
+                        <InputText @bind-Value="@CModel.Speaker" class="form-control form-control-outline-within" />
+                        <label class="label-floating">Nama Pembicara</label>
+                    </div>
+                    <ValidationMessage For="@(() => CModel.Speaker)" />
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-lg-6">
+                <div class="form-group form-group-floating">
+                    <div class="position-relative">
+                        <InputText @bind-Value="@CModel.Topics" class="form-control form-control-outline-within" />
+                        <label class="label-floating">Topik</label>
+                    </div>
+                    <ValidationMessage For="@(() => CModel.Topics)" />
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-lg-6">
+                <div class="form-group form-group-floating">
+                    <div class="position-relative">
+                        <InputText @bind-Value="@CModel.Institution" class="form-control form-control-outline-within" />
+                        <label class="label-floating">Institusi</label>
+                    </div>
+                    <ValidationMessage For="@(() => CModel.Institution)" />
+                </div>
+            </div>
+
+        </div>
+    </td>
+</tr>
