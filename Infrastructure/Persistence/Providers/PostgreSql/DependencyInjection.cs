@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Application._.Interfaces.Persistence;
 using Infrastructure.Persistence.Providers.PostgreSql;
+using Infrastructure.Persistence.Providers.PostgreSql.Serti;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -34,6 +35,11 @@ namespace Infrastructure.Persistence.Providers.MySql
 
             }).AddEntityFrameworkStores<IdentityPostgreSqlDbContext>()
                .AddDefaultTokenProviders();
+
+            // TODO : CONFIG
+            services.AddDbContext<SertiPostgreSqlDbContext>(options => { options.UseNpgsql("User ID=postgres;Password=Cay.12123;Host=194.233.70.37;Port=7232;Database=Serti;"); });
+            services.AddScoped<ISertiDbContext>(provider => provider.GetService<SertiPostgreSqlDbContext>());
+
 
             return services;
         }

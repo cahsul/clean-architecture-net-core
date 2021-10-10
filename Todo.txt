@@ -51,3 +51,7 @@ Update-Database -Context IdentityPostgreSqlDbContext -Project Infrastructure
 Add-Migration IDENTITY -Context IdentityPostgreSqlDbContext -Project Infrastructure -OutputDir Persistence/Providers/PostgreSql/Identity/Migrations
 
 
+Update-Database -Context SertiPostgreSqlDbContext -Project Infrastructure
+Add-Migration TODO -Context SertiPostgreSqlDbContext -Project Infrastructure -OutputDir Persistence/Providers/PostgreSql/Serti/Migrations
+
+

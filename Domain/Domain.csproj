@@ -10,4 +10,10 @@
     <Folder Include="Entities\RentCar\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="System.ComponentModel.Annotations">
+      <HintPath>C:\Program Files (x86)\Microsoft SDKs\UWPNuGetPackages\system.componentmodel.annotations\4.1.0\ref\netcore50\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

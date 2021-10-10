@@ -16,8 +16,9 @@ namespace Client.Pages.Event.EventCreate
 
         public ElementReference _speakerRef;
 
-        private void Submit(EditContext editContext)
+        private async Task SubmitAsync(EditContext editContext)
         {
+            var aaaaaaa = await EventApi.CreateAsync(_createModel);
         }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)

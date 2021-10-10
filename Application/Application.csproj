@@ -21,7 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Event\Commands\EventCreate\" />
     <Folder Include="Event\Commands\EventUpdate\" />
     <Folder Include="Event\Commands\EventDelete\" />
     <Folder Include="Event\Queries\EventList\" />

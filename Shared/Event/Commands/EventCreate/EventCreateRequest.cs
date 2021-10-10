@@ -15,7 +15,7 @@ namespace Shared.Event.Commands.EventCreate
 {
     public class EventCreateRequest
     {
-        public string EventName { get; set; }
+        public string? EventName { get; set; }
     }
 
     public class EventCreateModelValidator : AbstractValidator<EventCreateRequest>
