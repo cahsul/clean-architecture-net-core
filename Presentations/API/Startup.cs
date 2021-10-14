@@ -6,6 +6,7 @@ using Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +16,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -57,6 +59,11 @@ namespace API
                 fv.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             });
 
+
+
+            services.AddLocalization();
+
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -72,6 +79,22 @@ namespace API
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+
+
+
+            var cultures = new List<CultureInfo> {
+                new CultureInfo("en-US"),
+                new CultureInfo("id-ID")
+            };
+            app.UseRequestLocalization(options =>
+            {
+                options.DefaultRequestCulture = new RequestCulture("en-US");
+                options.SupportedCultures = cultures;
+                options.SupportedUICultures = cultures;
+            });
+
+
 
 
 

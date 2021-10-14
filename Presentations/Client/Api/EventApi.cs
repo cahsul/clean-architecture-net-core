@@ -66,7 +66,12 @@ namespace Client.Api
         {
             try
             {
-                var response = await _client.PostAsync(url, httpContent);
+                var request = new HttpRequestMessage(HttpMethod.Post, url);
+                request.Headers.Add("Accept-Language", "id-ID");
+                request.Content = httpContent;
+
+                var response = await _client.SendAsync(request);
+                //var response = await _client.PostAsync(url, httpContent);
                 var content = await response.Content.ReadAsStringAsync();
 
                 var contentObject = content.ToObject<ResponseBuilder<EventCreateResponse>>();

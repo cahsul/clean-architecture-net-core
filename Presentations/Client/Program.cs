@@ -5,6 +5,7 @@ using Client.Extensions;
 using Fluxor;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Toastr;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -22,6 +23,9 @@ builder.Services.AddTransient<EventApi>();
 // AddFluxor
 var currentAssembly = typeof(Program).Assembly;
 builder.Services.AddFluxor(options => options.ScanAssemblies(currentAssembly));
+
+//
+builder.Services.AddToastr();
 
 
 //await builder.Build().RunAsync();
