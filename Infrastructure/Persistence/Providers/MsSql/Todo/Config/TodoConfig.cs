@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 namespace Infrastructure.Persistence.Providers.MsSql.Todo.Config
 {
 
-    public class TodoConfig : IEntityTypeConfiguration<Domain.Entities.Todo>
+    public class TodoConfig : IEntityTypeConfiguration<Domain.Entities.Todo.Todo>
     {
-        public void Configure(EntityTypeBuilder<Domain.Entities.Todo> builder)
+        public void Configure(EntityTypeBuilder<Domain.Entities.Todo.Todo> builder)
         {
             builder.Auditable();
             builder.ToTable("Todo");

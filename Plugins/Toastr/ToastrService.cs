@@ -19,5 +19,31 @@ namespace Toastr
         {
             await _jsRuntime.InvokeVoidAsync("toastrFunctions.showToastrInfo", message);
         }
+
+        public async Task Warning(string message, ToastrOptions options)
+        {
+            await _jsRuntime.InvokeVoidAsync("toastrFunctions.warning", message, options);
+        }
+
+        public async Task Error(string message, ToastrOptions options)
+        {
+            await _jsRuntime.InvokeVoidAsync("toastrFunctions.error", message, options);
+        }
+
+        public async Task Success(string message)
+        {
+            var toastrOptions = new ToastrOptions
+            {
+                CloseButton = true,
+                TimeOut = 5000,
+                HideMethod = ToastrHideMethod.SlideUp,
+                ShowMethod = ToastrShowMethod.SlideDown,
+                Position = ToastrPosition.TopRight,
+                ShowProgressBar = true,
+            };
+
+            await _jsRuntime.InvokeVoidAsync("toastrFunctions.success", message, toastrOptions);
+        }
+
     }
 }

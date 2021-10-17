@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Domain._.Entities;
+using Domain.X.Entities;
 
 namespace Domain.Entities.Identity
 {

@@ -1,12 +1,7 @@
-﻿using Application._.Extensions;
-using Application._.Interfaces.Jwt;
-using Application._.Interfaces.Persistence;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Shared._.Enums;
-using Shared._.Exceptions;
-using Shared._.Responses;
+using Shared.X.Exceptions;
 using Shared.Identity.Queries.LoginByEmail;
 using System;
 using System.Collections.Generic;
@@ -15,7 +10,12 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Shared._.Extensions;
+using Shared.X.Enums;
+using Shared.X.Responses;
+using Shared.X.Extensions;
+using Application.X.Interfaces.Jwt;
+using Application.X.Extensions;
+using Application.X.Interfaces.Persistence;
 
 namespace Application.Identity.Queries.LoginByEmail
 {
@@ -76,7 +76,7 @@ namespace Application.Identity.Queries.LoginByEmail
                 Token = jwtToken.Token,
                 ValidTo = jwtToken.ValidTo,
                 RefreshToken = jwtToken.RefreshToken,
-            }.Response();
+            }.ResponseCreate();
         }
 
         /// <summary>

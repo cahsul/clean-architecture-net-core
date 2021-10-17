@@ -1,4 +1,4 @@
-﻿using Application._.Interfaces.Jwt;
+﻿using Application.X.Interfaces.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -7,11 +7,13 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using Shared._.Jwt;
 using System.Security.Cryptography;
 using Domain.Entities.Identity;
-using Application._.Interfaces.Identity;
-using Application._.Interfaces.Persistence;
+using Application.X.Interfaces.Identity;
+using Application.X.Interfaces.Persistence;
+using Shared.X.Classes;
+using Infrastructure.X.Settings;
+using Microsoft.Extensions.Options;
 
 namespace Infrastructure.Jwt
 {
@@ -20,19 +22,18 @@ namespace Infrastructure.Jwt
     /// </summary>
     public class JwtGenerator : IJwtGenerator
     {
-        //private readonly TokenValidationParameters _tokenValidationParameters;
         private readonly IIdentityDbContext _identityDbContext;
+        private readonly InfrastructureSettings _infrastructureSettings;
 
-        public JwtGenerator(IIdentityDbContext identityDbContext)
+        public JwtGenerator(IIdentityDbContext identityDbContext, IOptions<InfrastructureSettings> infrastructureSettings)
         {
-            //_tokenValidationParameters = tokenValidationParameters;
             _identityDbContext = identityDbContext;
+            _infrastructureSettings = infrastructureSettings.Value;
         }
 
         public async Task<JwtToken> GetToken(IEnumerable<Claim> claims, string userId)
         {
-            // TODO : config
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("a bb ccc dddd eeeee ffffff ggggggg hhhhhhhh iiiiiiiii"));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_infrastructureSettings.Jwt.Secret));
 
             // TODO : config
             var token = new JwtSecurityToken(

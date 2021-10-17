@@ -4,7 +4,7 @@ using Application.Todos.Commands.UpdateTodo;
 using Application.Todos.Queries.GetTodos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Shared._.Responses;
+using Shared.X.Responses;
 using Shared.Todos.Commands.CreateTodo;
 using Shared.Todos.Commands.DeleteTodo;
 using Shared.Todos.Commands.UpdateTodo;

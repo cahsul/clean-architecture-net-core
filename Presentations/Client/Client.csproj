@@ -12,9 +12,13 @@
 
 	<ItemGroup>
 	  <Compile Remove="wwwroot\js\**" />
+	  <Compile Remove="X\Helpers\**" />
 	  <Content Remove="wwwroot\js\**" />
+	  <Content Remove="X\Helpers\**" />
 	  <EmbeddedResource Remove="wwwroot\js\**" />
+	  <EmbeddedResource Remove="X\Helpers\**" />
 	  <None Remove="wwwroot\js\**" />
+	  <None Remove="X\Helpers\**" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -29,7 +33,6 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\Plugins\Toastr\Toastr.csproj" />
 		<ProjectReference Include="..\..\Shared\Shared.csproj" />
-		<ProjectReference Include="C:\Users\csw\Downloads\BlazorWasmJsInterop-wrapping-js-library-blazor-webassembly\BlazorWasmJSInteropExamples\BlazorWasm.Toastr\BlazorWasm.Toastr.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

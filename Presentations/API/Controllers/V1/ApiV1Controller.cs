@@ -15,12 +15,6 @@ namespace API.Controllers.V1
     {
         private IMediator _mediator;
 
-        protected IMediator Mediator
-        {
-            get
-            {
-                return _mediator ??= HttpContext.RequestServices.GetService<IMediator>();
-            }
-        }
+        protected IMediator Mediator => _mediator ??= HttpContext.RequestServices.GetService<IMediator>();
     }
 }

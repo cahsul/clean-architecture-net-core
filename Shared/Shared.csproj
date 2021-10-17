@@ -17,6 +17,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>EventLang.resx</DependentUpon>
     </Compile>
+    <Compile Update="X\Resources\ResponseLang.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResponseLang.resx</DependentUpon>
+    </Compile>
     <Compile Update="Todos\Resources\TodoLang.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -33,6 +38,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>EventLang.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="X\Resources\ResponseLang.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResponseLang.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Todos\Resources\TodoLang.es.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
@@ -40,6 +49,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>TodoLang.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="X\Helpers\" />
   </ItemGroup>
 
 </Project>

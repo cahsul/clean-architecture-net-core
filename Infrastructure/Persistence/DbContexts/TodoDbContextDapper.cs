@@ -1,4 +1,4 @@
-﻿using Application._.Interfaces.Persistence;
+﻿using Application.X.Interfaces.Persistence;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System.Data;

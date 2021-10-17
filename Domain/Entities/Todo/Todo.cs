@@ -1,9 +1,9 @@
-﻿using Domain._.Entities;
+﻿using Domain.X.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Domain.Entities
+namespace Domain.Entities.Todo
 {
     public class Todo : AuditableEntity<Guid>
     {

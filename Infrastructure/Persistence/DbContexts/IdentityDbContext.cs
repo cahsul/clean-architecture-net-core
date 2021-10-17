@@ -1,5 +1,5 @@
-﻿using Domain._;
-using Domain._.Interfaces;
+﻿using Domain.X;
+using Domain.X.Interfaces;
 using Domain.Entities;
 using IdentityCtx = Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Domain.Entities.Identity;
 using Infrastructure.Persistence.Extensions;
-using Application._.Interfaces.Identity;
+using Application.X.Interfaces.Identity;
 
 namespace Infrastructure.Persistence.DbContexts
 {

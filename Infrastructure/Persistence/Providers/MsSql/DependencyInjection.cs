@@ -1,4 +1,4 @@
-﻿using Application._.Interfaces.Persistence;
+﻿using Application.X.Interfaces.Persistence;
 using Infrastructure.Persistence.Providers.MsSql.Identity;
 using Infrastructure.Persistence.Providers.MsSql.Todo;
 using Infrastructure.Persistence.Providers.PostgreSql;
@@ -17,7 +17,7 @@ namespace Infrastructure.Persistence.Providers.MsSql
     // TODO : satu interface punya banyak yang pake untuk DI nya speerti apa
     public static class DependencyInjection
     {
-        public static IServiceCollection AddMsSqlDatabase(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddMsSqlDatabase(this IServiceCollection services)
         {
             // TODO : CONFIG
             services.AddDbContext<MsSqlTodoDbContext>(options => { options.UseSqlServer("Data Source=194.233.70.37,7433;Initial Catalog=Todo;User ID=sa;Password=Cay.12123;"); });

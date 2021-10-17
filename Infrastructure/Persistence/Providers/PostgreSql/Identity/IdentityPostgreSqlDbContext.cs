@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Application._.Interfaces.Persistence;
+using Application.X.Interfaces.Persistence;
 using Infrastructure.Persistence.DbContexts;
 using Infrastructure.Persistence.Extensions;
 using Microsoft.AspNetCore.Identity;
@@ -15,7 +15,7 @@ namespace Infrastructure.Persistence.Providers.PostgreSql
     {
         public IdentityPostgreSqlDbContext(
            DbContextOptions<IdentityPostgreSqlDbContext> options,
-           Application._.Interfaces.Identity.IIdentity identity) : base(options)
+           Application.X.Interfaces.Identity.IIdentity identity) : base(options)
         {
             _identity = identity;
         }

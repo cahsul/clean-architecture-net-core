@@ -4,7 +4,6 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Shared._.Responses;
 using Shared.Todos.Commands.CreateTodo;
 using Shared.Todos.Commands.DeleteTodo;
 using Shared.Todos.Queries.GetTodos;
@@ -12,6 +11,7 @@ using Shared.Todos.Resources;
 using Web._.Extensions;
 //using Web.Shared.Components;
 using Shared._.Extensions;
+using Shared.__.Responses;
 
 namespace Web.Api
 {

@@ -1,4 +1,4 @@
-﻿using Application._.Interfaces.Persistence;
+﻿using Application.X.Interfaces.Persistence;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using System;

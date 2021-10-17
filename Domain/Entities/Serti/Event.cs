@@ -1,5 +1,5 @@
 ﻿using System;
-using Domain._.Entities;
+using Domain.X.Entities;
 
 namespace Domain.Entities.Serti
 {

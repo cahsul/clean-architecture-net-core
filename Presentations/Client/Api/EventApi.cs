@@ -1,19 +1,34 @@
-﻿using System.Text;
+﻿using System;
+using System.Net.Http;
+using System.Text;
 using System.Text.Json;
-using Client._.Extensions;
-using Shared._.Responses;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
+using Shared.X.Enums;
+using Shared.X.Extensions;
+using Shared.X.Responses;
 using Shared.Event.Commands.EventCreate;
 using Shared.Event.Resources;
+using Toastr;
+using Client.X.Extensions;
+using Microsoft.Extensions.Configuration;
 
 namespace Client.Api
 {
     public class EventApi
     {
-        private readonly HttpClient _client;
 
-        public EventApi(HttpClient client)
+        private readonly HttpClient _client;
+        private readonly Appsettings _appsettings;
+        private readonly ToastrService _toastrService;
+
+        public EventApi(ToastrService toastrService, HttpClient client, Appsettings appsettings)
         {
+
+            _toastrService = toastrService;
             _client = client;
+            _appsettings = appsettings;
+            HttpExtension.HttpExtensionConfigure(_toastrService, _client);
         }
 
         //public async Task<ResponseBuilder<List<GetTodosResponse>>> GetTodosAsync()
@@ -22,11 +37,10 @@ namespace Client.Api
         //    return resulr.ToObject<ResponseBuilder<List<GetTodosResponse>>>();
         //}
 
-        public async Task<ResponseBuilder<EventCreateResponse>> CreateAsync(EventCreateRequest model)
+        public async Task<ResponseBuilder<EventCreateResponse>> CreateAsync(EventCreateRequest request)
         {
-            var data = new StringContent(JsonSerializer.Serialize(model), Encoding.UTF8, "application/json");
-            var resulr = await PostAsync(@$"http://localhost:5000/{EventEndpoint.V1.Event.Create.Path}", data);
-            return resulr.ToObject<ResponseBuilder<EventCreateResponse>>();
+            var result = await request.PostAsync<EventCreateResponse>($"{_appsettings.Api_Serti()}/{EventEndpoint.V1.Event.Create.Path}"); // TODO : url hardcode
+            return result;
         }
 
         //public async Task<ResponseBuilder<DeleteTodoResponse>> DeleteTodoAsync(Guid id)
@@ -38,89 +52,54 @@ namespace Client.Api
 
 
 
-        private async Task<string> GetAsync(string url)
-        {
-            try
-            {
-                var response = await _client.GetAsync(url);
-                response.EnsureSuccessStatusCode();
-                var content = await response.Content.ReadAsStringAsync();
+        //private async Task<string> GetAsync(string url)
+        //{
+        //    try
+        //    {
+        //        var response = await _client.GetAsync(url);
+        //        response.EnsureSuccessStatusCode();
+        //        var content = await response.Content.ReadAsStringAsync();
 
-                if (!response.IsSuccessStatusCode)
-                {
-                    //await _notification.Error("Gagal Mengambil data dari server..");
-                    return null;
-                }
+        //        if (!response.IsSuccessStatusCode)
+        //        {
+        //            //await _notification.Error("Gagal Mengambil data dari server..");
+        //            return null;
+        //        }
 
-                return content;
-            }
-            catch (Exception ex)
-            {
-                //await _notification.Error(ex.Message, 0);
-                return null;
-            }
+        //        return content;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //await _notification.Error(ex.Message, 0);
+        //        return null;
+        //    }
 
-        }
+        //}
 
-        private async Task<string> PostAsync(string url, HttpContent httpContent)
-        {
-            try
-            {
-                var request = new HttpRequestMessage(HttpMethod.Post, url);
-                request.Headers.Add("Accept-Language", "id-ID");
-                request.Content = httpContent;
 
-                var response = await _client.SendAsync(request);
-                //var response = await _client.PostAsync(url, httpContent);
-                var content = await response.Content.ReadAsStringAsync();
 
-                var contentObject = content.ToObject<ResponseBuilder<EventCreateResponse>>();
+        //private async Task<string> DeleteAsync(string url)
+        //{
+        //    try
+        //    {
+        //        var response = await _client.DeleteAsync(url);
+        //        response.EnsureSuccessStatusCode();
+        //        var content = await response.Content.ReadAsStringAsync();
 
-                // return pesan error yang di dapat dari API
-                if (contentObject?.IsError == true && contentObject?.ErrorsMessage?.Count > 0)
-                {
-                    //await _notification.Error(contentObject.ErrorsMessage.ToString("<br/>"), 0);
-                    return null;
-                }
+        //        if (!response.IsSuccessStatusCode)
+        //        {
+        //            //await _notification.Error("Gagal Menghapus Data..");
+        //            return null;
+        //        }
 
-                if (!response.IsSuccessStatusCode)
-                {
-                    //await _notification.Error("Gagal Menyimpan Data..");
-                    return null;
-                }
+        //        return content;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //await _notification.Error(ex.Message, 0);
+        //        return null;
+        //    }
 
-                return content;
-            }
-            catch (Exception ex)
-            {
-                //await _notification.Error(ex.Message, 0);
-                return null;
-            }
-
-        }
-
-        private async Task<string> DeleteAsync(string url)
-        {
-            try
-            {
-                var response = await _client.DeleteAsync(url);
-                response.EnsureSuccessStatusCode();
-                var content = await response.Content.ReadAsStringAsync();
-
-                if (!response.IsSuccessStatusCode)
-                {
-                    //await _notification.Error("Gagal Menghapus Data..");
-                    return null;
-                }
-
-                return content;
-            }
-            catch (Exception ex)
-            {
-                //await _notification.Error(ex.Message, 0);
-                return null;
-            }
-
-        }
+        //}
     }
 }

@@ -1,4 +1,4 @@
-﻿using Domain._.Interfaces;
+﻿using Domain.X.Interfaces;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Persistence.Extensions

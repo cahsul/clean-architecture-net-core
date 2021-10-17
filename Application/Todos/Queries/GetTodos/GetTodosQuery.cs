@@ -1,12 +1,9 @@
-﻿using Application._.Attributes;
-using Application._.Extensions;
-using Application._.Interfaces.Identity;
-using Application._.Interfaces.Persistence;
+﻿using Application.X.Attributes;
 using Dapper;
 using Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Shared._.Responses;
+using Shared.X.Responses;
 using Shared.Todos.Queries.GetTodos;
 using System;
 using System.Collections.Generic;
@@ -14,6 +11,10 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Domain.Entities.Todo;
+using Application.X.Extensions;
+using Application.X.Interfaces.Identity;
+using Application.X.Interfaces.Persistence;
 
 namespace Application.Todos.Queries.GetTodos
 {

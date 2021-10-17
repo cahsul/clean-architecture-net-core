@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Application._.Extensions;
-using Application._.Interfaces.Persistence;
 using MediatR;
-using Shared._.Responses;
+using Shared.X.Responses;
 using Shared.Event.Commands.EventCreate;
 using Serti = Domain.Entities.Serti;
+using Application.X.Extensions;
+using Application.X.Interfaces.Persistence;
 
 namespace Application.Event.Commands.EventCreate
 {
@@ -31,7 +31,7 @@ namespace Application.Event.Commands.EventCreate
             // save
             var dataToSave = new Serti.Event
             {
-                EventName = request.EventName
+                EventName = request.EventName.Trim(),
             };
 
             await _sertiDbContext.Events.AddAsync(dataToSave);
@@ -41,7 +41,7 @@ namespace Application.Event.Commands.EventCreate
             return new EventCreateResponse
             {
                 Id = dataToSave.Id,
-            }.Response();
+            }.ResponseCreate();
         }
     }
 }

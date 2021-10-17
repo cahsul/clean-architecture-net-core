@@ -59,3 +59,9 @@ a, .btn-link {
 }
 
 
+
+
+
+.toast {
+    max-width: 100% !important;
+}

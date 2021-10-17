@@ -1,0 +1,38 @@
+﻿{
+  "connectionStrings": {
+    "serti": "User ID=postgres;Password=Cay.12123;Host=194.233.70.37;Port=7232;Database=Serti;"
+  },
+
+  "identityUser": {
+    "connectionStrings": "User ID=postgres;Password=Cay.12123;Host=194.233.70.37;Port=7232;Database=Serti;",
+    "options": {
+      "password": {
+        "requireDigit": false,
+        "requireLowercase": false,
+        "requiredLength": 1,
+        "requireNonAlphanumeric": false,
+        "requireUppercase": false
+      },
+      "signIn": {
+        "requireConfirmedAccount": false,
+        "requireConfirmedEmail": false,
+        "requireConfirmedPhoneNumber": false
+      }
+
+    }
+  },
+
+  "jwt": {
+    "secret": "BVcdrftgyhjvgcfxdrTFYGUHIRXfcgvh76eudgHUI*ytFGturIGhj^&%^#4758769youGHGJDy7850769*PYOULGKHJGHJFsrer6",
+    "issuer": "issuer",
+    "audience": "audience",
+    "expireInMinutes": "1000",
+    "expire": {
+      "Minute": 1000,
+      "Second": 1000
+
+    }
+  }
+
+
+}

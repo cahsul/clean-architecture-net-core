@@ -2,6 +2,7 @@ using Blazored.LocalStorage;
 using Client;
 using Client.Api;
 using Client.Extensions;
+using Client.X.Extensions;
 using Fluxor;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -19,6 +20,9 @@ builder.Services.AddBlazoredLocalStorage();
 
 //
 builder.Services.AddTransient<EventApi>();
+builder.Services.AddTransient<Appsettings>();
+
+
 
 // AddFluxor
 var currentAssembly = typeof(Program).Assembly;

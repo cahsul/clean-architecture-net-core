@@ -1,8 +1,6 @@
-﻿using Application._.Extensions;
-using Application._.Interfaces.Persistence;
-using MediatR;
+﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Shared._.Responses;
+using Shared.X.Responses;
 using Shared.Todos.Commands.UpdateTodo;
 using System;
 using System.Collections.Generic;
@@ -10,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.X.Extensions;
+using Application.X.Interfaces.Persistence;
 
 namespace Application.Todos.Commands.UpdateTodo
 {

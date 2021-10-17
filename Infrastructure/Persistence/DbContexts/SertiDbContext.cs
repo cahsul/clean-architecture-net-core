@@ -1,6 +1,6 @@
-﻿using Application._.Interfaces.Identity;
-using Domain._;
-using Domain._.Interfaces;
+﻿using Application.X.Interfaces.Identity;
+using Domain.X;
+using Domain.X.Interfaces;
 using Domain.Entities;
 using Domain.Entities.Serti;
 using Infrastructure.Persistence.Extensions;
@@ -37,12 +37,12 @@ namespace Infrastructure.Persistence.DbContexts
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entry.Entity.CreatedDate = DateTimeOffset.Now;
+                        entry.Entity.CreatedDate = DateTimeOffset.UtcNow;
                         entry.Entity.CreatedBy = _identity.Email;
                         entry.Entity.IsDeleted = false;
                         break;
                     case EntityState.Modified:
-                        entry.Entity.ModifiedDate = DateTimeOffset.Now;
+                        entry.Entity.ModifiedDate = DateTimeOffset.UtcNow;
                         entry.Entity.ModifiedBy = _identity.Email;
                         break;
                 }

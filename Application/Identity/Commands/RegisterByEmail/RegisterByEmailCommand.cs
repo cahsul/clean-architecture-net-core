@@ -1,9 +1,8 @@
-﻿using Application._.Extensions;
-using Application._.Interfaces.Persistence;
+﻿using Application.X.Interfaces.Persistence;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
-using Shared._.Exceptions;
-using Shared._.Responses;
+using Shared.X.Exceptions;
+using Shared.X.Responses;
 using Shared.Identity.Commands.RegisterByEmail;
 using System;
 using System.Collections.Generic;
@@ -11,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.X.Extensions;
 
 namespace Application.Identity.Commands.RegisterByEmail
 {
@@ -53,7 +53,7 @@ namespace Application.Identity.Commands.RegisterByEmail
             return new RegisterByEmailResponse
             {
                 Id = user.Id
-            }.Response();
+            }.ResponseCreate();
 
         }
     }

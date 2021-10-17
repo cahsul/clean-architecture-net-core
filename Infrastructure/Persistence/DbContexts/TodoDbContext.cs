@@ -1,6 +1,6 @@
-﻿using Application._.Interfaces.Identity;
-using Domain._;
-using Domain._.Interfaces;
+﻿using Application.X.Interfaces.Identity;
+using Domain.X;
+using Domain.X.Interfaces;
 using Domain.Entities;
 using Infrastructure.Persistence.Extensions;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Domain.Entities.Todo;
 
 namespace Infrastructure.Persistence.DbContexts
 {

@@ -10,10 +10,11 @@ using Shared.Todos.Resources;
 using System.Resources;
 using System.Reflection;
 using System.Globalization;
+using Shared.X.Requests;
 
 namespace Shared.Event.Commands.EventCreate
 {
-    public class EventCreateRequest
+    public class EventCreateRequest : BaseRequest
     {
         public string? EventName { get; set; }
     }

@@ -1,6 +1,6 @@
 ﻿using Application.Event.Commands.EventCreate;
 using Microsoft.AspNetCore.Mvc;
-using Shared._.Responses;
+using Shared.X.Responses;
 using Shared.Event.Commands.EventCreate;
 using Shared.Event.Resources;
 using System.Threading.Tasks;
@@ -31,7 +31,6 @@ namespace API.Controllers.V1
         /// Create
         /// </summary>
         [HttpPost(EventEndpoint.V1.Event.Create.EndPoint)]
-        [Produces(typeof(ResponseBuilder<EventCreateResponse>))]
         public async Task<ActionResult<ResponseBuilder<EventCreateResponse>>> Create([FromBody] EventCreateCommand query)
         {
             return await Mediator.Send(query);

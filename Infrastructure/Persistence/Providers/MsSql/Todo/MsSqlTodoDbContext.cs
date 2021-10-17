@@ -1,4 +1,4 @@
-﻿using Application._.Interfaces.Persistence;
+﻿using Application.X.Interfaces.Persistence;
 using Infrastructure.Persistence.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -14,7 +14,7 @@ namespace Infrastructure.Persistence.Providers.MsSql.Todo
     {
         public MsSqlTodoDbContext(
            DbContextOptions<MsSqlTodoDbContext> options,
-           Application._.Interfaces.Identity.IIdentity identity) : base(options)
+           Application.X.Interfaces.Identity.IIdentity identity) : base(options)
         {
             _identity = identity;
         }

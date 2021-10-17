@@ -5,7 +5,7 @@ using Application.Identity.Queries.LoginByEmail;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using Shared._.Responses;
+using Shared.X.Responses;
 using Shared.Identity.Commands.RefreshToken;
 using Shared.Identity.Commands.RegisterByEmail;
 using Shared.Identity.Queries.LoginByEmail;
