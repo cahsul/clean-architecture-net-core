@@ -49,9 +49,11 @@ Remove-Migration -Context IdentityPostgreSqlDbContext -Project Infrastructure
 Update-Database -Context IdentityPostgreSqlDbContext -Project Infrastructure
 
 Add-Migration IDENTITY -Context IdentityPostgreSqlDbContext -Project Infrastructure -OutputDir Persistence/Providers/PostgreSql/Identity/Migrations
+Add-Migration EventSpeaker_Create -Context IdentityPostgreSqlDbContext -Project Infrastructure -StartupProject API -OutputDir Persistence/Providers/PostgreSql/Identity/Migrations
 
 
-Update-Database -Context SertiPostgreSqlDbContext -Project Infrastructure
+Update-Database -Context SertiPostgreSqlDbContext -Project Infrastructure -StartupProject API
+Remove-Migration -Context SertiPostgreSqlDbContext -Project Infrastructure -StartupProject API
 Add-Migration TODO -Context SertiPostgreSqlDbContext -Project Infrastructure -OutputDir Persistence/Providers/PostgreSql/Serti/Migrations
 
 
