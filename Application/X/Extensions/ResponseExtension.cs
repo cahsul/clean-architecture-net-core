@@ -25,6 +25,26 @@ namespace Application.X.Extensions
             };
         }
 
+        public static ResponseBuilder<T> ResponseDelete<T>(this T response)
+        {
+
+            return new ResponseBuilder<T>
+            {
+                Message = ResponseLang.Response_Delete,
+                Data = response,
+            };
+        }
+
+        public static ResponseBuilder<T> ResponseUpdate<T>(this T response)
+        {
+
+            return new ResponseBuilder<T>
+            {
+                Message = ResponseLang.Response_Update,
+                Data = response,
+            };
+        }
+
         public static ResponseBuilder<T> Response<T>(this T response)
         {
             return new ResponseBuilder<T>

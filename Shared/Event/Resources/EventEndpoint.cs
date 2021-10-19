@@ -8,39 +8,21 @@ namespace Shared.Event.Resources
 {
     public class EventEndpoint
     {
-        public static class V1
+        public static class Event
         {
-            public const string Path = nameof(V1);
 
-            public static class Event
-            {
-                public static readonly string Path = $"{V1.Path}/{nameof(Event)}";
-                public const string EndPoint = "";
+            public const string Create = "/" + nameof(Event) + "/" + nameof(Create);
+            public const string Update = "/" + nameof(Event) + "/" + nameof(Update) + "/{Id:guid}";
+            public const string Delete = "/" + nameof(Event) + "/" + nameof(Delete) + "/{Id:guid}";
+            public const string GetEvents = "/" + nameof(Event) + "/" + nameof(GetEvents);
+        }
 
-                public static class Create
-                {
-                    public static readonly string Path = $"{Event.Path}/{nameof(Create)}";
-                    public const string EndPoint = nameof(Create);
-                }
-
-                public static class Update
-                {
-                    public static readonly string Path = $"{Event.Path}/{nameof(Update)}";
-                    public const string EndPoint = nameof(Update) + "/{Id:guid}";
-                }
-
-                public static class Delete
-                {
-                    public static readonly string Path = $"{Event.Path}/{nameof(Delete)}";
-                    public const string EndPoint = nameof(Delete) + "/{Id:guid}";
-                }
-
-                //public static class List
-                //{
-                //    public static readonly string Path = $"{Apps.Path}/{nameof(List)}";
-                //    public const string EndPoint = nameof(List);
-                //}
-            }
+        public static class EventSpeaker
+        {
+            public const string Create = "/" + nameof(EventSpeaker) + "/" + nameof(Create);
+            public const string Update = "/" + nameof(EventSpeaker) + "/" + nameof(Update) + "/{Id:guid}";
+            public const string Delete = "/" + nameof(EventSpeaker) + "/" + nameof(Delete) + "/{Id:guid}";
+            public const string GetSpeakers = "/" + nameof(EventSpeaker) + "/" + nameof(GetSpeakers);
         }
     }
 }

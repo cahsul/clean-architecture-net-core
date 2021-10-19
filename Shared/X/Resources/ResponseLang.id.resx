@@ -123,4 +123,10 @@
   <data name="Response.CreatePlural" xml:space="preserve">
     <value>XXX telah berhasil Dibuat.</value>
   </data>
+  <data name="Response.Delete" xml:space="preserve">
+    <value>XXX telah berhasil dihapus</value>
+  </data>
+  <data name="Response.Update" xml:space="preserve">
+    <value>XXX telah berhasil diperbaharui.</value>
+  </data>
 </root>

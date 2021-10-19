@@ -24,11 +24,6 @@
             pembuatan event
             </summary>
         </member>
-        <member name="M:API.Controllers.V1.EventController.Create(Application.Event.Commands.EventCreate.EventCreateCommand)">
-            <summary>
-            Create
-            </summary>
-        </member>
         <member name="T:API.Controllers.V1.TodoController">
             <summary>
             aplikasi todo list

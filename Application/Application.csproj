@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Event\Queries\EventList\**" />
+    <EmbeddedResource Remove="Event\Queries\EventList\**" />
+    <None Remove="Event\Queries\EventList\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.90" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="10.3.3" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
@@ -21,9 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Event\Commands\EventUpdate\" />
-    <Folder Include="Event\Commands\EventDelete\" />
-    <Folder Include="Event\Queries\EventList\" />
     <Folder Include="Identity\Commands\ConfirmEmail\" />
     <Folder Include="Identity\Commands\ForgetPassword\" />
     <Folder Include="Identity\Commands\ResetPassword\" />

@@ -61,7 +61,7 @@ namespace Shared.X.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to XXXX has been successfully Created..
+        ///   Looks up a localized string similar to XXXX has been successfully created..
         /// </summary>
         public static string Response_Create {
             get {
@@ -70,11 +70,29 @@ namespace Shared.X.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to XXXX have been successfully Created..
+        ///   Looks up a localized string similar to XXXX have been successfully created..
         /// </summary>
         public static string Response_CreatePlural {
             get {
                 return ResourceManager.GetString("Response.CreatePlural", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XXXX has been successfully deleted..
+        /// </summary>
+        public static string Response_Delete {
+            get {
+                return ResourceManager.GetString("Response.Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XXXX has been successfully updated..
+        /// </summary>
+        public static string Response_Update {
+            get {
+                return ResourceManager.GetString("Response.Update", resourceCulture);
             }
         }
     }
