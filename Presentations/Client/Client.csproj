@@ -11,12 +11,16 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Pages\Event\EventUpdate\Time\**" />
 	  <Compile Remove="wwwroot\js\**" />
 	  <Compile Remove="X\Helpers\**" />
+	  <Content Remove="Pages\Event\EventUpdate\Time\**" />
 	  <Content Remove="wwwroot\js\**" />
 	  <Content Remove="X\Helpers\**" />
+	  <EmbeddedResource Remove="Pages\Event\EventUpdate\Time\**" />
 	  <EmbeddedResource Remove="wwwroot\js\**" />
 	  <EmbeddedResource Remove="X\Helpers\**" />
+	  <None Remove="Pages\Event\EventUpdate\Time\**" />
 	  <None Remove="wwwroot\js\**" />
 	  <None Remove="X\Helpers\**" />
 	</ItemGroup>

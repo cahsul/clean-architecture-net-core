@@ -12,6 +12,16 @@ using Shared.Event.Resources;
 using Toastr;
 using Client.X.Extensions;
 using Microsoft.Extensions.Configuration;
+using Shared.Event.Queries.GetEvents;
+using Shared.Event.Commands.EventDelete;
+using Shared.Event.Commands.SpeakerCreate;
+using Shared.Event.Commands.SpeakerDelete;
+using Shared.Event.Queries.GetEvent;
+using Shared.Event.Queries.GetSpeaker;
+using Shared.Event.Queries.GetSpeakers;
+using Shared.Event.Commands.SpeakerUpdate;
+using Shared.Event.Queries.GetSpeakersByEvent;
+using Shared.Event.Commands.EventUpdate;
 
 namespace Client.Api
 {
@@ -31,75 +41,75 @@ namespace Client.Api
             HttpExtension.HttpExtensionConfigure(_toastrService, _client);
         }
 
-        //public async Task<ResponseBuilder<List<GetTodosResponse>>> GetTodosAsync()
-        //{
-        //    var resulr = await GetAsync(@$"http://localhost:5000/{TodoEndpoint.V1.Todo.Path}");
-        //    return resulr.ToObject<ResponseBuilder<List<GetTodosResponse>>>();
-        //}
-
-        public async Task<ResponseBuilder<EventCreateResponse>> CreateAsync(EventCreateRequest request)
+        public async Task<ResponseBuilder<EventCreateResponse>> EventCreateAsync(EventCreateRequest request)
         {
-            var result = await request.PostAsync<EventCreateResponse>($"{_appsettings.Api_Serti()}/{EventEndpoint.V1.Event.Create.Path}"); // TODO : url hardcode
+            var result = await request.PostAsync<EventCreateResponse>($"{_appsettings.Api_Serti()}{EventEndpoint.Event.Create}");
             return result;
         }
 
-        //public async Task<ResponseBuilder<DeleteTodoResponse>> DeleteTodoAsync(Guid id)
-        //{
-        //    var resulr = await DeleteAsync(@$"http://localhost:5000/{TodoEndpoint.V1.Todo.Delete.Path}/{id}");
-        //    return resulr.ToObject<ResponseBuilder<DeleteTodoResponse>>();
-        //}
+        public async Task<ResponseBuilder<EventUpdateResponse>> EventUpdateAsync(EventUpdateRequest request)
+        {
+            var result = await request.PutAsync<EventUpdateResponse>($"{_appsettings.Api_Serti()}{EventEndpoint.Event.Update}");
+            return result;
+        }
+
+        public async Task<ResponseBuilder<List<GetEventsResponse>>> EventsGetAsync(GetEventsRequest request)
+        {
+            var result = await request.GetAsync<List<GetEventsResponse>>($"{_appsettings.Api_Serti()}{EventEndpoint.Event.GetEvents}");
+            return result;
+        }
+
+        public async Task<ResponseBuilder<GetEventResponse>> EventGetAsync(GetEventRequest request)
+        {
+            var result = await request.GetAsync<GetEventResponse>($"{_appsettings.Api_Serti()}{EventEndpoint.Event.GetEvent}/?Id={request.Id}");
+            return result;
+        }
+
+        public async Task<ResponseBuilder<EventDeleteResponse>> EventDeleteAsync(EventDeleteRequest request)
+        {
+            var result = await request.DeleteAsync<EventDeleteResponse>($"{_appsettings.Api_Serti()}{EventEndpoint.Event.Delete}");
+            return result;
+        }
 
 
+        #region Speaker
 
+        public async Task<ResponseBuilder<GetSpeakerResponse>> SpeakerGetAsync(GetSpeakerRequest request)
+        {
+            var result = await request.GetAsync<GetSpeakerResponse>($"{_appsettings.Api_Serti()}{EventEndpoint.EventSpeaker.GetSpeaker}");
+            return result;
+        }
 
-        //private async Task<string> GetAsync(string url)
-        //{
-        //    try
-        //    {
-        //        var response = await _client.GetAsync(url);
-        //        response.EnsureSuccessStatusCode();
-        //        var content = await response.Content.ReadAsStringAsync();
+        public async Task<ResponseBuilder<List<GetSpeakerResponse>>> SpeakersGetAsync(GetSpeakersRequest request)
+        {
+            var result = await request.GetAsync<List<GetSpeakerResponse>>($"{_appsettings.Api_Serti()}{EventEndpoint.EventSpeaker.GetSpeakers}");
+            return result;
+        }
 
-        //        if (!response.IsSuccessStatusCode)
-        //        {
-        //            //await _notification.Error("Gagal Mengambil data dari server..");
-        //            return null;
-        //        }
+        public async Task<ResponseBuilder<List<GetSpeakersByEventResponse>>> GetSpeakersByEvent(GetSpeakersByEventRequest request)
+        {
+            var result = await request.GetAsync<List<GetSpeakersByEventResponse>>($"{_appsettings.Api_Serti()}{EventEndpoint.EventSpeaker.GetSpeakersByEvent}/?EventId={request.EventId}");
+            return result;
+        }
 
-        //        return content;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        //await _notification.Error(ex.Message, 0);
-        //        return null;
-        //    }
+        public async Task<ResponseBuilder<SpeakerCreateResponse>> SpeakerCreateAsync(SpeakerCreateRequest request)
+        {
+            var result = await request.PostAsync<SpeakerCreateResponse>($"{_appsettings.Api_Serti()}{EventEndpoint.EventSpeaker.Create}");
+            return result;
+        }
 
-        //}
+        public async Task<ResponseBuilder<SpeakerUpdateResponse>> SpeakerUpdateAsync(SpeakerUpdateRequest request)
+        {
+            var result = await request.PutAsync<SpeakerUpdateResponse>($"{_appsettings.Api_Serti()}{EventEndpoint.EventSpeaker.Update}");
+            return result;
+        }
 
+        public async Task<ResponseBuilder<EventDeleteResponse>> SpeakerDeleteAsync(SpeakerDeleteRequest request)
+        {
+            var result = await request.DeleteAsync<EventDeleteResponse>($"{_appsettings.Api_Serti()}{EventEndpoint.EventSpeaker.Delete}");
+            return result;
+        }
 
-
-        //private async Task<string> DeleteAsync(string url)
-        //{
-        //    try
-        //    {
-        //        var response = await _client.DeleteAsync(url);
-        //        response.EnsureSuccessStatusCode();
-        //        var content = await response.Content.ReadAsStringAsync();
-
-        //        if (!response.IsSuccessStatusCode)
-        //        {
-        //            //await _notification.Error("Gagal Menghapus Data..");
-        //            return null;
-        //        }
-
-        //        return content;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        //await _notification.Error(ex.Message, 0);
-        //        return null;
-        //    }
-
-        //}
+        #endregion Speaker
     }
 }

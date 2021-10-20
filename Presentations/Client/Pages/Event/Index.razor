@@ -7,19 +7,23 @@
         </div>
 
         <div class="my-sm-auto ml-sm-auto mb-3 mb-sm-0">
-            <a href="/event/create">
-                <button type="button" class="btn btn-primary w-100 w-sm-auto">Buat Event Baru</button>
-            </a>
+            <button @onclick="CreateAsync" type="button" class="btn btn-primary w-100 w-sm-auto">Buat Event Baru</button>
         </div>
     </div>
 </div>
 
+@if (_events == null)
+{
+    return;
+}
+
 <div class="content">
+
+
 
     <div class="row">
 
-
-        @for (int i = 0; i < 4; i++)
+        @foreach (var item in _events)
         {
             <div class="col-lg-4">
                 <div class="card">
@@ -27,7 +31,7 @@
                     <div class="card-body bg-primary text-white text-center" style="background-image: url(assets/images/backgrounds/panel_bg.png); background-size: contain; height:300px">
                         <div class="mb-3">
                             <h5 class="font-weight-semibold mb-0 mt-1">
-                                Seminar Nasional Dengan judul yang sangat panjang sekali dengan kalimat yang panjang maka dapat melihat hasilnya sperti apa
+                                Seminar Nasional Dengan judul yang sangat panjang sekali dengan kalimat yang panjang maka dapat melihat hasilnya sperti apa @item.EventName
                             </h5>
                         </div>
 
@@ -55,19 +59,15 @@
                         <div class="card-footer d-flex justify-content-center">
                             <ul class="list-inline mb-0">
                                 <li class="list-inline-item">
-                                    <a href="#" class="btn btn-outline btn-icon rounded-pill">
-                                        <i class="icon-phone"></i>
+                                    <button type="button" class="btn btn-teal border-transparent btn-icon rounded-pill"><i class="icon-search4"></i></button>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="/event/update/@item.Id">
+                                        <button type="button" class="btn btn-info border-transparent btn-icon rounded-pill"><i class="icon-pencil6"></i></button>
                                     </a>
                                 </li>
                                 <li class="list-inline-item">
-                                    <a href="#" class="btn btn-outline btn-icon rounded-pill">
-                                        <i class="icon-bubbles4"></i>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#" class="btn btn-outline btn-icon rounded-pill">
-                                        <i class="icon-envelop4"></i>
-                                    </a>
+                                    <button @onclick="@(() => Delete(item.Id))" type="button" class="btn btn-danger border-transparent btn-icon rounded-pill"><i class="icon-trash-alt"></i></button>
                                 </li>
                             </ul>
                         </div>
@@ -79,8 +79,9 @@
 
                 </div>
             </div>
-
         }
+
+
 
         <div class="col-lg-4">
             <div class="card">

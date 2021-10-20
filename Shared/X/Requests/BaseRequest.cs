@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shared.X.Requests
 {
-    public class BaseRequest
+    public abstract class BaseRequest
     {
     }
 }

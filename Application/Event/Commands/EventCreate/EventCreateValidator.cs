@@ -13,7 +13,6 @@ namespace Application.Event.Commands.EventCreate
         public EventCreateValidator()
         {
             Include(new EventCreateModelValidator());
-            RuleFor(r => r.EventName).MinimumLength(10);
         }
     }
 }

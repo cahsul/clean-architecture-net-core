@@ -18,6 +18,12 @@ using Application.Event.Commands.EventUpdate;
 using Shared.Event.Commands.EventUpdate;
 using Application.Event.Commands.EventDelete;
 using Shared.Event.Commands.EventDelete;
+using Application.Event.Queries.GetEvent;
+using Shared.Event.Queries.GetEvent;
+using Shared.Event.Queries.GetSpeaker;
+using Application.Event.Queries.GetSpeaker;
+using Application.Event.Queries.GetSpeakersByEvent;
+using Shared.Event.Queries.GetSpeakersByEvent;
 
 namespace API.Controllers.V1
 {
@@ -29,6 +35,12 @@ namespace API.Controllers.V1
     {
 
         #region Event
+
+        [HttpGet(EventEndpoint.Event.GetEvent)]
+        public async Task<ActionResult<ResponseBuilder<GetEventResponse>>> GetEvent(GetEventQuery query)
+        {
+            return await Mediator.Send(query);
+        }
 
         [HttpGet(EventEndpoint.Event.GetEvents)]
         public async Task<ActionResult<ResponseBuilder<List<GetEventsResponse>>>> GetEvents(GetEventsQuery query)
@@ -44,7 +56,7 @@ namespace API.Controllers.V1
         }
 
         [HttpDelete(EventEndpoint.Event.Delete)]
-        public async Task<ActionResult<ResponseBuilder<EventDeleteResponse>>> EventDelete(EventDeleteCommand query)
+        public async Task<ActionResult<ResponseBuilder<EventDeleteResponse>>> EventDelete([FromBody] EventDeleteCommand query)
         {
             return await Mediator.Send(query);
         }
@@ -61,8 +73,20 @@ namespace API.Controllers.V1
 
         #region Speaker
 
+        [HttpGet(EventEndpoint.EventSpeaker.GetSpeaker)]
+        public async Task<ActionResult<ResponseBuilder<GetSpeakerResponse>>> GetSpeaker(GetSpeakerQuery query)
+        {
+            return await Mediator.Send(query);
+        }
+
         [HttpGet(EventEndpoint.EventSpeaker.GetSpeakers)]
-        public async Task<ActionResult<ResponseBuilder<List<GetSpeakersResponse>>>> Get(GetSpeakersQuery query)
+        public async Task<ActionResult<ResponseBuilder<List<GetSpeakersResponse>>>> GetSpeakers(GetSpeakersQuery query)
+        {
+            return await Mediator.Send(query);
+        }
+
+        [HttpGet(EventEndpoint.EventSpeaker.GetSpeakersByEvent)]
+        public async Task<ActionResult<ResponseBuilder<List<GetSpeakersByEventResponse>>>> GetSpeakersByEvent(GetSpeakersByEventQuery query)
         {
             return await Mediator.Send(query);
         }
@@ -74,7 +98,7 @@ namespace API.Controllers.V1
         }
 
         [HttpDelete(EventEndpoint.EventSpeaker.Delete)]
-        public async Task<ActionResult<ResponseBuilder<SpeakerDeleteResponse>>> SpeakerDelete(SpeakerDeleteCommand query)
+        public async Task<ActionResult<ResponseBuilder<SpeakerDeleteResponse>>> SpeakerDelete([FromBody] SpeakerDeleteCommand query)
         {
             return await Mediator.Send(query);
         }

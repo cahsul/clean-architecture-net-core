@@ -34,7 +34,6 @@ namespace Application.Event.Commands.SpeakerDelete
                 Id = request.Id,
             };
 
-            _sertiDbContext.EventSpeakers.Attach(dataToDelete);
             _sertiDbContext.EventSpeakers.Remove(dataToDelete);
             await _sertiDbContext.SaveChangesAsync(cancellationToken);
 

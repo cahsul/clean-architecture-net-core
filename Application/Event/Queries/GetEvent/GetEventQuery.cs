@@ -8,17 +8,17 @@ using Application.X.Extensions;
 using Application.X.Interfaces.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Shared.Event.Queries.GetEvents;
+using Shared.Event.Queries.GetEvent;
 using Shared.X.Responses;
 
-namespace Application.Event.Queries.GetEvents
+namespace Application.Event.Queries.GetEvent
 {
-    public class GetEventsQuery : GetEventsRequest, IRequest<ResponseBuilder<List<GetEventsResponse>>>
+    public class GetEventQuery : GetEventRequest, IRequest<ResponseBuilder<GetEventResponse>>
     {
 
     }
 
-    public class Handler : IRequestHandler<GetEventsQuery, ResponseBuilder<List<GetEventsResponse>>>
+    public class Handler : IRequestHandler<GetEventQuery, ResponseBuilder<GetEventResponse>>
     {
         private readonly ISertiDbContext _sertiDbContext;
 
@@ -27,19 +27,18 @@ namespace Application.Event.Queries.GetEvents
             _sertiDbContext = sertiDbContext;
         }
 
-        public async Task<ResponseBuilder<List<GetEventsResponse>>> Handle(GetEventsQuery request, CancellationToken cancellationToken)
+        public async Task<ResponseBuilder<GetEventResponse>> Handle(GetEventQuery request, CancellationToken cancellationToken)
         {
             var data = await _sertiDbContext.Events
-                .OrderByDescending(o => o.CreatedDate)
-                .Select(s => new GetEventsResponse
+                .Where(w => w.Id == request.Id)
+                .Select(s => new GetEventResponse
                 {
                     Id = s.Id,
                     EventName = s.EventName,
                 })
-                .ToListAsync(cancellationToken);
+                .FirstOrDefaultAsync(cancellationToken);
 
             return data.Response();
         }
     }
-
 }

@@ -30,6 +30,7 @@ namespace Application.Event.Commands.SpeakerCreate
         {
             var dataToSave = new EventSpeaker
             {
+                Id = (Guid)request.Id,
                 EventId = request.EventId,
                 SpeakerName = request.SpeakerName,
                 Topics = request.Topics,

@@ -5,9 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Shared.X.Requests;
 
-namespace Shared.Event.Queries.GetSpeakers
+namespace Shared.Event.Queries.GetSpeaker
 {
-    public class GetSpeakersRequest : BaseRequest
+    public class GetSpeakerRequest : BaseRequest
     {
+        public Guid Id { get; set; }
     }
 }

@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Shared.X.Responses;
 
-namespace Shared.Event.Queries.GetSpeakers
+namespace Shared.Event.Queries.GetSpeaker
 {
-    public class GetSpeakersResponse : BaseResponse<Guid>
+    public class GetSpeakerResponse : BaseResponse<Guid>
     {
         public Guid? EventId { get; set; }
         public string SpeakerName { get; set; }

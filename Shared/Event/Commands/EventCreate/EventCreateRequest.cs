@@ -17,6 +17,7 @@ namespace Shared.Event.Commands.EventCreate
     public class EventCreateRequest : BaseRequest
     {
         public string? EventName { get; set; }
+        public List<Guid> SpeakersId { get; set; }
     }
 
     public class EventCreateModelValidator : AbstractValidator<EventCreateRequest>
@@ -24,28 +25,6 @@ namespace Shared.Event.Commands.EventCreate
 
         public EventCreateModelValidator()
         {
-            RuleFor(r => r.EventName).NotEmpty().WithName(EventLang.Form_EventName);
-        }
-    }
-
-
-    public class EventCreateSpeaker
-    {
-        public Guid? Id { get; set; } = null;
-        public bool EditMode { get; set; } = false; // true = form create tampil di layar
-        public string Speaker { get; set; }
-        public string Topics { get; set; }
-        public string Institution { get; set; }
-    }
-
-    public class EventCreateSpeakerValidator : AbstractValidator<EventCreateSpeaker>
-    {
-        public EventCreateSpeakerValidator()
-        {
-            // TODO : lang
-            RuleFor(r => r.Speaker).NotNull().WithName(EventLang.Form_Speaker);
-            RuleFor(r => r.Topics).NotNull().WithName("<Topics>");
-            RuleFor(r => r.Institution).NotNull().WithName("<Institution>");
         }
     }
 

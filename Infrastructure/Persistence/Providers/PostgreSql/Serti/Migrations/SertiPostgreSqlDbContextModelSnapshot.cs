@@ -73,7 +73,7 @@ namespace Infrastructure.Persistence.Providers.PostgreSql.Serti.Migrations
                         .IsRequired()
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<Guid>("EventId")
+                    b.Property<Guid?>("EventId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Institution")

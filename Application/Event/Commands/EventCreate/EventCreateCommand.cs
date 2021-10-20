@@ -31,7 +31,7 @@ namespace Application.Event.Commands.EventCreate
             // save
             var dataToSave = new Serti.Event
             {
-                EventName = request.EventName.Trim(),
+                EventName = request?.EventName?.Trim(),
             };
 
             await _sertiDbContext.Events.AddAsync(dataToSave);

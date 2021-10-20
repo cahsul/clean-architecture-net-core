@@ -1,0 +1,55 @@
+﻿@page "/event/update/{id:guid}"
+
+@using Client.Pages.Event.EventUpdate.Speaker
+@*@using Client.Pages.Event.EventUpdate.Time*@
+
+@using Shared.Event.Resources
+
+<div class="content">
+
+    <div class="row">
+        <div class="col">
+            <div class="card border border-secondary">
+                <div class="card-header bg-light border-secondary header-elements-inline">
+                    <h6 class="card-title">@EventLang.Create_Title</h6>
+                </div>
+
+                <div class="card-body">
+
+                    <EditForm Model="@_updateModel" OnValidSubmit="@SubmitAsync">
+
+                        <FluentValidationValidator />
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group form-group-floating">
+                                    <div class="position-relative">
+                                        <InputText @bind-Value="@_updateModel.EventName" class="form-control form-control-outline-within" />
+                                        <label class="label-floating">@EventLang.Form_EventName</label>
+                                    </div>
+                                    <ValidationMessage For="@(() => _updateModel.EventName)" />
+                                </div>
+                            </div>
+                        </div>
+
+                         <SpeakerUpdate EventId=Id />
+                       @*
+                        <TimeCreate />*@
+
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-primary">@EventLang.Form_ButtonCreate</button>
+                        </div>
+
+                    </EditForm>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

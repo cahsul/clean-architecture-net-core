@@ -1,0 +1,91 @@
+﻿
+<fieldset class="mt-3">
+    <legend class="text-uppercase font-size-lg font-weight-bold border-bottom">
+        <div class="row">
+            <div class="col-auto mr-auto mt-2"> Pembicara </div>
+            <div class="col-auto">
+            </div>
+        </div>
+    </legend>
+    <EditForm Model="_eventUpdateSpeakerModel" OnValidSubmit="@SaveAsync">
+
+        <FluentValidationValidator />
+        <table class="table table-borderless">
+            <thead class="sr-only">
+                <tr>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in _dataSpeakers)
+                {
+                    if (item.EditMode)
+                    {
+                         @*<SpeakerCreateForm CModel=_eventUpdateSpeakerModel CCancel=@(() => { CancelUpdate(item.Id); })> </SpeakerCreateForm>*@
+                    }
+                    else
+                    {
+                        <tr>
+                            <td>
+                                <button onclick="@(() => Update(item.Id) )" type="button" class="btn btn-outline-info border-transparent btn-icon rounded-pill ml-2"><i class="icon-pencil6"></i></button>
+                                <button onclick="@(() => DeleteAsync(item.Id) )" type="button" class="btn btn-outline-danger border-transparent btn-icon rounded-pill ml-2"><i class="icon-trash-alt"></i></button>
+                            </td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group form-group-floating">
+                                            <div class="position-relative">
+                                                <input class="form-control form-control-outline-within" value="@item.SpeakerName" disabled="disabled" />
+                                                <label class="label-floating">Nama Pembicara</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12 col-lg-6">
+                                        <div class="form-group form-group-floating">
+                                            <div class="position-relative">
+                                                <input class="form-control form-control-outline-within" value="@item.Topics" disabled="disabled" />
+                                                <label class="label-floating">Topik</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12 col-lg-6">
+                                        <div class="form-group form-group-floating">
+                                            <div class="position-relative">
+                                                <input class="form-control form-control-outline-within" value="@item.Institution" disabled="disabled" />
+                                                <label class="label-floating">Institusi</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
+                }
+
+                @if (_showFormCreate == true )
+                {
+                    <SpeakerUpdateForm CModel=_eventUpdateSpeakerModel CCancel=@(() => { _showFormCreate=false; })> </SpeakerUpdateForm>
+                }
+                else if (_showFormCreate == false )
+                {
+                    <tr>
+                        <td colspan="2" class="text-center">
+                            <button onclick="@(() => { _showFormCreate = true; } )" type="button" class="btn btn-info border-transparent rounded-pill ml-2"><i class="icon-add"></i> Tambah Pembicara</button>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </EditForm>
+
+
+
+
+</fieldset>

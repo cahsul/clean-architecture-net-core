@@ -17,7 +17,28 @@ namespace Client.X.Extensions
             _client = client;
         }
 
-        public static async Task<ResponseBuilder<T>> PostAsync<T>(this BaseRequest model, string url)
+        public static async Task<ResponseBuilder<T>> PostAsync<T>(this BaseRequest dataToSend, string url)
+        {
+            return await SendAsync<T>(dataToSend, url, HttpMethod.Post);
+        }
+
+        public static async Task<ResponseBuilder<T>> PutAsync<T>(this BaseRequest dataToSend, string url)
+        {
+            return await SendAsync<T>(dataToSend, url, HttpMethod.Put);
+        }
+
+        public static async Task<ResponseBuilder<T>> GetAsync<T>(this BaseRequest dataToSend, string url)
+        {
+            return await SendAsync<T>(dataToSend, url, HttpMethod.Get);
+        }
+
+
+        public static async Task<ResponseBuilder<T>> DeleteAsync<T>(this BaseRequest dataToSend, string url)
+        {
+            return await SendAsync<T>(dataToSend, url, HttpMethod.Delete);
+        }
+
+        public static async Task<ResponseBuilder<T>> SendAsync<T>(BaseRequest dataToSend, string url, HttpMethod httpMethod)
         {
             var toastrOptions = new ToastrOptions
             {
@@ -31,13 +52,16 @@ namespace Client.X.Extensions
                 Position = ToastrPosition.TopRight
             };
 
-            HttpContent httpContent = model.JsonSerialize().HttpStringContentJson();
+            HttpContent httpContent = dataToSend.JsonSerialize().HttpStringContentJson();
 
             try
             {
-                var request = new HttpRequestMessage(HttpMethod.Post, url);
+                var request = new HttpRequestMessage(httpMethod, url);
                 request.Headers.Add("Accept-Language", "id-ID");
-                request.Content = httpContent;
+                if (httpMethod != HttpMethod.Get)
+                {
+                    request.Content = httpContent;
+                }
 
                 var response = await _client.SendAsync(request);
                 var content = await response.Content.ReadAsStringAsync();
@@ -59,11 +83,11 @@ namespace Client.X.Extensions
                     return contentObject;
                 }
 
-                if (!response.IsSuccessStatusCode)
-                {
-                    await _toastrService.Error("Gagal Menyimpan Data..", toastrOptions);
-                    return contentObject;
-                }
+                //if (!response.IsSuccessStatusCode)
+                //{
+                //    await _toastrService.Error("Gagal Menyimpan Data..", toastrOptions);
+                //    return contentObject;
+                //}
 
                 return contentObject;
             }
@@ -75,5 +99,7 @@ namespace Client.X.Extensions
             }
 
         }
+
+
     }
 }
