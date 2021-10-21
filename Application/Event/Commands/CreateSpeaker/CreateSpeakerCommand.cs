@@ -8,16 +8,16 @@ using Application.X.Extensions;
 using Application.X.Interfaces.Persistence;
 using Domain.Entities.Serti;
 using MediatR;
-using Shared.Event.Commands.SpeakerCreate;
+using Shared.Event.Commands.CreateSpeaker;
 using Shared.X.Responses;
 
-namespace Application.Event.Commands.SpeakerCreate
+namespace Application.Event.Commands.CreateSpeaker
 {
-    public class SpeakerCreateCommand : SpeakerCreateRequest, IRequest<ResponseBuilder<SpeakerCreateResponse>>
+    public class CreateSpeakerCommand : CreateSpeakerRequest, IRequest<ResponseBuilder<CreateSpeakerResponse>>
     {
     }
 
-    public class Handler : IRequestHandler<SpeakerCreateCommand, ResponseBuilder<SpeakerCreateResponse>>
+    public class Handler : IRequestHandler<CreateSpeakerCommand, ResponseBuilder<CreateSpeakerResponse>>
     {
         private readonly ISertiDbContext _sertiDbContext;
 
@@ -26,7 +26,7 @@ namespace Application.Event.Commands.SpeakerCreate
             _sertiDbContext = sertiDbContext;
         }
 
-        public async Task<ResponseBuilder<SpeakerCreateResponse>> Handle(SpeakerCreateCommand request, CancellationToken cancellationToken)
+        public async Task<ResponseBuilder<CreateSpeakerResponse>> Handle(CreateSpeakerCommand request, CancellationToken cancellationToken)
         {
             var dataToSave = new EventSpeaker
             {
@@ -41,7 +41,7 @@ namespace Application.Event.Commands.SpeakerCreate
             await _sertiDbContext.SaveChangesAsync(cancellationToken);
 
 
-            return new SpeakerCreateResponse
+            return new CreateSpeakerResponse
             {
                 Id = dataToSave.Id,
             }.ResponseCreate();

@@ -8,16 +8,16 @@ using Application.X.Extensions;
 using Application.X.Interfaces.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Shared.Event.Commands.EventUpdate;
+using Shared.Event.Commands.UpdateEvent;
 using Shared.X.Responses;
 
-namespace Application.Event.Commands.EventUpdate
+namespace Application.Event.Commands.UpdateEvent
 {
-    public class EventUpdateCommand : EventUpdateRequest, IRequest<ResponseBuilder<EventUpdateResponse>>
+    public class UpdateEventCommand : UpdateEventRequest, IRequest<ResponseBuilder<UpdateEventResponse>>
     {
     }
 
-    public class Handler : IRequestHandler<EventUpdateCommand, ResponseBuilder<EventUpdateResponse>>
+    public class Handler : IRequestHandler<UpdateEventCommand, ResponseBuilder<UpdateEventResponse>>
     {
         private readonly ISertiDbContext _sertiDbContext;
 
@@ -26,7 +26,7 @@ namespace Application.Event.Commands.EventUpdate
             _sertiDbContext = sertiDbContext;
         }
 
-        public async Task<ResponseBuilder<EventUpdateResponse>> Handle(EventUpdateCommand request, CancellationToken cancellationToken)
+        public async Task<ResponseBuilder<UpdateEventResponse>> Handle(UpdateEventCommand request, CancellationToken cancellationToken)
         {
             // find data
             var dataToUpdate = await _sertiDbContext.Events.FirstOrDefaultAsync(w => w.Id == request.Id);
@@ -36,7 +36,7 @@ namespace Application.Event.Commands.EventUpdate
             await _sertiDbContext.SaveChangesAsync(cancellationToken);
 
 
-            return new EventUpdateResponse
+            return new UpdateEventResponse
             {
                 Id = dataToUpdate.Id,
             }.ResponseUpdate();

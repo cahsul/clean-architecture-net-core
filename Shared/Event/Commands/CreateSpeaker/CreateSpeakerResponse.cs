@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Shared.X.Responses;
 
-namespace Shared.Event.Commands.EventUpdate
+namespace Shared.Event.Commands.CreateSpeaker
 {
-    public class EventUpdateResponse : BaseResponse<Guid>
+    public class CreateSpeakerResponse : BaseResponse<Guid>
     {
     }
 }

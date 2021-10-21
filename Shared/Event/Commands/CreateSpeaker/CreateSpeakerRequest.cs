@@ -7,22 +7,21 @@ using FluentValidation;
 using Shared.Event.Resources;
 using Shared.X.Requests;
 
-namespace Shared.Event.Commands.SpeakerUpdate
+namespace Shared.Event.Commands.CreateSpeaker
 {
-    public class SpeakerUpdateRequest : BaseRequest
+    public class CreateSpeakerRequest : BaseRequest
     {
-        public Guid? Id { get; set; }
+        public Guid? Id { get; set; } = null;
+        public bool EditMode { get; set; } = false; // true = form create tampil di layar
+        public Guid? EventId { get; set; }
         public string SpeakerName { get; set; }
         public string Topics { get; set; }
         public string Institution { get; set; }
-
-        public bool EditMode { get; set; } = false; // true = form create tampil di layar
-        public Guid? EventId { get; set; }
     }
 
-    public class SpeakerUpdateValidator : AbstractValidator<SpeakerUpdateRequest>
+    public class SpeakerCreateRequestValidator : AbstractValidator<CreateSpeakerRequest>
     {
-        public SpeakerUpdateValidator()
+        public SpeakerCreateRequestValidator()
         {
             // TODO : lang
             RuleFor(r => r.SpeakerName).NotNull().WithName(EventLang.Form_Speaker);

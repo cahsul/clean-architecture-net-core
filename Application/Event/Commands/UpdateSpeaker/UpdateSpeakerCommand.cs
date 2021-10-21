@@ -9,17 +9,17 @@ using Application.X.Interfaces.Persistence;
 using Domain.Entities.Serti;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Shared.Event.Commands.SpeakerUpdate;
+using Shared.Event.Commands.UpdateSpeaker;
 using Shared.X.Responses;
 
-namespace Application.Event.Commands.SpeakerUpdate
+namespace Application.Event.Commands.UpdateSpeaker
 {
 
-    public class SpeakerUpdateCommand : SpeakerUpdateRequest, IRequest<ResponseBuilder<SpeakerUpdateResponse>>
+    public class UpdateSpeakerCommand : UpdateSpeakerRequest, IRequest<ResponseBuilder<UpdateSpeakerResponse>>
     {
     }
 
-    public class Handler : IRequestHandler<SpeakerUpdateCommand, ResponseBuilder<SpeakerUpdateResponse>>
+    public class Handler : IRequestHandler<UpdateSpeakerCommand, ResponseBuilder<UpdateSpeakerResponse>>
     {
         private readonly ISertiDbContext _sertiDbContext;
 
@@ -28,7 +28,7 @@ namespace Application.Event.Commands.SpeakerUpdate
             _sertiDbContext = sertiDbContext;
         }
 
-        public async Task<ResponseBuilder<SpeakerUpdateResponse>> Handle(SpeakerUpdateCommand request, CancellationToken cancellationToken)
+        public async Task<ResponseBuilder<UpdateSpeakerResponse>> Handle(UpdateSpeakerCommand request, CancellationToken cancellationToken)
         {
             // find data
             var dataToUpdate = await _sertiDbContext.EventSpeakers.FirstOrDefaultAsync(w => w.Id == request.Id);
@@ -40,7 +40,7 @@ namespace Application.Event.Commands.SpeakerUpdate
             await _sertiDbContext.SaveChangesAsync(cancellationToken);
 
 
-            return new SpeakerUpdateResponse
+            return new UpdateSpeakerResponse
             {
                 Id = dataToUpdate.Id,
             }.ResponseUpdate();

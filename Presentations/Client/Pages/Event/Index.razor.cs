@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Shared.Event.Commands.EventCreate;
-using Shared.Event.Commands.EventDelete;
+using Shared.Event.Commands.CreateEvent;
+using Shared.Event.Commands.DeleteEvent;
 using Shared.Event.Queries.GetEvents;
 using Toastr;
 
@@ -33,7 +33,7 @@ namespace Client.Pages.Event
 
         private async void Delete(Guid id)
         {
-            var dataToDelete = await EventApi.EventDeleteAsync(new EventDeleteRequest { Id = id });
+            var dataToDelete = await EventApi.EventDeleteAsync(new DeleteEventRequest { Id = id });
             if (!dataToDelete.IsError)
             {
                 await ToastrService.Success(dataToDelete.Message);
@@ -43,7 +43,7 @@ namespace Client.Pages.Event
 
         private async Task CreateAsync()
         {
-            var dataToCreate = await EventApi.EventCreateAsync(new EventCreateRequest { });
+            var dataToCreate = await EventApi.EventCreateAsync(new CreateEventRequest { });
             if (dataToCreate.IsError)
             { return; }
             NavigationManager.NavigateTo($"/event/update/{dataToCreate.Data.Id}");

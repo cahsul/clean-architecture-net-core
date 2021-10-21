@@ -8,17 +8,17 @@ using Application.X.Extensions;
 using Application.X.Interfaces.Persistence;
 using Domain.Entities.Serti;
 using MediatR;
-using Shared.Event.Commands.EventDelete;
+using Shared.Event.Commands.DeleteSpeaker;
 using Shared.X.Responses;
 
-namespace Application.Event.Commands.EventDelete
+namespace Application.Event.Commands.DeleteSpeaker
 {
 
-    public class EventDeleteCommand : EventDeleteRequest, IRequest<ResponseBuilder<EventDeleteResponse>>
+    public class DeleteSpeakerCommand : DeleteSpeakerRequest, IRequest<ResponseBuilder<DeleteSpeakerResponse>>
     {
     }
 
-    public class Handler : IRequestHandler<EventDeleteCommand, ResponseBuilder<EventDeleteResponse>>
+    public class Handler : IRequestHandler<DeleteSpeakerCommand, ResponseBuilder<DeleteSpeakerResponse>>
     {
         private readonly ISertiDbContext _sertiDbContext;
 
@@ -27,19 +27,18 @@ namespace Application.Event.Commands.EventDelete
             _sertiDbContext = sertiDbContext;
         }
 
-        public async Task<ResponseBuilder<EventDeleteResponse>> Handle(EventDeleteCommand request, CancellationToken cancellationToken)
+        public async Task<ResponseBuilder<DeleteSpeakerResponse>> Handle(DeleteSpeakerCommand request, CancellationToken cancellationToken)
         {
-            var dataToDelete = new Domain.Entities.Serti.Event
+            var dataToDelete = new EventSpeaker
             {
                 Id = request.Id,
             };
 
-            _sertiDbContext.Events.Attach(dataToDelete);
-            _sertiDbContext.Events.Remove(dataToDelete);
+            _sertiDbContext.EventSpeakers.Remove(dataToDelete);
             await _sertiDbContext.SaveChangesAsync(cancellationToken);
 
 
-            return new EventDeleteResponse
+            return new DeleteSpeakerResponse
             {
                 Id = dataToDelete.Id,
             }.ResponseDelete();

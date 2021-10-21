@@ -4,8 +4,8 @@ using FluentValidation;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.JSInterop;
-using Shared.Event.Commands.EventCreate;
-using Shared.Event.Commands.EventUpdate;
+using Shared.Event.Commands.CreateEvent;
+using Shared.Event.Commands.UpdateEvent;
 using Shared.Event.Queries.GetEvent;
 using Toastr;
 
@@ -21,7 +21,7 @@ namespace Client.Pages.Event.EventUpdate
         [Parameter] public Guid Id { get; set; }
 
         private IJSObjectReference _module;
-        protected EventUpdateRequest _updateModel = new();
+        protected UpdateEventRequest _updateModel = new();
 
         public ElementReference _speakerRef;
 

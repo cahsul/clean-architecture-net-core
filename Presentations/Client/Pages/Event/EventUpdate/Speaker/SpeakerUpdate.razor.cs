@@ -4,10 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
-using Shared.Event.Commands.EventCreate;
-using Shared.Event.Commands.SpeakerCreate;
-using Shared.Event.Commands.SpeakerDelete;
-using Shared.Event.Commands.SpeakerUpdate;
+using Shared.Event.Commands.CreateEvent;
+using Shared.Event.Commands.CreateSpeaker;
+using Shared.Event.Commands.DeleteSpeaker;
+using Shared.Event.Commands.UpdateSpeaker;
 using Shared.Event.Queries.GetSpeaker;
 using Shared.Event.Queries.GetSpeakers;
 using Shared.Event.Queries.GetSpeakersByEvent;
@@ -18,8 +18,8 @@ namespace Client.Pages.Event.EventUpdate.Speaker
     {
         [EditorRequired] [Parameter] public Guid EventId { get; set; }
 
-        public List<SpeakerUpdateRequest> _dataSpeakers = new();
-        public SpeakerUpdateRequest _eventUpdateSpeakerModel = new();
+        public List<UpdateSpeakerRequest> _dataSpeakers = new();
+        public UpdateSpeakerRequest _eventUpdateSpeakerModel = new();
         public bool? _showFormCreate = false;
 
 
@@ -33,7 +33,7 @@ namespace Client.Pages.Event.EventUpdate.Speaker
                 { return; }
 
                 // set value to model
-                _dataSpeakers = getData.Data.Select(s => new SpeakerUpdateRequest
+                _dataSpeakers = getData.Data.Select(s => new UpdateSpeakerRequest
                 {
                     Id = s.Id,
                     Institution = s.Institution,
@@ -52,7 +52,7 @@ namespace Client.Pages.Event.EventUpdate.Speaker
 
                 _eventUpdateSpeakerModel.Id = Guid.NewGuid();
                 _eventUpdateSpeakerModel.EventId = EventId;
-                var dataToCreate = await EventApi.SpeakerCreateAsync(new SpeakerCreateRequest
+                var dataToCreate = await EventApi.SpeakerCreateAsync(new CreateSpeakerRequest
                 {
                     Id = _eventUpdateSpeakerModel.Id,
                     Institution = _eventUpdateSpeakerModel.Institution,
@@ -77,7 +77,7 @@ namespace Client.Pages.Event.EventUpdate.Speaker
 
         private async Task DeleteAsync(Guid? id)
         {
-            var dataToDelete = await EventApi.SpeakerDeleteAsync(new SpeakerDeleteRequest { Id = (Guid)id });
+            var dataToDelete = await EventApi.SpeakerDeleteAsync(new DeleteSpeakerRequest { Id = (Guid)id });
             if (dataToDelete.IsError)
             { return; }
 

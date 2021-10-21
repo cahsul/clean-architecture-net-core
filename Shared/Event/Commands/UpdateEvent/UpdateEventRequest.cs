@@ -7,15 +7,15 @@ using FluentValidation;
 using Shared.Event.Resources;
 using Shared.X.Requests;
 
-namespace Shared.Event.Commands.EventUpdate
+namespace Shared.Event.Commands.UpdateEvent
 {
-    public class EventUpdateRequest : BaseRequest
+    public class UpdateEventRequest : BaseRequest
     {
         public Guid? Id { get; set; }
         public string EventName { get; set; }
     }
 
-    public class EventUpdateRequestValidator : AbstractValidator<EventUpdateRequest>
+    public class EventUpdateRequestValidator : AbstractValidator<UpdateEventRequest>
     {
         public EventUpdateRequestValidator()
         {

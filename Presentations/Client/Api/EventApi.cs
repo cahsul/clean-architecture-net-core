@@ -7,21 +7,21 @@ using Microsoft.AspNetCore.Components;
 using Shared.X.Enums;
 using Shared.X.Extensions;
 using Shared.X.Responses;
-using Shared.Event.Commands.EventCreate;
 using Shared.Event.Resources;
 using Toastr;
 using Client.X.Extensions;
 using Microsoft.Extensions.Configuration;
 using Shared.Event.Queries.GetEvents;
-using Shared.Event.Commands.EventDelete;
-using Shared.Event.Commands.SpeakerCreate;
-using Shared.Event.Commands.SpeakerDelete;
 using Shared.Event.Queries.GetEvent;
 using Shared.Event.Queries.GetSpeaker;
 using Shared.Event.Queries.GetSpeakers;
-using Shared.Event.Commands.SpeakerUpdate;
 using Shared.Event.Queries.GetSpeakersByEvent;
-using Shared.Event.Commands.EventUpdate;
+using Shared.Event.Commands.UpdateEvent;
+using Shared.Event.Commands.DeleteEvent;
+using Shared.Event.Commands.UpdateSpeaker;
+using Shared.Event.Commands.CreateEvent;
+using Shared.Event.Commands.CreateSpeaker;
+using Shared.Event.Commands.DeleteSpeaker;
 
 namespace Client.Api
 {
@@ -41,15 +41,15 @@ namespace Client.Api
             HttpExtension.HttpExtensionConfigure(_toastrService, _client);
         }
 
-        public async Task<ResponseBuilder<EventCreateResponse>> EventCreateAsync(EventCreateRequest request)
+        public async Task<ResponseBuilder<CreateEventResponse>> EventCreateAsync(CreateEventRequest request)
         {
-            var result = await request.PostAsync<EventCreateResponse>($"{_appsettings.Api_Serti()}{EventEndpoint.Event.Create}");
+            var result = await request.PostAsync<CreateEventResponse>($"{_appsettings.Api_Serti()}{EventEndpoint.Event.Create}");
             return result;
         }
 
-        public async Task<ResponseBuilder<EventUpdateResponse>> EventUpdateAsync(EventUpdateRequest request)
+        public async Task<ResponseBuilder<UpdateEventResponse>> EventUpdateAsync(UpdateEventRequest request)
         {
-            var result = await request.PutAsync<EventUpdateResponse>($"{_appsettings.Api_Serti()}{EventEndpoint.Event.Update}");
+            var result = await request.PutAsync<UpdateEventResponse>($"{_appsettings.Api_Serti()}{EventEndpoint.Event.Update}");
             return result;
         }
 
@@ -65,9 +65,9 @@ namespace Client.Api
             return result;
         }
 
-        public async Task<ResponseBuilder<EventDeleteResponse>> EventDeleteAsync(EventDeleteRequest request)
+        public async Task<ResponseBuilder<DeleteEventResponse>> EventDeleteAsync(DeleteEventRequest request)
         {
-            var result = await request.DeleteAsync<EventDeleteResponse>($"{_appsettings.Api_Serti()}{EventEndpoint.Event.Delete}");
+            var result = await request.DeleteAsync<DeleteEventResponse>($"{_appsettings.Api_Serti()}{EventEndpoint.Event.Delete}");
             return result;
         }
 
@@ -92,21 +92,21 @@ namespace Client.Api
             return result;
         }
 
-        public async Task<ResponseBuilder<SpeakerCreateResponse>> SpeakerCreateAsync(SpeakerCreateRequest request)
+        public async Task<ResponseBuilder<CreateSpeakerResponse>> SpeakerCreateAsync(CreateSpeakerRequest request)
         {
-            var result = await request.PostAsync<SpeakerCreateResponse>($"{_appsettings.Api_Serti()}{EventEndpoint.EventSpeaker.Create}");
+            var result = await request.PostAsync<CreateSpeakerResponse>($"{_appsettings.Api_Serti()}{EventEndpoint.EventSpeaker.Create}");
             return result;
         }
 
-        public async Task<ResponseBuilder<SpeakerUpdateResponse>> SpeakerUpdateAsync(SpeakerUpdateRequest request)
+        public async Task<ResponseBuilder<UpdateSpeakerResponse>> SpeakerUpdateAsync(UpdateSpeakerRequest request)
         {
-            var result = await request.PutAsync<SpeakerUpdateResponse>($"{_appsettings.Api_Serti()}{EventEndpoint.EventSpeaker.Update}");
+            var result = await request.PutAsync<UpdateSpeakerResponse>($"{_appsettings.Api_Serti()}{EventEndpoint.EventSpeaker.Update}");
             return result;
         }
 
-        public async Task<ResponseBuilder<EventDeleteResponse>> SpeakerDeleteAsync(SpeakerDeleteRequest request)
+        public async Task<ResponseBuilder<DeleteEventResponse>> SpeakerDeleteAsync(DeleteSpeakerRequest request)
         {
-            var result = await request.DeleteAsync<EventDeleteResponse>($"{_appsettings.Api_Serti()}{EventEndpoint.EventSpeaker.Delete}");
+            var result = await request.DeleteAsync<DeleteEventResponse>($"{_appsettings.Api_Serti()}{EventEndpoint.EventSpeaker.Delete}");
             return result;
         }
 

@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Shared.X.Requests;
 
-namespace Shared.Event.Commands.SpeakerDelete
+namespace Shared.Event.Commands.DeleteEvent
 {
-    public class SpeakerDeleteRequest : BaseRequest
+    public class DeleteEventRequest : BaseRequest
     {
         public Guid Id { get; set; }
     }
