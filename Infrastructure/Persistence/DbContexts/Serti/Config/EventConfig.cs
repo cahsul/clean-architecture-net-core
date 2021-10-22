@@ -19,6 +19,7 @@ namespace Infrastructure.Persistence.DbContexts.Serti.Config
             builder.ToTable("Event");
             builder.HasKey(k => k.Id);
             builder.Property(p => p.EventName).HasMaxLength(2000);
+            builder.Property(p => p.EventStatus).HasMaxLength(20);
         }
     }
 }

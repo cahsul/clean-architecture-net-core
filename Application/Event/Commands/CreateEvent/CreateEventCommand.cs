@@ -10,6 +10,8 @@ using Serti = Domain.Entities.Serti;
 using Application.X.Extensions;
 using Application.X.Interfaces.Persistence;
 using Shared.Event.Commands.CreateEvent;
+using Shared.Event.Enums;
+using Shared.X.Extensions;
 
 namespace Application.Event.Commands.CreateEvent
 {
@@ -32,6 +34,7 @@ namespace Application.Event.Commands.CreateEvent
             var dataToSave = new Serti.Event
             {
                 EventName = request?.EventName?.Trim(),
+                EventStatus = StatusEvent.Draft.GetDescription(),
             };
 
             await _sertiDbContext.Events.AddAsync(dataToSave);

@@ -1,6 +1,7 @@
 ﻿using Application.X.Interfaces.Identity;
 using Application.X.Interfaces.Jwt;
 using Application.X.Interfaces.Persistence;
+using Application.X.Interfaces.UploadFile;
 using Infrastructure.Jwt;
 using Infrastructure.Persistence.DbContexts;
 using Infrastructure.Persistence.Providers.MsSql;
@@ -43,6 +44,7 @@ namespace Infrastructure
             services.AddMsSqlDatabase();
             services.AddPostgreSqlDatabase(settings);
 
+            services.AddScoped<IUploadFile, UploadFile.UploadFile>();
             services.AddScoped<IJwtGenerator, JwtGenerator>();
             services.AddSingleton<IIdentity, Identity>();
 

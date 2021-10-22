@@ -62,7 +62,7 @@ namespace API.Controllers.V1
         }
 
         [HttpPut(EventEndpoint.Event.Update)]
-        public async Task<ActionResult<ResponseBuilder<UpdateEventResponse>>> EventUpdate([FromBody] UpdateEventCommand query)
+        public async Task<ActionResult<ResponseBuilder<UpdateEventResponse>>> EventUpdate([FromForm] UpdateEventCommand query)
         {
             return await Mediator.Send(query);
         }

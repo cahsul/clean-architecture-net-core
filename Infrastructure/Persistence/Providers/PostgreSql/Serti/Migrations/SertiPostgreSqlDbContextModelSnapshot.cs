@@ -42,6 +42,10 @@ namespace Infrastructure.Persistence.Providers.PostgreSql.Serti.Migrations
                         .HasMaxLength(2000)
                         .HasColumnType("character varying(2000)");
 
+                    b.Property<string>("EventStatus")
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 

@@ -6,9 +6,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using Application.X.Extensions;
 using Application.X.Interfaces.Persistence;
+using Application.X.Interfaces.UploadFile;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Shared.Event.Commands.UpdateEvent;
+using Shared.Event.Enums;
+using Shared.X.Extensions;
 using Shared.X.Responses;
 
 namespace Application.Event.Commands.UpdateEvent
@@ -20,10 +23,12 @@ namespace Application.Event.Commands.UpdateEvent
     public class Handler : IRequestHandler<UpdateEventCommand, ResponseBuilder<UpdateEventResponse>>
     {
         private readonly ISertiDbContext _sertiDbContext;
+        private readonly IUploadFile _uploadFile;
 
-        public Handler(ISertiDbContext sertiDbContext)
+        public Handler(ISertiDbContext sertiDbContext, IUploadFile uploadFile)
         {
             _sertiDbContext = sertiDbContext;
+            _uploadFile = uploadFile;
         }
 
         public async Task<ResponseBuilder<UpdateEventResponse>> Handle(UpdateEventCommand request, CancellationToken cancellationToken)
@@ -31,6 +36,10 @@ namespace Application.Event.Commands.UpdateEvent
             // find data
             var dataToUpdate = await _sertiDbContext.Events.FirstOrDefaultAsync(w => w.Id == request.Id);
             dataToUpdate.EventName = request.EventName;
+            dataToUpdate.EventStatus = StatusEvent.Submit.GetDescription();
+
+            var fileName = _uploadFile.ToFolder(request.Poster);
+            dataToUpdate.Poster = fileName;
 
             _sertiDbContext.Events.Update(dataToUpdate);
             await _sertiDbContext.SaveChangesAsync(cancellationToken);

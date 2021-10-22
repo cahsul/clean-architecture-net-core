@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FluentValidation;
+using Microsoft.AspNetCore.Http;
 using Shared.Event.Resources;
 using Shared.X.Requests;
 
@@ -13,6 +14,7 @@ namespace Shared.Event.Commands.UpdateEvent
     {
         public Guid? Id { get; set; }
         public string EventName { get; set; }
+        public IFormFile Poster { get; set; }
     }
 
     public class EventUpdateRequestValidator : AbstractValidator<UpdateEventRequest>
