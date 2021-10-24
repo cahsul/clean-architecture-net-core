@@ -26,6 +26,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Pages\Participant\ListParticipant\ListParticipant.razor.js" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="Pages\Participant\ListParticipant\ListParticipant.razor.js">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Blazored.FluentValidation" Version="2.0.1" />
 		<PackageReference Include="Blazored.LocalStorage" Version="4.1.5" />
 		<PackageReference Include="Fluxor.Blazor.Web" Version="4.1.0" />

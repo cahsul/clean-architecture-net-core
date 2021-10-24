@@ -25,60 +25,60 @@
 
         @foreach (var item in _events)
         {
-            <div class="col-lg-4">
-                <div class="card">
+                <div class="col-lg-4">
+                    <div class="card">
 
-                    <div class="card-body bg-primary text-white text-center" style="background-image: url(assets/images/backgrounds/panel_bg.png); background-size: contain; height:300px">
-                        <div class="mb-3">
-                            <h5 class="font-weight-semibold mb-0 mt-1">
-                                Seminar Nasional Dengan judul yang sangat panjang sekali dengan kalimat yang panjang maka dapat melihat hasilnya sperti apa @item.EventName
-                            </h5>
+                        <div class="card-body bg-primary text-white text-center" style="background-image: url(assets/images/backgrounds/panel_bg.png); background-size: contain; height:300px">
+                            <div class="mb-3">
+                                <h5 class="font-weight-semibold mb-0 mt-1">
+                                    Seminar Nasional Dengan judul yang sangat panjang sekali dengan kalimat yang panjang maka dapat melihat hasilnya sperti apa @item.EventName
+                                </h5>
+                            </div>
+
                         </div>
+
+                        <div style="min-height: 180px;">
+
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-4"> Hari, Tanggal </div>
+                                    <div class="col-8"> Sabtu, 25 September 2021 </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4"> Waktu </div>
+                                    <div class="col-8"> 08:30 - 12:00 WIB </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-4">Jumlah Peserta</div>
+                                    <div class="col-8"> 250 </div>
+                                </div>
+
+                            </div>
+
+                            <div class="card-footer d-flex justify-content-center">
+                                <ul class="list-inline mb-0">
+                                    <li class="list-inline-item">
+                                        <button type="button" class="btn btn-teal border-transparent btn-icon rounded-pill"><i class="icon-search4"></i></button>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="/event/update/@item.Id">
+                                            <button type="button" class="btn btn-info border-transparent btn-icon rounded-pill"><i class="icon-pencil6"></i></button>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <button @onclick="@(() => Delete(item.Id))" type="button" class="btn btn-danger border-transparent btn-icon rounded-pill"><i class="icon-trash-alt"></i></button>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+
+
 
                     </div>
-
-                    <div style="min-height: 180px;">
-
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-4"> Hari, Tanggal </div>
-                                <div class="col-8"> Sabtu, 25 September 2021 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-4"> Waktu </div>
-                                <div class="col-8"> 08:30 - 12:00 WIB </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-4">Jumlah Peserta</div>
-                                <div class="col-8"> 250 </div>
-                            </div>
-
-                        </div>
-
-                        <div class="card-footer d-flex justify-content-center">
-                            <ul class="list-inline mb-0">
-                                <li class="list-inline-item">
-                                    <button type="button" class="btn btn-teal border-transparent btn-icon rounded-pill"><i class="icon-search4"></i></button>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="/event/update/@item.Id">
-                                        <button type="button" class="btn btn-info border-transparent btn-icon rounded-pill"><i class="icon-pencil6"></i></button>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <button @onclick="@(() => Delete(item.Id))" type="button" class="btn btn-danger border-transparent btn-icon rounded-pill"><i class="icon-trash-alt"></i></button>
-                                </li>
-                            </ul>
-                        </div>
-
-                    </div>
-
-
-
-
                 </div>
-            </div>
         }
 
 

@@ -1,0 +1,47 @@
+﻿@page "/Participant"
+
+
+
+<div class="content">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title">Basic table</h5>
+        </div>
+
+        <div class="card-body">
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover table-xs">
+                <thead>
+                    <tr>
+                        <th width="300px"></th>
+                        <th>Nama Event</th>
+                        <th>Jumlah Pesrta</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < 10; i++)
+                    {
+                        <tr class="table-border-dashed">
+                            <td>
+                                <a href="/Participant/ListParticipant" type="button" class="btn btn-sm btn-teal btn-labeled btn-labeled-left ">
+                                    <b><i class="icon-people"></i></b>
+                                    Peserta
+                                </a>
+                            </td>
+                            <td>Nama Event @i</td>
+                            <td>10</td>
+
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+</div>
+
+
