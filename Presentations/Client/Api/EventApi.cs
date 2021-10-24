@@ -22,6 +22,9 @@ using Shared.Event.Commands.UpdateSpeaker;
 using Shared.Event.Commands.CreateEvent;
 using Shared.Event.Commands.CreateSpeaker;
 using Shared.Event.Commands.DeleteSpeaker;
+using Microsoft.AspNetCore.Components.Forms;
+using System.Net.Http.Headers;
+using System.Reflection;
 
 namespace Client.Api
 {
@@ -47,9 +50,33 @@ namespace Client.Api
             return result;
         }
 
-        public async Task<ResponseBuilder<UpdateEventResponse>> EventUpdateAsync(UpdateEventRequest request)
+        public async Task<ResponseBuilder<UpdateEventResponse>> EventUpdateAsync(UpdateEventRequest request, List<IBrowserFile> files)
         {
-            var result = await request.PutAsync<UpdateEventResponse>($"{_appsettings.Api_Serti()}{EventEndpoint.Event.Update}");
+            using var content = new MultipartFormDataContent();
+
+            // colect files to contenct 
+            foreach (var file in files)
+            {
+                var fileContent = new StreamContent(file.OpenReadStream());
+                fileContent.Headers.ContentType = new MediaTypeHeaderValue(file.ContentType);
+
+                content.Add(
+                   content: fileContent,
+                   name: "\"Poster\"",
+                   fileName: file.Name);
+            }
+
+            foreach (var prop in request.GetType().GetProperties())
+            {
+                if (prop.GetValue(request, null) != null)
+                {
+                    content.Add(new StringContent(prop.GetValue(request).ToString()), prop.Name);
+                }
+            }
+
+
+
+            var result = await request.PutWithFile<UpdateEventResponse>($"{_appsettings.Api_Serti()}{EventEndpoint.Event.Update}", content);
             return result;
         }
 

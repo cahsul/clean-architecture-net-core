@@ -32,6 +32,18 @@
                             </div>
                         </div>
 
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group form-group-floating">
+                                    <div class="position-relative">
+                                         <InputFile  @bind-Value="@_updateModel.Poster" OnChange="@LoadPosterAsync" class="form-control form-control-outline-within" />
+                                        <label class="label-floating">@EventLang.Form_EventName</label>
+                                    </div>
+                                    <ValidationMessage For="@(() => _updateModel.EventName)" />
+                                </div>
+                            </div>
+                        </div>
+
                          <SpeakerUpdate EventId=Id />
                        @*
                         <TimeCreate />*@

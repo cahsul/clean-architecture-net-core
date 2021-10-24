@@ -56,6 +56,10 @@ namespace Infrastructure.Persistence.Providers.PostgreSql.Serti.Migrations
                     b.Property<DateTimeOffset?>("ModifiedDate")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<string>("Poster")
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Event", (string)null);

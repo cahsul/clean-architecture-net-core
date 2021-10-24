@@ -13,8 +13,8 @@ namespace Infrastructure.UploadFile
     {
         public string ToFolder(IFormFile file)
         {
-
-            var newFileName = $"{Path.GetFileName(file.FileName)}.{Path.GetExtension(file.FileName)}";
+            var now = DateTimeOffset.Now;
+            var newFileName = $"{now.Year}{now.Month}{now.Day}_{now.Hour}{now.Minute}{now.Second}{now.Millisecond}__{file.FileName}";
 
 
             // create folder if not exists

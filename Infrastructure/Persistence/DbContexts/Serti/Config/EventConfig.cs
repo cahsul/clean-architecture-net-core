@@ -20,6 +20,7 @@ namespace Infrastructure.Persistence.DbContexts.Serti.Config
             builder.HasKey(k => k.Id);
             builder.Property(p => p.EventName).HasMaxLength(2000);
             builder.Property(p => p.EventStatus).HasMaxLength(20);
+            builder.Property(p => p.Poster).HasMaxLength(1000);
         }
     }
 }

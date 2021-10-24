@@ -51,6 +51,7 @@ Update-Database -Context IdentityPostgreSqlDbContext -Project Infrastructure
 Add-Migration IDENTITY -Context IdentityPostgreSqlDbContext -Project Infrastructure -OutputDir Persistence/Providers/PostgreSql/Identity/Migrations
 Add-Migration EventSpeaker_Create -Context SertiPostgreSqlDbContext -Project Infrastructure -StartupProject API -OutputDir Persistence/Providers/PostgreSql/Identity/Migrations
 Add-Migration EventSpeaker_Update_Status -Context SertiPostgreSqlDbContext -Project Infrastructure -StartupProject API -OutputDir Persistence/Providers/PostgreSql/Identity/Migrations
+Add-Migration EventSpeaker_Update_poster -Context SertiPostgreSqlDbContext -Project Infrastructure -StartupProject API -OutputDir Persistence/Providers/PostgreSql/Identity/Migrations
 
 
 Update-Database -Context SertiPostgreSqlDbContext -Project Infrastructure -StartupProject API

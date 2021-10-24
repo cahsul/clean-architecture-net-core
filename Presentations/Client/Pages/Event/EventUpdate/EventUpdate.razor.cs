@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using Client.Extensions;
 using FluentValidation;
 using Microsoft.AspNetCore.Components;
@@ -22,12 +23,18 @@ namespace Client.Pages.Event.EventUpdate
 
         private IJSObjectReference _module;
         protected UpdateEventRequest _updateModel = new();
+        protected ElementReference _speakerRef;
+        protected List<IBrowserFile> _files = new();
+        protected IBrowserFile _poster;
 
-        public ElementReference _speakerRef;
 
         private async Task SubmitAsync(EditContext editContext)
         {
-            var result = await EventApi.EventUpdateAsync(_updateModel);
+            // colect file
+            _files.Add(_poster);
+
+            // send to API
+            var result = await EventApi.EventUpdateAsync(_updateModel, _files);
 
             if (result.IsError == false)
             {
@@ -53,6 +60,40 @@ namespace Client.Pages.Event.EventUpdate
                 _updateModel.Id = getData.Data?.Id;
                 StateHasChanged();
             }
+        }
+
+        private async Task LoadPosterAsync(InputFileChangeEventArgs e)
+        {
+
+            _poster = e.File;
+
+            //_files.AddRange(e.GetMultipleFiles().ToList());
+
+            //using var content = new MultipartFormDataContent();
+
+            //foreach (var file in e.GetMultipleFiles())
+            //{
+            //    try
+            //    {
+            //        var fileContent = new StreamContent(file.OpenReadStream());
+            //        fileContent.Headers.ContentType = new MediaTypeHeaderValue(file.ContentType);
+
+            //        content.Add(
+            //           content: fileContent,
+            //           name: "\"files\"",
+            //           fileName: file.Name);
+
+            //        //var response = await Http.PostAsync("/Filesave", content);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //    }
+            //}
+
+
+
+            //await using FileStream fs = new("pathpathpath", FileMode.Create);
+            //await browserFile.OpenReadStream().CopyToAsync(fs);
         }
     }
 }
