@@ -7,9 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Persistence\Providers\MsSql\RentCar\" />
-    <Folder Include="Persistence\Providers\MngoDb\" />
-    <Folder Include="Persistence\Providers\MySql\" />
+    <Compile Remove="Persistence\Providers\MngoDb\**" />
+    <Compile Remove="Persistence\Providers\MsSql\RentCar\**" />
+    <Compile Remove="Persistence\Providers\MySql\**" />
+    <Compile Remove="Persistence\Providers\PostgreSql\**" />
+    <EmbeddedResource Remove="Persistence\Providers\MngoDb\**" />
+    <EmbeddedResource Remove="Persistence\Providers\MsSql\RentCar\**" />
+    <EmbeddedResource Remove="Persistence\Providers\MySql\**" />
+    <EmbeddedResource Remove="Persistence\Providers\PostgreSql\**" />
+    <None Remove="Persistence\Providers\MngoDb\**" />
+    <None Remove="Persistence\Providers\MsSql\RentCar\**" />
+    <None Remove="Persistence\Providers\MySql\**" />
+    <None Remove="Persistence\Providers\PostgreSql\**" />
   </ItemGroup>
 
   <ItemGroup>

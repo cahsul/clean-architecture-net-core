@@ -38,24 +38,17 @@ Add-Migration TODO -Context MsSqlTodoDbContext -Project Infrastructure -OutputDi
 
 # IDENTITY #
 Remove-Migration -Context MsSqlIdentityDbContext -Project Infrastructure
-Update-Database -Context MsSqlIdentityDbContext -Project Infrastructure
-
-Add-Migration IDENTITY -Context MsSqlIdentityDbContext -Project Infrastructure -OutputDir Persistence/Providers/MsSql/Identity/Migrations
-Add-Migration RefreshToken -Context MsSqlIdentityDbContext -Project Infrastructure -OutputDir Persistence/Providers/MsSql/Identity/Migrations
-
-
-# SERTI Identity #
-Remove-Migration -Context IdentityPostgreSqlDbContext -Project Infrastructure
 Update-Database -Context IdentityPostgreSqlDbContext -Project Infrastructure
 
-Add-Migration IDENTITY -Context IdentityPostgreSqlDbContext -Project Infrastructure -OutputDir Persistence/Providers/PostgreSql/Identity/Migrations
-Add-Migration EventSpeaker_Create -Context SertiPostgreSqlDbContext -Project Infrastructure -StartupProject API -OutputDir Persistence/Providers/PostgreSql/Identity/Migrations
-Add-Migration EventSpeaker_Update_Status -Context SertiPostgreSqlDbContext -Project Infrastructure -StartupProject API -OutputDir Persistence/Providers/PostgreSql/Identity/Migrations
-Add-Migration EventSpeaker_Update_poster -Context SertiPostgreSqlDbContext -Project Infrastructure -StartupProject API -OutputDir Persistence/Providers/PostgreSql/Identity/Migrations
+Add-Migration IDENTITY -Context IdentityPostgreSqlDbContext -Project Infrastructure -StartupProject API -OutputDir Persistence/DbContexts/Identity/Migrations
 
+
+
+# SERTI #
 
 Update-Database -Context SertiPostgreSqlDbContext -Project Infrastructure -StartupProject API
 Remove-Migration -Context SertiPostgreSqlDbContext -Project Infrastructure -StartupProject API
-Add-Migration TODO -Context SertiPostgreSqlDbContext -Project Infrastructure -OutputDir Persistence/Providers/PostgreSql/Serti/Migrations
 
+Add-Migration INIT -Context SertiPostgreSqlDbContext -Project Infrastructure -StartupProject API -OutputDir Persistence/DbContexts/Serti/Migrations
+Add-Migration Participant -Context SertiPostgreSqlDbContext -Project Infrastructure -StartupProject API -OutputDir Persistence/DbContexts/Serti/Migrations
 

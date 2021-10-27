@@ -3,9 +3,10 @@ using Application.X.Interfaces.Jwt;
 using Application.X.Interfaces.Persistence;
 using Application.X.Interfaces.UploadFile;
 using Infrastructure.Jwt;
+using Infrastructure.Persistence;
 using Infrastructure.Persistence.DbContexts;
 using Infrastructure.Persistence.Providers.MsSql;
-using Infrastructure.Persistence.Providers.MySql;
+//using Infrastructure.Persistence.Providers.MySql;
 using Infrastructure.X.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
@@ -42,7 +43,7 @@ namespace Infrastructure
 
 
             services.AddMsSqlDatabase();
-            services.AddPostgreSqlDatabase(settings);
+            services.AddPersistence(settings);
 
             services.AddScoped<IUploadFile, UploadFile.UploadFile>();
             services.AddScoped<IJwtGenerator, JwtGenerator>();

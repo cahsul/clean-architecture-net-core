@@ -2,7 +2,6 @@
 using Domain.X;
 using Domain.X.Interfaces;
 using Domain.Entities;
-using Domain.Entities.Serti;
 using Infrastructure.Persistence.Extensions;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -11,24 +10,23 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Domain.Entities.Todo;
 
 namespace Infrastructure.Persistence.DbContexts
 {
     /// <summary>
-    /// databse serti
+    /// databse TODO
     /// </summary>
-    public class SertiDbContext : DbContext
+    public class TodoDbContext : DbContext
     {
         protected IIdentity _identity;
 
-        public SertiDbContext(DbContextOptions options) : base(options)
+        public TodoDbContext(DbContextOptions options) : base(options)
         {
         }
 
 
-        public DbSet<Event> Events { get; set; }
-        public DbSet<EventSpeaker> EventSpeakers { get; set; }
-        public DbSet<Participant> Participants { get; set; }
+        public DbSet<Todo> Todos { get; set; }
 
 
 
@@ -39,12 +37,12 @@ namespace Infrastructure.Persistence.DbContexts
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entry.Entity.CreatedDate = DateTimeOffset.UtcNow;
+                        entry.Entity.CreatedDate = DateTimeOffset.Now;
                         entry.Entity.CreatedBy = _identity.Email;
                         entry.Entity.IsDeleted = false;
                         break;
                     case EntityState.Modified:
-                        entry.Entity.ModifiedDate = DateTimeOffset.UtcNow;
+                        entry.Entity.ModifiedDate = DateTimeOffset.Now;
                         entry.Entity.ModifiedBy = _identity.Email;
                         break;
                 }
@@ -53,6 +51,10 @@ namespace Infrastructure.Persistence.DbContexts
         }
 
 
-
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder.ApplyAllConfigurationsFromNameSpace("Infrastructure.Persistence.Providers.MsSql.Todo.Config");
+        }
     }
 }

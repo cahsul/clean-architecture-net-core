@@ -1,9 +1,7 @@
-﻿using Application.X.Interfaces.Identity;
-using Domain.X;
+﻿using Domain.X;
 using Domain.X.Interfaces;
 using Domain.Entities;
-using Domain.Entities.Serti;
-using Infrastructure.Persistence.Extensions;
+using IdentityCtx = Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,26 +9,23 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Domain.Entities.Identity;
+using Infrastructure.Persistence.Extensions;
+using Application.X.Interfaces.Identity;
 
 namespace Infrastructure.Persistence.DbContexts
 {
-    /// <summary>
-    /// databse serti
-    /// </summary>
-    public class SertiDbContext : DbContext
+    public class IdentityDbContext : IdentityCtx.IdentityDbContext
     {
         protected IIdentity _identity;
 
-        public SertiDbContext(DbContextOptions options) : base(options)
+        protected IdentityDbContext(DbContextOptions options) : base(options)
         {
         }
 
-
-        public DbSet<Event> Events { get; set; }
-        public DbSet<EventSpeaker> EventSpeakers { get; set; }
-        public DbSet<Participant> Participants { get; set; }
-
-
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
         {
@@ -39,13 +34,13 @@ namespace Infrastructure.Persistence.DbContexts
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entry.Entity.CreatedDate = DateTimeOffset.UtcNow;
-                        entry.Entity.CreatedBy = _identity.Email;
+                        entry.Entity.CreatedDate = DateTimeOffset.Now;
+                        entry.Entity.CreatedBy = _identity?.Email;
                         entry.Entity.IsDeleted = false;
                         break;
                     case EntityState.Modified:
-                        entry.Entity.ModifiedDate = DateTimeOffset.UtcNow;
-                        entry.Entity.ModifiedBy = _identity.Email;
+                        entry.Entity.ModifiedDate = DateTimeOffset.Now;
+                        entry.Entity.ModifiedBy = _identity?.Email;
                         break;
                 }
             }
@@ -53,6 +48,7 @@ namespace Infrastructure.Persistence.DbContexts
         }
 
 
-
     }
+
+
 }

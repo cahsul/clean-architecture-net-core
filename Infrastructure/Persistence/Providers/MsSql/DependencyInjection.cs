@@ -1,7 +1,6 @@
 ﻿using Application.X.Interfaces.Persistence;
 using Infrastructure.Persistence.Providers.MsSql.Identity;
 using Infrastructure.Persistence.Providers.MsSql.Todo;
-using Infrastructure.Persistence.Providers.PostgreSql;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
