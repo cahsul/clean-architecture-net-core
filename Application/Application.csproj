@@ -33,10 +33,10 @@
     <Folder Include="Identity\Queries\GetUsers\" />
     <Folder Include="Identity\Queries\GetUser\" />
     <Folder Include="Identity\Queries\GetNewToken\" />
-    <Folder Include="Participant\" />
     <Folder Include="Organizer\Commands\Login\" />
     <Folder Include="Organizer\Commands\Registration\" />
     <Folder Include="Organizer\Queries\" />
+    <Folder Include="Participant\Queries\" />
     <Folder Include="Todos\Queries\GetTodo\" />
     <Folder Include="Todos\Queries\GetTodosList\" />
   </ItemGroup>

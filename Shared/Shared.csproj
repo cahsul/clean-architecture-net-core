@@ -54,6 +54,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Participant\Queries\" />
     <Folder Include="X\Helpers\" />
   </ItemGroup>
 
