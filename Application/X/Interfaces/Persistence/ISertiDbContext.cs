@@ -14,7 +14,7 @@ namespace Application.X.Interfaces.Persistence
     {
         public DbSet<Domain.Entities.Serti.Event> Events { get; set; }
         public DbSet<EventSpeaker> EventSpeakers { get; set; }
-        public DbSet<Participant> Participants { get; set; }
+        public DbSet<Domain.Entities.Serti.Participant> Participants { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
         public DatabaseFacade Database { get; }
