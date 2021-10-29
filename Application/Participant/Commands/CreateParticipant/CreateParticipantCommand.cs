@@ -30,10 +30,9 @@ namespace Application.Participant.Commands.CreateParticipant
             // save
             var dataToSave = new Domain.Entities.Serti.Participant
             {
-                ParticipantName = "ParticipantName",
-                EventId = null,
-                CertificateTemplateId = null,
-                OwnerId = null,
+                ParticipantName = request.ParticipantName,
+                EventId = request.EventId,
+                CertificateTemplateId = request.CertificateTemplateId,
             };
 
             _sertiDbContext.Participants.Add(dataToSave);

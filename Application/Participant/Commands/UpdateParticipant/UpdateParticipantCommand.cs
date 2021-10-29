@@ -30,7 +30,8 @@ namespace Application.Participant.Commands.UpdateParticipant
         {
             // find data
             var dataToUpdate = await _sertiDbContext.Participants.FirstOrDefaultAsync(w => w.Id == request.Id);
-            dataToUpdate.ParticipantName = "ParticipantName";
+            dataToUpdate.ParticipantName = request.ParticipantName;
+            dataToUpdate.CertificateTemplateId = request.CertificateTemplateId;
 
             _sertiDbContext.Participants.Update(dataToUpdate);
             await _sertiDbContext.SaveChangesAsync(cancellationToken);

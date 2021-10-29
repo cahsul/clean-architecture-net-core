@@ -19,6 +19,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>EventLang.resx</DependentUpon>
     </Compile>
+    <Compile Update="Participant\Resources\ParticipantLang.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ParticipantLang.resx</DependentUpon>
+    </Compile>
     <Compile Update="X\Resources\ResponseLang.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -28,6 +33,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>TodoLang.resx</DependentUpon>
+    </Compile>
+    <Compile Update="X\Resources\ValidatorLang.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ValidatorLang.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -40,6 +50,13 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>EventLang.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Participant\Resources\ParticipantLang.id.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Participant\Resources\ParticipantLang.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ParticipantLang.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="X\Resources\ResponseLang.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ResponseLang.Designer.cs</LastGenOutput>
@@ -51,10 +68,16 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>TodoLang.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="X\Resources\ValidatorLang.id.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="X\Resources\ValidatorLang.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ValidatorLang.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Participant\Queries\" />
     <Folder Include="X\Helpers\" />
   </ItemGroup>
 

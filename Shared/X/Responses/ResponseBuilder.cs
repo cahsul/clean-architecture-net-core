@@ -10,7 +10,7 @@ namespace Shared.X.Responses
     public class ResponseBuilder<TEntity>
     {
         public bool IsError { get; set; } = false;
-        public ErrorType? ErrorType { get; set; }
+        public string ErrorType { get; set; }
         public List<string> ErrorsMessage { get; set; } = new List<string>();
         public string Message { get; set; }
         public TEntity Data { get; set; }

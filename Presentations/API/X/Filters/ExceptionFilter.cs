@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Shared.X.Extensions;
 
 namespace API.X.Filters
 {
@@ -35,7 +36,7 @@ namespace API.X.Filters
                 var validationError = new ResponseBuilder<List<string>>
                 {
                     IsError = true,
-                    ErrorType = ErrorType.Validation,
+                    ErrorType = ErrorType.Validation.GetDescription(),
                     ErrorsMessage = exception.Errors.Select(s => s.ErrorMessage).ToList()
                 };
 
@@ -53,7 +54,7 @@ namespace API.X.Filters
                 var badRequestException = new ResponseBuilder<List<string>>
                 {
                     IsError = true,
-                    ErrorType = ErrorType.BadRequest,
+                    ErrorType = ErrorType.BadRequest.GetDescription(),
                     ErrorsMessage = exception.ErrorsMessage.ToList()
                 };
 
@@ -71,7 +72,7 @@ namespace API.X.Filters
                 var unauthorizedAccessException = new ResponseBuilder<List<string>>
                 {
                     IsError = true,
-                    ErrorType = ErrorType.UnauthorizedAccess,
+                    ErrorType = ErrorType.UnauthorizedAccess.GetDescription(),
                     ErrorsMessage = new List<string> { exception.Message }
                 };
 
@@ -92,7 +93,7 @@ namespace API.X.Filters
             var unknownError = new ResponseBuilder<List<string>>
             {
                 IsError = true,
-                ErrorType = ErrorType.Unknown,
+                ErrorType = ErrorType.Unknown.GetDescription(),
                 ErrorsMessage = new List<string> { "Internal Server Error" }
             };
 

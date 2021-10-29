@@ -22,14 +22,14 @@ namespace Shared.X.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ResponseLang {
+    public class ValidatorLang {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ResponseLang() {
+        internal ValidatorLang() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Shared.X.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Shared.X.Resources.ResponseLang", typeof(ResponseLang).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Shared.X.Resources.ValidatorLang", typeof(ValidatorLang).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,38 +61,11 @@ namespace Shared.X.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to data has been successfully created..
+        ///   Looks up a localized string similar to Data not exist..
         /// </summary>
-        public static string Response_Create {
+        public static string NotExist {
             get {
-                return ResourceManager.GetString("Response.Create", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to data have been successfully created..
-        /// </summary>
-        public static string Response_CreatePlural {
-            get {
-                return ResourceManager.GetString("Response.CreatePlural", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to data has been successfully deleted..
-        /// </summary>
-        public static string Response_Delete {
-            get {
-                return ResourceManager.GetString("Response.Delete", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to data has been successfully updated..
-        /// </summary>
-        public static string Response_Update {
-            get {
-                return ResourceManager.GetString("Response.Update", resourceCulture);
+                return ResourceManager.GetString("NotExist", resourceCulture);
             }
         }
     }

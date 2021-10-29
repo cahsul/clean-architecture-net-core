@@ -33,7 +33,6 @@ namespace Application.Participant.Commands.DeleteParticipant
                 Id = request.Id,
             };
 
-            _sertiDbContext.Participants.Attach(dataToDelete);
             _sertiDbContext.Participants.Remove(dataToDelete);
             await _sertiDbContext.SaveChangesAsync(cancellationToken);
 

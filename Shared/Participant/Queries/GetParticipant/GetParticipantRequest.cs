@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using FluentValidation;
 
-namespace Shared.Participant.Commands.DeleteParticipant
+namespace Shared.Participant.Queries.GetParticipant
 {
-    public class DeleteParticipantRequest
+    public class GetParticipantRequest
     {
         public Guid Id { get; set; }
     }

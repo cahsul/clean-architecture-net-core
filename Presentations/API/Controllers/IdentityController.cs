@@ -1,5 +1,4 @@
-﻿using API.Controllers.V1;
-using Application.Identity.Commands.RefreshToken;
+﻿using Application.Identity.Commands.RefreshToken;
 using Application.Identity.Commands.RegisterByEmail;
 using Application.Identity.Queries.LoginByEmail;
 using Microsoft.AspNetCore.Http;
@@ -20,7 +19,7 @@ namespace API.Controllers
     /// <summary>
     /// seluruh proses dari registrai, login, logout ada disini semua
     /// </summary>
-	public class IdentityController : ApiV1Controller
+	public class IdentityController : ApiController
     {
 
 
