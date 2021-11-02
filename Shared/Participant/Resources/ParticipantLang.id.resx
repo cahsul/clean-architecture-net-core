@@ -123,4 +123,7 @@
   <data name="Form.ParticipantName" xml:space="preserve">
     <value>Nama Peserta</value>
   </data>
+  <data name="Participant" xml:space="preserve">
+    <value>Peserta</value>
+  </data>
 </root>

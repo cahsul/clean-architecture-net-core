@@ -1,14 +1,20 @@
 ﻿@page "/Participant"
+@using Shared.Participant.Resources
 
-
+@if(_events == null)
+{
+    <h1>loading</h1>
+    return;
+}
 
 <div class="content">
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title">Basic table</h5>
+            <h5 class="card-title">@ParticipantLang.Participant</h5>
         </div>
 
         <div class="card-body">
+            Satu event dapat memiliki beberapa peserta. Anda dapat mengatur daftar peserta dari halaman ini.
         </div>
 
         <div class="table-responsive">
@@ -21,6 +27,19 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach(var item in _events) {
+                         <tr class="table-border-dashed">
+                            <td>
+                                <a href="/Participant/ListParticipant" type="button" class="btn btn-sm btn-teal btn-labeled btn-labeled-left ">
+                                    <b><i class="icon-people"></i></b>
+                                    Peserta
+                                </a>
+                            </td>
+                            <td>@item.EventName</td>
+                            <td>10</td>
+
+                        </tr>
+                    }
                     @for (int i = 0; i < 10; i++)
                     {
                         <tr class="table-border-dashed">

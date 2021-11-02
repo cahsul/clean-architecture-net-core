@@ -77,5 +77,14 @@ namespace Shared.Participant.Resources {
                 return ResourceManager.GetString("Form.ParticipantName", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Participant.
+        /// </summary>
+        public static string Participant {
+            get {
+                return ResourceManager.GetString("Participant", resourceCulture);
+            }
+        }
     }
 }

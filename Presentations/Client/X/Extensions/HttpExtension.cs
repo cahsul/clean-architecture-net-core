@@ -74,14 +74,14 @@ namespace Client.X.Extensions
 
 
                 // return error karena validation
-                if (contentObject?.IsError == true && contentObject?.ErrorType == ErrorType.Validation && contentObject?.ErrorsMessage?.Count > 0)
+                if (contentObject?.IsError == true && contentObject?.ErrorType == ErrorType.Validation.GetDescription() && contentObject?.ErrorsMessage?.Count > 0)
                 {
                     await _toastrService.Error(contentObject.ErrorsMessage.ToString("<br/>"), toastrOptions);
                     return contentObject;
                 }
 
                 // return error tidak diketahui
-                if (contentObject?.IsError == true && contentObject?.ErrorType == ErrorType.Unknown)
+                if (contentObject?.IsError == true && contentObject?.ErrorType == ErrorType.Unknown.GetDescription())
                 {
                     toastrOptions.Position = ToastrPosition.TopFullWidth;
                     await _toastrService.Error(contentObject.ErrorsMessage.ToString("<br/><br/>"), toastrOptions);
@@ -138,14 +138,14 @@ namespace Client.X.Extensions
 
 
                 // return error karena validation
-                if (contentObject?.IsError == true && contentObject?.ErrorType == ErrorType.Validation && contentObject?.ErrorsMessage?.Count > 0)
+                if (contentObject?.IsError == true && contentObject?.ErrorType == ErrorType.Validation.GetDescription() && contentObject?.ErrorsMessage?.Count > 0)
                 {
                     await _toastrService.Error(contentObject.ErrorsMessage.ToString("<br/>"), toastrOptions);
                     return contentObject;
                 }
 
                 // return error tidak diketahui
-                if (contentObject?.IsError == true && contentObject?.ErrorType == ErrorType.Unknown)
+                if (contentObject?.IsError == true && contentObject?.ErrorType == ErrorType.Unknown.GetDescription())
                 {
                     toastrOptions.Position = ToastrPosition.TopFullWidth;
                     await _toastrService.Error(contentObject.ErrorsMessage.ToString("<br/><br/>"), toastrOptions);

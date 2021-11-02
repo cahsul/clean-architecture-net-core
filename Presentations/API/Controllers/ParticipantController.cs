@@ -1,12 +1,14 @@
 ﻿using Application.Participant.Commands.CreateParticipant;
 using Application.Participant.Commands.DeleteParticipant;
 using Application.Participant.Commands.UpdateParticipant;
+using Application.Participant.Queries.GetEvents;
 using Application.Participant.Queries.GetParticipant;
 using Application.Participant.Queries.GetParticipants;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Participant.Commands.CreateParticipant;
 using Shared.Participant.Commands.DeleteParticipant;
 using Shared.Participant.Commands.UpdateParticipant;
+using Shared.Participant.Queries.GetEvents;
 using Shared.Participant.Queries.GetParticipant;
 using Shared.Participant.Queries.GetParticipants;
 using Shared.X.Responses;
@@ -42,6 +44,13 @@ namespace API.Controllers
 
         [HttpPut()]
         public async Task<ActionResult<ResponseBuilder<UpdateParticipantResponse>>> EventUpdate([FromBody] UpdateParticipantCommand query)
+        {
+            return await Mediator.Send(query);
+        }
+
+
+        [HttpGet("Event")]
+        public async Task<ActionResult<ResponseBuilder<List<GetEventsResponse>>>> GetEvents(GetEventsQuery query)
         {
             return await Mediator.Send(query);
         }

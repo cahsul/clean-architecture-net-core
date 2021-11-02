@@ -19,6 +19,8 @@ namespace API.X.Extensions
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
+                c.CustomSchemaIds(type => type.ToString());
+
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Title = "Employee API",
