@@ -53,6 +53,15 @@ namespace Application.X.Extensions
             };
         }
 
+        public static ResponseBuilder<T> Response<T>(this T response, string message)
+        {
+            return new ResponseBuilder<T>
+            {
+                Message = message,
+                Data = response,
+            };
+        }
+
 
     }
 }

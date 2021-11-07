@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.X.Extensions;
+using Shared.X.Resources;
 
 namespace Application.Identity.Commands.RegisterByEmail
 {
@@ -53,7 +54,7 @@ namespace Application.Identity.Commands.RegisterByEmail
             return new RegisterByEmailResponse
             {
                 Id = user.Id
-            }.ResponseCreate();
+            }.Response(ResponseLang.Response_RegistrationSuccessful);
 
         }
     }

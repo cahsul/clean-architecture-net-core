@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Shared.X.Resources {
+namespace Shared.Identity.Resources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace Shared.X.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ResponseLang {
+    public class IdentityLang {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ResponseLang() {
+        internal IdentityLang() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Shared.X.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Shared.X.Resources.ResponseLang", typeof(ResponseLang).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Shared.Identity.Resources.IdentityLang", typeof(IdentityLang).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,47 +61,29 @@ namespace Shared.X.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to data has been successfully created..
+        ///   Looks up a localized string similar to Email Address.
         /// </summary>
-        public static string Response_Create {
+        public static string Form_Email {
             get {
-                return ResourceManager.GetString("Response.Create", resourceCulture);
+                return ResourceManager.GetString("Form.Email", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to data have been successfully created..
+        ///   Looks up a localized string similar to Password.
         /// </summary>
-        public static string Response_CreatePlural {
+        public static string Form_Password {
             get {
-                return ResourceManager.GetString("Response.CreatePlural", resourceCulture);
+                return ResourceManager.GetString("Form.Password", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to data has been successfully deleted..
+        ///   Looks up a localized string similar to Password Repeat.
         /// </summary>
-        public static string Response_Delete {
+        public static string Form_PasswordRepeat {
             get {
-                return ResourceManager.GetString("Response.Delete", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your registration has been successfully..
-        /// </summary>
-        public static string Response_RegistrationSuccessful {
-            get {
-                return ResourceManager.GetString("Response.RegistrationSuccessful", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to data has been successfully updated..
-        /// </summary>
-        public static string Response_Update {
-            get {
-                return ResourceManager.GetString("Response.Update", resourceCulture);
+                return ResourceManager.GetString("Form.PasswordRepeat", resourceCulture);
             }
         }
     }

@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Shared.Identity.Resources;
 
 namespace API.Controllers
 {
@@ -26,9 +27,8 @@ namespace API.Controllers
         /// <summary>
         /// register by email
         /// </summary>
-        [HttpPost("Register")]
-        [Produces(typeof(ResponseBuilder<RegisterByEmailResponse>))]
-        public async Task<ActionResult<ResponseBuilder<RegisterByEmailResponse>>> RegisterByEmail(RegisterByEmailCommand query)
+        [HttpPost(IdentityEndpoint.Identity.Register)]
+        public async Task<ActionResult<ResponseBuilder<RegisterByEmailResponse>>> RegisterByEmail([FromBody] RegisterByEmailCommand query)
         {
             return await Mediator.Send(query);
         }
@@ -37,7 +37,6 @@ namespace API.Controllers
         /// Login By Email
         /// </summary>
         [HttpPost("Login")]
-        [Produces(typeof(ResponseBuilder<LoginByEmailResponse>))]
         public async Task<ActionResult<ResponseBuilder<LoginByEmailResponse>>> LoginByEmail(LoginByEmailQuery query)
         {
             var response = await Mediator.Send(query);
@@ -46,7 +45,6 @@ namespace API.Controllers
         }
 
         [HttpPost("RefreshToken")]
-        [Produces(typeof(ResponseBuilder<RefreshTokenResponse>))]
         public async Task<ActionResult<ResponseBuilder<RefreshTokenResponse>>> RefreshToken(RefreshTokenCommand q)
         {
             var refreshToken = Request.Cookies["refreshToken"];

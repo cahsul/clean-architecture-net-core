@@ -68,5 +68,14 @@ namespace Shared.X.Resources {
                 return ResourceManager.GetString("NotExist", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password Not Equal.
+        /// </summary>
+        public static string PasswordNotEqual {
+            get {
+                return ResourceManager.GetString("PasswordNotEqual", resourceCulture);
+            }
+        }
     }
 }

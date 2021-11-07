@@ -20,6 +20,7 @@ builder.Services.AddBlazoredLocalStorage();
 
 //
 builder.Services.AddTransient<EventApi>();
+builder.Services.AddTransient<IdentityApi>();
 builder.Services.AddTransient<Appsettings>();
 
 

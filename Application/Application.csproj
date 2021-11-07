@@ -27,6 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Event\Commands\CreatePlace\" />
     <Folder Include="Identity\Commands\ConfirmEmail\" />
     <Folder Include="Identity\Commands\ForgetPassword\" />
     <Folder Include="Identity\Commands\ResetPassword\" />

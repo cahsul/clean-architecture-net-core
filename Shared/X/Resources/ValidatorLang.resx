@@ -120,4 +120,7 @@
   <data name="NotExist" xml:space="preserve">
     <value>Data not exist.</value>
   </data>
+  <data name="PasswordNotEqual" xml:space="preserve">
+    <value>Password Not Equal</value>
+  </data>
 </root>

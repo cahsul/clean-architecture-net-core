@@ -49,12 +49,13 @@ namespace Client.X.Extensions
             {
                 CloseButton = true,
                 ShowDuration = 0,
-                HideDuration = 0,
-                TimeOut = 0,
-                ExtendedTimeOut = 0,
+                HideDuration = 500,
+                TimeOut = 5000,
+                ExtendedTimeOut = 1000,
                 HideMethod = ToastrHideMethod.SlideUp,
                 ShowMethod = ToastrShowMethod.SlideDown,
-                Position = ToastrPosition.TopRight
+                Position = ToastrPosition.TopRight,
+                ShowProgressBar = true,
             };
 
             HttpContent httpContent = dataToSend.JsonSerialize().HttpStringContentJson();
@@ -75,6 +76,13 @@ namespace Client.X.Extensions
 
                 // return error karena validation
                 if (contentObject?.IsError == true && contentObject?.ErrorType == ErrorType.Validation.GetDescription() && contentObject?.ErrorsMessage?.Count > 0)
+                {
+                    await _toastrService.Error(contentObject.ErrorsMessage.ToString("<br/>"), toastrOptions);
+                    return contentObject;
+                }
+
+                // return error because bad request
+                if (contentObject?.IsError == true && contentObject?.ErrorType == ErrorType.BadRequest.GetDescription() && contentObject?.ErrorsMessage?.Count > 0)
                 {
                     await _toastrService.Error(contentObject.ErrorsMessage.ToString("<br/>"), toastrOptions);
                     return contentObject;

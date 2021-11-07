@@ -1,0 +1,39 @@
+﻿@inherits LayoutComponentBase
+
+@inject IJSRuntime js
+
+@code {
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await js.InvokeVoidAsync("onBlazorReady");
+            await js.InvokeVoidAsync("componentPopups");
+        }
+    }
+}
+
+
+
+
+<!-- Page content -->
+<div class="page-content">
+
+    <!-- Main content -->
+    <div class="content-wrapper">
+
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <div class="content-inner">
+            @Body
+        </div>
+
+       
+
+    </div>
+    <!-- /main content -->
+
+</div>
+<!-- /page content -->
