@@ -3,8 +3,18 @@ using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using Serti.Server.Data;
 using Serti.Server.Models;
+using Serti.Server.X.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// csw
+builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+{
+    builder.AllowAnyOrigin()
+           .AllowAnyMethod()
+           .AllowAnyHeader();
+}));
+builder.Services.AddSwagger();
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -43,6 +53,10 @@ app.UseHttpsRedirection();
 
 app.UseBlazorFrameworkFiles();
 app.UseStaticFiles();
+
+// csw
+app.UseCors("MyPolicy");
+app.UseSwaggerConfigure();
 
 app.UseRouting();
 

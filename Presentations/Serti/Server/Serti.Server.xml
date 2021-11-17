@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Serti.Server</name>
+    </assembly>
+    <members>
+        <member name="T:Serti.Server.Controllers.EventController">
+            <summary>
+            pembuatan event
+            </summary>
+        </member>
+        <member name="T:Serti.Server.Controllers.IdentityController">
+            <summary>
+            seluruh proses dari registrai, login, logout ada disini semua
+            </summary>
+        </member>
+        <member name="M:Serti.Server.Controllers.IdentityController.RegisterByEmail(Application.Identity.Commands.RegisterByEmail.RegisterByEmailCommand)">
+            <summary>
+            register by email
+            </summary>
+        </member>
+        <member name="M:Serti.Server.Controllers.IdentityController.LoginByEmail(Application.Identity.Queries.LoginByEmail.LoginByEmailQuery)">
+            <summary>
+            Login By Email
+            </summary>
+        </member>
+        <member name="T:Serti.Server.Controllers.TodoController">
+            <summary>
+            aplikasi todo list
+            </summary>
+        </member>
+        <member name="M:Serti.Server.Controllers.TodoController.Get(Application.Todos.Queries.GetTodos.GetTodosQuery)">
+            <summary>
+            get todo list
+            </summary>
+        </member>
+        <member name="M:Serti.Server.Controllers.TodoController.Create(Application.Todos.Commands.CreateTodo.CreateTodoCommand)">
+            <summary>
+            Create
+            </summary>
+        </member>
+        <member name="M:Serti.Server.Controllers.TodoController.Delete(Application.Todos.Commands.DeleteTodo.DeleteTodoCommand)">
+            <summary>
+            Delete
+            </summary>
+        </member>
+        <member name="M:Serti.Server.Controllers.TodoController.Update(Application.Todos.Commands.UpdateTodo.UpdateTodoCommand)">
+            <summary>
+            Update
+            </summary>
+        </member>
+    </members>
+</doc>
