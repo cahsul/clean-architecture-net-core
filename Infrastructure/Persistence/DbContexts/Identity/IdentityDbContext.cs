@@ -34,12 +34,12 @@ namespace Infrastructure.Persistence.DbContexts
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entry.Entity.CreatedDate = DateTimeOffset.Now;
+                        entry.Entity.CreatedDate = DateTimeOffset.UtcNow;
                         entry.Entity.CreatedBy = _identity?.Email;
                         entry.Entity.IsDeleted = false;
                         break;
                     case EntityState.Modified:
-                        entry.Entity.ModifiedDate = DateTimeOffset.Now;
+                        entry.Entity.ModifiedDate = DateTimeOffset.UtcNow;
                         entry.Entity.ModifiedBy = _identity?.Email;
                         break;
                 }

@@ -40,7 +40,7 @@ namespace Infrastructure.Jwt
                 issuer: "issuer",
                 audience: "audience",
                 claims: claims,
-                expires: DateTime.Now.AddMinutes(1),
+                expires: DateTime.UtcNow.AddHours(1),
                 signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256));
 
             var tokenAsString = new JwtSecurityTokenHandler().WriteToken(token);
@@ -60,7 +60,7 @@ namespace Infrastructure.Jwt
             {
                 JwtToken = tokenAsString,
                 Token = Convert.ToBase64String(randomBytes),
-                ExpiryDate = DateTimeOffset.Now.AddMonths(6),
+                ExpiryDate = DateTimeOffset.UtcNow.AddMonths(6),
                 UserId = userId,
             };
             _identityDbContext.RefreshTokens.Add(refreshToken);

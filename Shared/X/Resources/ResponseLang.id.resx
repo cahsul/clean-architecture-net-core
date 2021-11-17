@@ -126,6 +126,9 @@
   <data name="Response.Delete" xml:space="preserve">
     <value>data telah berhasil dihapus</value>
   </data>
+  <data name="Response.LoginFailed" xml:space="preserve">
+    <value>Login Gagal.</value>
+  </data>
   <data name="Response.RegistrationSuccessful" xml:space="preserve">
     <value>Pendaftaran Anda telah berhasil.</value>
   </data>

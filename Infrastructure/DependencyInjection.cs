@@ -61,7 +61,7 @@ namespace Infrastructure
                 ValidAudience = "audience",
                 ValidIssuer = "issuer",
                 RequireExpirationTime = true,
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("a bb ccc dddd eeeee ffffff ggggggg hhhhhhhh iiiiiiiii")),
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(settings.Jwt.Secret)),
                 ValidateIssuerSigningKey = true,
                 ClockSkew = TimeSpan.Zero,
 

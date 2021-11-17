@@ -36,21 +36,21 @@ namespace API.Controllers
         /// <summary>
         /// Login By Email
         /// </summary>
-        [HttpPost("Login")]
-        public async Task<ActionResult<ResponseBuilder<LoginByEmailResponse>>> LoginByEmail(LoginByEmailQuery query)
+        [HttpPost(IdentityEndpoint.Identity.Login)]
+        public async Task<ActionResult<ResponseBuilder<LoginByEmailResponse>>> LoginByEmail([FromBody] LoginByEmailQuery query)
         {
             var response = await Mediator.Send(query);
-            SetTokenCookie(response.Data.RefreshToken);
+            //SetTokenCookie(response.Data.RefreshToken);
             return response;
         }
 
-        [HttpPost("RefreshToken")]
-        public async Task<ActionResult<ResponseBuilder<RefreshTokenResponse>>> RefreshToken(RefreshTokenCommand q)
+        [HttpPost(IdentityEndpoint.Identity.RefreshToken)]
+        public async Task<ActionResult<ResponseBuilder<RefreshTokenResponse>>> RefreshToken([FromBody] RefreshTokenCommand q)
         {
-            var refreshToken = Request.Cookies["refreshToken"];
+            //var refreshToken = Request.Cookies["refreshToken"];
 
             var response = await Mediator.Send(q);
-            SetTokenCookie(response.Data.RefreshToken);
+            //SetTokenCookie(response.Data.RefreshToken);
             return response;
         }
 

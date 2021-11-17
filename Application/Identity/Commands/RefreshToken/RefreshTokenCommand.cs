@@ -47,7 +47,7 @@ namespace Application.Identity.Commands.RefreshToken
             }
 
             // update UsedDate
-            refreshToken.Select(s => { s.UsedDate = DateTimeOffset.Now; s.ReplacedByToken = request.RefreshToken; return s; }).ToList();
+            refreshToken.Select(s => { s.UsedDate = DateTimeOffset.UtcNow; s.ReplacedByToken = request.RefreshToken; return s; }).ToList();
             _identityDbContext.RefreshTokens.UpdateRange(refreshToken);
             await _identityDbContext.SaveChangesAsync(cancellationToken);
 

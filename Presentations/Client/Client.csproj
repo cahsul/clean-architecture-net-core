@@ -58,7 +58,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Pages\Identity\Login\" />
+	  <Folder Include="Extensions\" />
 	  <Folder Include="Pages\Identity\Logout\" />
 	  <Folder Include="SharedPage\Components\" />
 	  <Folder Include="Store\Event\" />

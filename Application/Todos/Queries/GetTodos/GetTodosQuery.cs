@@ -19,7 +19,7 @@ using Application.X.Interfaces.Persistence;
 namespace Application.Todos.Queries.GetTodos
 {
 
-    //[Authorize("Todo", "List")]
+    [Authorize("Todo", "List")]
     public class GetTodosQuery : IRequest<ResponseBuilder<List<GetTodosResponse>>>
     {
 

@@ -16,6 +16,7 @@ using Shared.X.Extensions;
 using Application.X.Interfaces.Jwt;
 using Application.X.Extensions;
 using Application.X.Interfaces.Persistence;
+using Shared.X.Resources;
 
 namespace Application.Identity.Queries.LoginByEmail
 {
@@ -48,7 +49,7 @@ namespace Application.Identity.Queries.LoginByEmail
 
             if (!checkPassword)
             {
-                throw new BadRequestException("Login Failed");
+                throw new BadRequestException(ResponseLang.Response_LoginFailed);
             }
 
             // create claim
@@ -94,7 +95,7 @@ namespace Application.Identity.Queries.LoginByEmail
                 var refreshTokenActive = refreshToken.Where(w => w.IsActive == true)
                     .Select(s =>
                     {
-                        s.RevokedDate = DateTimeOffset.Now;
+                        s.RevokedDate = DateTimeOffset.UtcNow;
                         s.ReasonRevoked = ReasonRevoked.loginProcess.GetDescription();
                         return s;
                     }).ToList();

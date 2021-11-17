@@ -1,4 +1,4 @@
-﻿using Client.Extensions;
+﻿using Client.X.Extensions;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 

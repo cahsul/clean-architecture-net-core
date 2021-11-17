@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.X.Attributes;
 using Application.X.Extensions;
 using Application.X.Interfaces.Persistence;
 using MediatR;
@@ -13,6 +14,7 @@ using Shared.X.Responses;
 
 namespace Application.Event.Queries.GetEvents
 {
+    [Authorize("Todo", "List")]
     public class GetEventsQuery : GetEventsRequest, IRequest<ResponseBuilder<List<GetEventsResponse>>>
     {
 

@@ -33,15 +33,17 @@ namespace Client.Api
 
         private readonly HttpClient _client;
         private readonly Appsettings _appsettings;
+        private readonly NavigationManager _navigationManager;
         private readonly ToastrService _toastrService;
 
-        public EventApi(ToastrService toastrService, HttpClient client, Appsettings appsettings)
+        public EventApi(ToastrService toastrService, HttpClient client, Appsettings appsettings, NavigationManager navigationManager)
         {
 
             _toastrService = toastrService;
             _client = client;
             _appsettings = appsettings;
-            HttpExtension.HttpExtensionConfigure(_toastrService, _client);
+            _navigationManager = navigationManager;
+            HttpExtension.HttpExtensionConfigure(_toastrService, _client, _appsettings, _navigationManager);
         }
 
         public async Task<ResponseBuilder<CreateEventResponse>> EventCreateAsync(CreateEventRequest request)

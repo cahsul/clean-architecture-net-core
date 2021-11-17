@@ -88,6 +88,15 @@ namespace Shared.X.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Login Failed..
+        /// </summary>
+        public static string Response_LoginFailed {
+            get {
+                return ResourceManager.GetString("Response.LoginFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your registration has been successfully..
         /// </summary>
         public static string Response_RegistrationSuccessful {

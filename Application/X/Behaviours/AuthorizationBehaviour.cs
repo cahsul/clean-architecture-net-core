@@ -28,7 +28,7 @@ namespace Application.X.Behaviours
             {
                 if (!_identity.IsAuthenticated)
                 {
-                    throw new UnauthorizedAccessException("Current User is not authenticated.");
+                    throw new UnauthorizedAccessException("Current User is not authenticated."); // TODO : hardcode
                 }
 
                 var authorizeAttributesWithPolicies = authorizeAttributes.Where(a => a.MenuName != null).ToList();
