@@ -63,7 +63,7 @@ namespace Application.Identity.Commands.RefreshToken
             var claims = new[]
             {
                 new Claim("Email", "query.Email"),
-                new Claim(ClaimTypes.NameIdentifier, "user.Id"),
+                new Claim(ClaimTypes.NameIdentifier, request.UserId),
 
 				//  menu akses
 				new Claim("MenuAccess", "Todo.List"),

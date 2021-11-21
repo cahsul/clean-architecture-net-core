@@ -73,11 +73,11 @@ namespace Application.Identity.Queries.LoginByEmail
 
             return new LoginByEmailResponse
             {
-                UserId = user.Id,
-                Token = jwtToken.Token,
-                ValidTo = jwtToken.ValidTo,
+                //UserId = user.Id,
+                JwtToken = jwtToken.Token,
+                //ValidTo = jwtToken.ValidTo,
                 RefreshToken = jwtToken.RefreshToken,
-            }.ResponseCreate();
+            }.Response("Login Successfully");
         }
 
         /// <summary>

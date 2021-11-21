@@ -1,0 +1,80 @@
+﻿@page "/registration"
+@layout EmptyLayout
+
+
+
+<!-- Content area -->
+<div class="content d-flex justify-content-center align-items-center">
+
+    <!-- Registration form -->
+    <EditForm Model="@_modelForm" OnValidSubmit="@Submit" class="flex-fill">
+        <FluentValidationValidator />
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="card mb-0">
+                    <div class="card-body">
+                        <div class="text-center mb-3">
+                            <i class="icon-plus3 icon-2x text-success border-success border-3 rounded-pill p-3 mb-3 mt-1"></i>
+                            <h5 class="mb-0">Registrasi</h5>
+                        </div>
+
+                        @if (_registrationIsSuccess)
+                        {
+                            <div class="row align-content-center">
+                                Pendaftaran akun berhasil. Silahkan Login.
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="form-group form-group-feedback form-group-feedback-right">
+                                <InputText @bind-Value="@_modelForm.Email" class="form-control" placeholder="email" />
+                                <div class="form-control-feedback">
+                                    <i class="icon-user-plus text-muted"></i>
+                                </div>
+                                <ValidationMessage For="@(() => _modelForm.Email)" />
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group form-group-feedback form-group-feedback-right">
+                                        <InputText @bind-Value="@_modelForm.Password" type="password" class="form-control" placeholder="Create password" />
+                                        <div class="form-control-feedback">
+                                            <i class="icon-user-lock text-muted"></i>
+                                        </div>
+                                        <ValidationMessage For="@(() => _modelForm.Password)" />
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group form-group-feedback form-group-feedback-right">
+                                        <InputText @bind-Value="@_modelForm.PasswordRepeat" type="password" class="form-control" placeholder="Repeat password" />
+                                        <div class="form-control-feedback">
+                                            <i class="icon-user-lock text-muted"></i>
+                                        </div>
+                                        <ValidationMessage For="@(() => _modelForm.PasswordRepeat)" />
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+
+
+
+
+                    </div>
+                    @if (!_registrationIsSuccess)
+                    {
+                        <div class="card-footer bg-transparent text-right">
+                            <button type="submit" class="btn btn-teal btn-labeled btn-labeled-right"><b><i class="icon-plus3"></i></b>Daftar</button>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </EditForm>
+    <!-- /registration form -->
+
+</div>
+<!-- /content area -->

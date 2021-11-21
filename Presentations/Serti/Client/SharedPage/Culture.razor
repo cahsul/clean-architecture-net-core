@@ -1,0 +1,41 @@
+﻿@using System.Globalization
+@inject NavigationManager NavManager
+@inject ILocalStorageService localStorage
+
+<li class="nav-item nav-item-dropdown-lg dropdown">
+    <a href="#" class="navbar-nav-link navbar-nav-link-toggler dropdown-toggle" data-toggle="dropdown">
+        <i class="icon-earth"></i>
+        <span class="d-none d-lg-inline-block ml-2">Bahasa (@CultureBind.IetfLanguageTag)</span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-right">
+		@foreach (var culture in cultures)
+		{
+			@if(@culture.ToString().ToLower() == @CultureBind.ToString().ToLower())
+			{
+			<a class="dropdown-item active">@culture.DisplayName) </a>
+			} else {
+			<a class="dropdown-item" onclick="@(() => SetCulture(@culture.Name))" > @culture.DisplayName </a>
+			}
+		}
+    </div>
+</li>
+
+@code {
+	CultureInfo[] cultures = new[]
+	{
+		new CultureInfo("en-US"),
+		new CultureInfo("es-ES"),
+		new CultureInfo("id-ID"),
+	};
+
+	CultureInfo CultureBind
+	{
+		get => CultureInfo.CurrentCulture;
+	}
+
+	private void SetCulture(string value)
+	{
+		localStorage.SetItemAsync<string>("culture", value);
+		NavManager.NavigateTo(NavManager.Uri, forceLoad: true);
+	}
+}

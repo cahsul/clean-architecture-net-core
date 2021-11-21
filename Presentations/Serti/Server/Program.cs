@@ -4,6 +4,12 @@ using Microsoft.EntityFrameworkCore;
 using Serti.Server.Data;
 using Serti.Server.Models;
 using Serti.Server.X.Extensions;
+using Microsoft.AspNetCore.Identity;
+using Application;
+using Infrastructure;
+using Serti.Server.X.Filters;
+using Application.X.Interfaces;
+using Serti.Server.X;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +21,13 @@ builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
            .AllowAnyHeader();
 }));
 builder.Services.AddSwagger();
+builder.Services.AddApplication();
+builder.Services.AddInfrastructure();
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add<ExceptionFilter>();
+});
+builder.Services.AddScoped<IUser, User>();
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -22,7 +35,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddIdentityServer()

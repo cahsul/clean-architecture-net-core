@@ -39,6 +39,7 @@
     <Folder Include="Organizer\Queries\" />
     <Folder Include="Todos\Queries\GetTodo\" />
     <Folder Include="Todos\Queries\GetTodosList\" />
+    <Folder Include="User\Commands\ChangePassword\" />
   </ItemGroup>
 
 </Project>
