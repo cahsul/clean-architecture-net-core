@@ -9,6 +9,11 @@ namespace Shared.User.Resources
         public static class User
         {
             public const string Profile = "/" + nameof(User) + "/" + nameof(Profile);
+            public const string Create = "/" + nameof(User) + "/" + nameof(Create);
+            public const string Update = "/" + nameof(User) + "/" + nameof(Update);
+            public const string Delete = "/" + nameof(User) + "/" + nameof(Delete);
+            public const string GetUsers = "/" + nameof(User) + "/" + nameof(GetUsers);
+            public const string GetUser = "/" + nameof(User) + "/" + nameof(GetUser);
         }
 
     }

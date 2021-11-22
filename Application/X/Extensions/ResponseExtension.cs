@@ -45,6 +45,14 @@ namespace Application.X.Extensions
             };
         }
 
+        public static ResponseBuilder<T> ResponseRead<T>(this T response)
+        {
+            return new ResponseBuilder<T>
+            {
+                Data = response,
+            };
+        }
+
         public static ResponseBuilder<T> Response<T>(this T response)
         {
             return new ResponseBuilder<T>
