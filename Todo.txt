@@ -17,6 +17,9 @@ dotnet watch run
 https://www.emekaemego.com/posts/blazor-component-js/
 rollup --config
 
+--------- build custom devextream
+https://js.devexpress.com/Documentation/Guide/Common/Modularity/Create_a_Custom_Bundle/
+
 
 
 dotnet ef migrations add Todo --context MsSqlTodoDbContext --project Infrastructure --startup-project API --output-dir Persistence/Providers/MsSql/Todo/Migrations
@@ -40,7 +43,7 @@ Add-Migration TODO -Context MsSqlTodoDbContext -Project Infrastructure -OutputDi
 Remove-Migration -Context MsSqlIdentityDbContext -Project Infrastructure
 Update-Database -Context IdentityPostgreSqlDbContext -Project Infrastructure
 
-Add-Migration IDENTITY -Context IdentityPostgreSqlDbContext -Project Infrastructure -StartupProject API -OutputDir Persistence/DbContexts/Identity/Migrations
+Add-Migration IDENTITY -Context IdentityPostgreSqlDbContext -StartupProject Serti.Server -Project Infrastructure  -OutputDir Persistence/DbContexts/Identity/Migrations
 
 
 

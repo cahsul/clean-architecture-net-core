@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.X.Settings
 {
+
     public class IdentityUser
     {
         public string ConnectionStrings { get; set; }
         public Options Options { get; set; }
+        public MigrationsHistoryTable MigrationsHistoryTable { get; set; }
     }
 
     public class Options
@@ -33,5 +35,11 @@ namespace Infrastructure.X.Settings
         public bool RequireConfirmedAccount { get; set; }
         public bool RequireConfirmedEmail { get; set; }
         public bool RequireConfirmedPhoneNumber { get; set; }
+    }
+
+    public class MigrationsHistoryTable
+    {
+        public string Name { get; set; }
+        public string Schema { get; set; }
     }
 }

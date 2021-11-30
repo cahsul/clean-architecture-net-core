@@ -26,7 +26,7 @@ namespace Infrastructure.Persistence.DbContexts.Identity
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            builder.ApplyAllConfigurationsFromNameSpace("Infrastructure.Persistence.DbContexts.Identity.Config");
+            builder.ApplyAllConfigurationsFromNameSpace("Infrastructure.Persistence.DbContexts.Identity.Configs");
             builder.Entity<IdentityUser>(entity => { entity.ToTable(name: "Users", schema: "Identity"); });
             builder.Entity<IdentityRole>(entity => { entity.ToTable(name: "Roles", schema: "Identity"); });
             builder.Entity<IdentityUserRole<string>>(entity => { entity.ToTable("UserRoles", schema: "Identity"); });

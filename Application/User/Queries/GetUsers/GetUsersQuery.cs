@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.X.Attributes;
 using Application.X.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -13,6 +14,7 @@ using Shared.X.Responses;
 namespace Application.User.Queries.GetUsers
 {
 
+    [Authorize("Todo", "List")]
     public class GetUsersQuery : GetUsersRequest, IRequest<ResponseBuilder<List<GetUsersResponse>>>
     {
 

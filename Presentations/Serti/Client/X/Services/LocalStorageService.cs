@@ -13,9 +13,9 @@ namespace Serti.Client.X.Services
             _localStorageService = localStorageService;
         }
 
-        public async Task Login()
+        public async Task SetJwtToken(string jwtToken)
         {
-            //await _localStorageService.SetItemAsync("user aaaaaaaaaaa", "asdasdasdasd");
+            await _localStorageService.SetItemAsync("JwtToken", jwtToken);
         }
     }
 }

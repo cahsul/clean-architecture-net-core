@@ -13,6 +13,7 @@ namespace Shared.Identity.Resources
             public const string Login = "/" + nameof(Identity) + "/" + nameof(Login);
             public const string RefreshToken = "/" + nameof(Identity) + "/" + nameof(RefreshToken);
             public const string GetToken = "/" + nameof(Identity) + "/" + nameof(GetToken);
+            public const string GetIdentity = "/" + nameof(Identity) + "/" + nameof(GetIdentity);
         }
 
     }

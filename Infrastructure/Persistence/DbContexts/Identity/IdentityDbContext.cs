@@ -26,6 +26,7 @@ namespace Infrastructure.Persistence.DbContexts
         }
 
         public DbSet<RefreshToken> RefreshTokens { get; set; }
+        public DbSet<Menu> Menus { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
         {

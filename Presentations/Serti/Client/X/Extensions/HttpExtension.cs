@@ -82,7 +82,7 @@ namespace Serti.Client.X.Extensions
                 ShowProgressBar = true,
             };
 
-            HttpContent httpContent = dataToSend.JsonSerialize().HttpStringContentJson();
+            HttpContent httpContent = dataToSend.ToJson().HttpStringContentJson();
 
             try
             {
@@ -101,7 +101,7 @@ namespace Serti.Client.X.Extensions
 
                 var response = await _client.SendAsync(request);
                 var content = await response.Content.ReadAsStringAsync();
-                var contentObject = content.JsonDeserialize<ResponseBuilder<T>>();
+                var contentObject = content.ToJsonDeserialize<ResponseBuilder<T>>();
 
                 // Unauthorized
                 if (contentObject?.IsError == true && contentObject?.ErrorType == ErrorType.UnauthorizedAccess.GetDescription() && contentObject?.ErrorsMessage?.Count > 0)
@@ -196,7 +196,7 @@ namespace Serti.Client.X.Extensions
 
                 var response = await _client.SendAsync(request);
                 var content = await response.Content.ReadAsStringAsync();
-                var contentObject = content.JsonDeserialize<ResponseBuilder<T>>();
+                var contentObject = content.ToJsonDeserialize<ResponseBuilder<T>>();
 
 
                 // return error karena validation
@@ -231,18 +231,18 @@ namespace Serti.Client.X.Extensions
 
             try
             {
-                var request = new HttpRequestMessage(HttpMethod.Post, $"{_appsettings.Api_Serti()}{IdentityEndpoint.Identity.RefreshToken}")
+                var request = new HttpRequestMessage(HttpMethod.Post, $"{IdentityEndpoint.Identity.RefreshToken}")
                 {
                     Content = new RefreshTokenRequest
                     {
                         UserId = "180c63e1-67e0-4da5-a3e2-950733fe99eb",
                         JwtToken = token.JwtToken,
                         RefreshToken = token.RefreshToken,
-                    }.JsonSerialize().HttpStringContentJson()
+                    }.ToJson().HttpStringContentJson()
                 };
                 var response = await _client.SendAsync(request);
                 var content = await response.Content.ReadAsStringAsync();
-                var contentObject = content.JsonDeserialize<ResponseBuilder<RefreshTokenResponse>>();
+                var contentObject = content.ToJsonDeserialize<ResponseBuilder<RefreshTokenResponse>>();
 
                 if (contentObject.IsError)
                 {
@@ -261,11 +261,11 @@ namespace Serti.Client.X.Extensions
         private static async Task<GetTokenResponse> GetToken()
         {
 
-            var request = new HttpRequestMessage(HttpMethod.Post, $"{_appsettings.Api_Serti()}{IdentityEndpoint.Identity.GetToken}")
+            var request = new HttpRequestMessage(HttpMethod.Post, $"{IdentityEndpoint.Identity.GetToken}")
             { };
             var response = await _client.SendAsync(request);
             var content = await response.Content.ReadAsStringAsync();
-            var contentObject = content.JsonDeserialize<ResponseBuilder<GetTokenResponse>>();
+            var contentObject = content.ToJsonDeserialize<ResponseBuilder<GetTokenResponse>>();
             return contentObject.Data;
         }
     }

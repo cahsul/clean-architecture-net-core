@@ -78,7 +78,7 @@ namespace Client.X.Extensions
                 ShowProgressBar = true,
             };
 
-            HttpContent httpContent = dataToSend.JsonSerialize().HttpStringContentJson();
+            HttpContent httpContent = dataToSend.ToJson().HttpStringContentJson();
 
             try
             {
@@ -92,7 +92,7 @@ namespace Client.X.Extensions
 
                 var response = await _client.SendAsync(request);
                 var content = await response.Content.ReadAsStringAsync();
-                var contentObject = content.JsonDeserialize<ResponseBuilder<T>>();
+                var contentObject = content.ToJsonDeserialize<ResponseBuilder<T>>();
 
                 // Unauthorized
                 if (contentObject?.IsError == true && contentObject?.ErrorType == ErrorType.UnauthorizedAccess.GetDescription() && contentObject?.ErrorsMessage?.Count > 0)
@@ -187,7 +187,7 @@ namespace Client.X.Extensions
 
                 var response = await _client.SendAsync(request);
                 var content = await response.Content.ReadAsStringAsync();
-                var contentObject = content.JsonDeserialize<ResponseBuilder<T>>();
+                var contentObject = content.ToJsonDeserialize<ResponseBuilder<T>>();
 
 
                 // return error karena validation
@@ -229,11 +229,11 @@ namespace Client.X.Extensions
                         UserId = "180c63e1-67e0-4da5-a3e2-950733fe99eb",
                         JwtToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6InF1ZXJ5LkVtYWlsIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiJ1c2VyLklkIiwiTWVudUFjY2VzcyI6WyJUb2RvLkxpc3QiLCJUb2RvLkNyZWF0ZSIsIlRvZG8uRGVsZXRlIl0sImV4cCI6MTYzNjUwNjA2OSwiaXNzIjoiaXNzdWVyIiwiYXVkIjoiYXVkaWVuY2UifQ.vRIbd8vjhX58gcTTFvOtbsT0pzgYsFE-NfM99kK3s4M",
                         RefreshToken = "LQyt1e6E8PL4U83h37h8AoqIjuWyV/Qc8pjy93PCWAF7FsM1EtXHa0y0npsOhAcsoMb82MVEQEix53R8i3aUxg==",
-                    }.JsonSerialize().HttpStringContentJson()
+                    }.ToJson().HttpStringContentJson()
                 };
                 var response = await _client.SendAsync(request);
                 var content = await response.Content.ReadAsStringAsync();
-                var contentObject = content.JsonDeserialize<ResponseBuilder<RefreshTokenResponse>>();
+                var contentObject = content.ToJsonDeserialize<ResponseBuilder<RefreshTokenResponse>>();
 
                 if (contentObject.IsError)
                 {

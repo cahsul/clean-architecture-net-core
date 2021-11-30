@@ -1,15 +1,12 @@
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.ResponseCompression;
-using Microsoft.EntityFrameworkCore;
-using Serti.Server.Data;
-using Serti.Server.Models;
-using Serti.Server.X.Extensions;
-using Microsoft.AspNetCore.Identity;
+using System.Reflection;
 using Application;
-using Infrastructure;
-using Serti.Server.X.Filters;
 using Application.X.Interfaces;
+using FluentValidation.AspNetCore;
+using Infrastructure;
+using Microsoft.AspNetCore.ResponseCompression;
 using Serti.Server.X;
+using Serti.Server.X.Extensions;
+using Serti.Server.X.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,56 +23,61 @@ builder.Services.AddInfrastructure();
 builder.Services.AddControllers(options =>
 {
     options.Filters.Add<ExceptionFilter>();
-});
+})
+    .AddFluentValidation(fv =>
+    {
+        fv.DisableDataAnnotationsValidation = true;
+        fv.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+    });
 builder.Services.AddScoped<IUser, User>();
+builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+{
+    builder.AllowAnyOrigin()
+           .AllowAnyMethod()
+           .AllowAnyHeader();
+}));
+
+
 
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
-
-builder.Services.AddIdentityServer()
-    .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
-
-builder.Services.AddAuthentication()
-    .AddIdentityServerJwt();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+
+builder.Services.AddLocalization();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseMigrationsEndPoint();
     app.UseWebAssemblyDebugging();
 }
 else
 {
     app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
 }
-
-app.UseHttpsRedirection();
 
 app.UseBlazorFrameworkFiles();
 app.UseStaticFiles();
 
-// csw
 app.UseCors("MyPolicy");
-app.UseSwaggerConfigure();
-
 app.UseRouting();
 
-app.UseIdentityServer();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseSwaggerConfigure();
+
+//var cultures = new List<CultureInfo> {
+//                new CultureInfo("en-US"),
+//                new CultureInfo("id-ID")
+//            };
+//app.UseRequestLocalization(options =>
+//{
+//    options.DefaultRequestCulture = new RequestCulture("en-US");
+//    options.SupportedCultures = cultures;
+//    options.SupportedUICultures = cultures;
+//});
 
 
 app.MapRazorPages();

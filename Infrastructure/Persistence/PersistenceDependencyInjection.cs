@@ -22,9 +22,18 @@ namespace Infrastructure.Persistence
             services.AddScoped<ISertiDbContext>(provider => provider.GetService<SertiPostgreSqlDbContext>());
 
             // IDENTITY //
-            services.AddDbContext<IdentityPostgreSqlDbContext>(options => { options.UseNpgsql(settings.IdentityUser.ConnectionStrings); });
+            services.AddDbContext<IdentityPostgreSqlDbContext>(options =>
+            {
+                options.UseNpgsql(settings.IdentityUser.ConnectionStrings, o =>
+                {
+                    o.MigrationsHistoryTable(settings.IdentityUser.MigrationsHistoryTable.Name, settings.IdentityUser.MigrationsHistoryTable.Schema);
+                });
+            });
+
             services.AddScoped<IIdentityDbContext>(provider => provider.GetService<IdentityPostgreSqlDbContext>());
-            services.AddIdentityCore<Microsoft.AspNetCore.Identity.IdentityUser>(options =>
+            //services.AddScoped<RoleManager<IdentityRole>>();
+
+            services.AddIdentity<Microsoft.AspNetCore.Identity.IdentityUser, IdentityRole>(options =>
             {
                 options.Password.RequireDigit = settings.IdentityUser.Options.Password.RequireDigit;
                 options.Password.RequireLowercase = settings.IdentityUser.Options.Password.RequireLowercase;

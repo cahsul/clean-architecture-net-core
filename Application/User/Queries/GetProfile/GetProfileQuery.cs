@@ -25,12 +25,12 @@ namespace Application.User.Queries.GetProfile
     public class Handler : IRequestHandler<GetProfileQuery, ResponseBuilder<GetProfileResponse>>
     {
 
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly IUser _user;
-        public Handler(UserManager<IdentityUser> userManager, IUser user)
+        //private readonly UserManager<IdentityUser> _userManager;
+        //private readonly IUser _user;
+        public Handler() // UserManager<IdentityUser> userManager, IUser user
         {
-            _userManager = userManager;
-            _user = user;
+            //_userManager = userManager;
+            //_user = user;
         }
 
         public async Task<ResponseBuilder<GetProfileResponse>> Handle(GetProfileQuery request, CancellationToken cancellationToken)
@@ -42,11 +42,11 @@ namespace Application.User.Queries.GetProfile
             //}
 
             // get user profile by user ID
-            var userProfile = await _userManager.FindByIdAsync(_user.UserId);
+            //var userProfile = await _userManager.FindByIdAsync(_user.UserId);
 
             return new GetProfileResponse
             {
-                Email = userProfile.Email
+                //Email = userProfile.Email
             }.Response();
         }
 

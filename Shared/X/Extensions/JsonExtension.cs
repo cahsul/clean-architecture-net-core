@@ -9,7 +9,7 @@ namespace Shared.X.Extensions
 {
     public static class JsonExtension
     {
-        public static T JsonDeserialize<T>(this string result)
+        public static T ToJsonDeserialize<T>(this string result)
         {
 
             var options = new JsonSerializerOptions
@@ -23,7 +23,7 @@ namespace Shared.X.Extensions
             return rtn;
         }
 
-        public static string JsonSerialize(this object result)
+        public static string ToJson(this object result)
         {
             return JsonSerializer.Serialize(result);
         }

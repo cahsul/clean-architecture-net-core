@@ -17,6 +17,7 @@ using Shared.Identity.Resources;
 using Shared.Identity.Queries.LoginByEmail;
 using Serti.Client.X.Extensions;
 using Shared.Identity.Queries.GetToken;
+using Shared.Identity.Queries.GetIdentity;
 
 namespace Serti.Client.Api
 {
@@ -47,13 +48,19 @@ namespace Serti.Client.Api
 
         public async Task<ResponseBuilder<LoginByEmailResponse>> Login(LoginByEmailRequest request)
         {
-            var result = await request.PostAsync<LoginByEmailResponse>($"{_appsettings.Api_Serti()}{IdentityEndpoint.Identity.Login}");
+            var result = await request.PostAsync<LoginByEmailResponse>($"{IdentityEndpoint.Identity.Login}");
             return result;
         }
 
         public async Task<ResponseBuilder<GetTokenResponse>> GetToken(GetTokenRequest request)
         {
             var result = await request.PostAsync<GetTokenResponse>($"{_appsettings.Api_Serti()}{IdentityEndpoint.Identity.GetToken}");
+            return result;
+        }
+
+        public async Task<ResponseBuilder<GetIdentityResponse>> GetIdentity(GetIdentityRequest request)
+        {
+            var result = await request.PostAsync<GetIdentityResponse>($"{IdentityEndpoint.Identity.GetIdentity}");
             return result;
         }
 

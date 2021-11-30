@@ -14,6 +14,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Shared.Identity.Resources;
 using Shared.Identity.Queries.GetToken;
+using Application.X.Interfaces.Identity;
+using Application.Identity.Queries.GetIdentity;
+using Shared.Identity.Queries.GetIdentity;
 
 namespace Serti.Server.Controllers
 {
@@ -24,6 +27,12 @@ namespace Serti.Server.Controllers
     /// 
     public class IdentityController : ApiController
     {
+        private readonly IIdentity _identity;
+
+        public IdentityController(IIdentity identity)
+        {
+            _identity = identity;
+        }
 
         /// <summary>
         /// register by email
@@ -67,20 +76,31 @@ namespace Serti.Server.Controllers
             return rtn;
         }
 
+        [HttpPost(IdentityEndpoint.Identity.GetIdentity)]
+        public async Task<ActionResult<ResponseBuilder<GetIdentityResponse>>> GetIdentity()
+        {
+            var response = await Mediator.Send(new GetIdentityQuery());
+            return response;
+        }
+
         private void SetTokenCookie(string jwtToken, string refreshToken)
         {
-            Response.Cookies.Append("JwtToken", jwtToken, new CookieOptions
-            {
-                HttpOnly = true,
-                Expires = DateTime.UtcNow.AddMinutes(10),
 
-            });
+            _identity.JwtToken = jwtToken;
+            _identity.RefreshToken = refreshToken;
 
-            Response.Cookies.Append("RefreshToken", refreshToken, new CookieOptions
-            {
-                HttpOnly = true,
-                Expires = DateTime.UtcNow.AddDays(7)
-            });
+            //Response.Cookies.Append("JwtToken", jwtToken, new CookieOptions
+            //{
+            //    HttpOnly = true,
+            //    Expires = DateTime.UtcNow.AddDays(7),
+
+            //});
+
+            //Response.Cookies.Append("RefreshToken", refreshToken, new CookieOptions
+            //{
+            //    HttpOnly = true,
+            //    Expires = DateTime.UtcNow.AddDays(7)
+            //});
         }
 
 

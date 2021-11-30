@@ -1,0 +1,49 @@
+﻿@inherits FluxorComponent
+
+@using Serti.Client.Pages.Identity.Store
+@inject IDispatcher Dispatcher
+
+<div class="navbar navbar-expand-lg navbar-dark bg-indigo navbar-static">
+    <div class="d-flex flex-1 d-lg-none">
+        <button type="button" class="navbar-toggler sidebar-mobile-main-toggle">
+            <i class="icon-transmission"></i>
+        </button>
+    </div>
+
+    <div class="navbar-brand text-center text-lg-left">
+        <a href="index.html" class="d-inline-block">
+            @*<img src="assets/images/logo_light.png" class="d-none d-sm-block" alt="Logo">*@
+            @*<img src="assets/images/logo_icon_light.png" class="d-sm-none" alt="Logo">*@
+        </a>
+    </div>
+
+    <div class="navbar-collapse collapse flex-lg-1 mx-lg-3 order-2 order-lg-1" id="navbar-search">
+    </div>
+
+    <div class="d-flex justify-content-end align-items-center flex-1 flex-lg-0 order-1 order-lg-2">
+        <ul class="navbar-nav flex-row">
+            <Culture />
+        </ul>
+    </div>
+</div>
+
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var identity = await IdentityApi.GetIdentity(new Shared.Identity.Queries.GetIdentity.GetIdentityRequest());
+            Dispatcher.Dispatch(new IdentitySetValueAction(identity.Data.Email, "nama_depan", "nama_belakang"));
+            base.OnAfterRender(firstRender);
+        }
+    }
+
+
+}

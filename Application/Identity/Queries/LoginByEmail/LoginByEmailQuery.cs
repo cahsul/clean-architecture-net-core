@@ -17,6 +17,8 @@ using Application.X.Interfaces.Jwt;
 using Application.X.Extensions;
 using Application.X.Interfaces.Persistence;
 using Shared.X.Resources;
+using Application.X.Interfaces.Identity;
+using Shared.X.Classes;
 
 namespace Application.Identity.Queries.LoginByEmail
 {
@@ -31,12 +33,14 @@ namespace Application.Identity.Queries.LoginByEmail
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IJwtGenerator _jwtGenerator;
         private readonly IIdentityDbContext _identityDbContext;
+        private readonly IIdentity _identity;
 
-        public Handler(UserManager<IdentityUser> userManager, IJwtGenerator jwtGenerator, IIdentityDbContext identityDbContext)
+        public Handler(UserManager<IdentityUser> userManager, IJwtGenerator jwtGenerator, IIdentityDbContext identityDbContext, IIdentity identity)
         {
             _userManager = userManager;
             _jwtGenerator = jwtGenerator;
             _identityDbContext = identityDbContext;
+            _identity = identity;
         }
 
         public async Task<ResponseBuilder<LoginByEmailResponse>> Handle(LoginByEmailQuery query, CancellationToken cancellationToken)
@@ -52,23 +56,19 @@ namespace Application.Identity.Queries.LoginByEmail
                 throw new BadRequestException(ResponseLang.Response_LoginFailed);
             }
 
-            // create claim
-            var claims = new[]
-            {
-                new Claim("Email", query.Email),
-                new Claim(ClaimTypes.NameIdentifier, user.Id),
 
-				//  menu akses
-				new Claim("MenuAccess", "Todo.List"),
-                new Claim("MenuAccess", "Todo.Create"),
-                new Claim("MenuAccess", "Todo.Delete"),
-
+            var authorizeMenu = new List<AuthorizeMenu> {
+                new AuthorizeMenu {MenuName = "Todo", ActionName = "List"},
+                new AuthorizeMenu {MenuName = "Todo", ActionName = "Create"},
+                new AuthorizeMenu {MenuName = "Todo", ActionName = "Delete"}
             };
+
+            _identity.MenuAccess = authorizeMenu;
 
             await RevokeRefreshToken(user);
 
             // create JWT
-            var jwtToken = await _jwtGenerator.GetToken(claims, user.Id);
+            var jwtToken = await _jwtGenerator.GetToken(null, user.Id);
 
 
             return new LoginByEmailResponse
@@ -77,6 +77,7 @@ namespace Application.Identity.Queries.LoginByEmail
                 JwtToken = jwtToken.Token,
                 //ValidTo = jwtToken.ValidTo,
                 RefreshToken = jwtToken.RefreshToken,
+                Email = user.Email,
             }.Response("Login Successfully");
         }
 
@@ -106,4 +107,6 @@ namespace Application.Identity.Queries.LoginByEmail
 
         }
     }
+
+
 }

@@ -18,12 +18,12 @@ namespace Application
         {
             services.AddMediatR(Assembly.GetExecutingAssembly());
 
-            // Behaviour : Order is important
+            //// Behaviour : Order is important
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehaviour<,>));
             services.AddTransient(typeof(IRequestExceptionHandler<,>), typeof(UnhandledExceptionBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ResponseBehaviour<,>));
-            //services.AddTransient(typeof(IRequestExceptionHandler<,,>), typeof(UnhandledExceptionBehaviour<,,>));
+            ////services.AddTransient(typeof(IRequestExceptionHandler<,,>), typeof(UnhandledExceptionBehaviour<,,>));
 
 
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());

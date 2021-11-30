@@ -4,6 +4,7 @@ using Shared.Event.Commands.DeleteEvent;
 using Shared.Event.Queries.GetEvents;
 using Toastr;
 
+
 namespace Serti.Client.Pages.Event
 {
     public partial class Index : ComponentBase
@@ -23,6 +24,7 @@ namespace Serti.Client.Pages.Event
 
         private async Task GetEventsAsync()
         {
+            EventApi.SpeakerUpdateAsync(null);
             var getEvents = await EventApi.EventsGetAsync(new GetEventsRequest());
             if (!getEvents.IsError)
             {

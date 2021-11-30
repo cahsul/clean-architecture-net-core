@@ -5,6 +5,10 @@
 
   "identityUser": {
     "connectionStrings": "User ID=postgres;Password=Cay.12123;Host=194.233.70.37;Port=7232;Database=Serti;",
+    "migrationsHistoryTable": {
+      "name": "__EFMigrationsHistory",
+      "schema": "Identity"
+    },
     "options": {
       "password": {
         "requireDigit": false,

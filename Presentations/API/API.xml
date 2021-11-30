@@ -24,30 +24,5 @@
             Login By Email
             </summary>
         </member>
-        <member name="T:API.Controllers.TodoController">
-            <summary>
-            aplikasi todo list
-            </summary>
-        </member>
-        <member name="M:API.Controllers.TodoController.Get(Application.Todos.Queries.GetTodos.GetTodosQuery)">
-            <summary>
-            get todo list
-            </summary>
-        </member>
-        <member name="M:API.Controllers.TodoController.Create(Application.Todos.Commands.CreateTodo.CreateTodoCommand)">
-            <summary>
-            Create
-            </summary>
-        </member>
-        <member name="M:API.Controllers.TodoController.Delete(Application.Todos.Commands.DeleteTodo.DeleteTodoCommand)">
-            <summary>
-            Delete
-            </summary>
-        </member>
-        <member name="M:API.Controllers.TodoController.Update(Application.Todos.Commands.UpdateTodo.UpdateTodoCommand)">
-            <summary>
-            Update
-            </summary>
-        </member>
     </members>
 </doc>

@@ -10,6 +10,7 @@ using Shared.Identity.Commands.RegisterByEmail;
 using Serti.Client.X.Extensions;
 using Shared.User.Resources;
 using Shared.User.Queries.GetProfile;
+using Shared.User.Queries.GetUsers;
 
 namespace Serti.Client.Api
 {
@@ -37,6 +38,12 @@ namespace Serti.Client.Api
             var result = await request.GetAsync<GetProfileResponse>($"{_appsettings.Api_Serti()}{UserEndpoint.User.Profile}");
             return result;
         }
+
+        //public async Task<ResponseBuilder<List<GetUsersResponse>>> GetUsers(GetUsersRequest request)
+        //{
+        //    var result = await request.GetAsync<List<GetUsersResponse>>($"{_appsettings.Api_Serti()}{UserEndpoint.User.GetUsers}");
+        //    return result;
+        //}
 
 
     }

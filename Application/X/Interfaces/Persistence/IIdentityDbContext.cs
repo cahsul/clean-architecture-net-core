@@ -12,6 +12,7 @@ namespace Application.X.Interfaces.Persistence
     public interface IIdentityDbContext
     {
         DbSet<RefreshToken> RefreshTokens { get; set; }
+        public DbSet<Menu> Menus { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }

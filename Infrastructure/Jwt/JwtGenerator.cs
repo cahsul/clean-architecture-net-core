@@ -40,7 +40,7 @@ namespace Infrastructure.Jwt
                 issuer: "issuer",
                 audience: "audience",
                 claims: claims,
-                expires: DateTime.UtcNow.AddMinutes(3),
+                expires: DateTime.UtcNow.AddMinutes(1),
                 signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256));
 
             var tokenAsString = new JwtSecurityTokenHandler().WriteToken(token);

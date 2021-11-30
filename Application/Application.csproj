@@ -8,8 +8,11 @@
 
   <ItemGroup>
     <Compile Remove="Event\Queries\EventList\**" />
+    <Compile Remove="Todos\**" />
     <EmbeddedResource Remove="Event\Queries\EventList\**" />
+    <EmbeddedResource Remove="Todos\**" />
     <None Remove="Event\Queries\EventList\**" />
+    <None Remove="Todos\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,8 +40,6 @@
     <Folder Include="Organizer\Commands\Login\" />
     <Folder Include="Organizer\Commands\Registration\" />
     <Folder Include="Organizer\Queries\" />
-    <Folder Include="Todos\Queries\GetTodo\" />
-    <Folder Include="Todos\Queries\GetTodosList\" />
     <Folder Include="User\Commands\ChangePassword\" />
   </ItemGroup>
 

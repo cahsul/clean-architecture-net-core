@@ -5,7 +5,7 @@ using Application.X.Interfaces.UploadFile;
 using Infrastructure.Jwt;
 using Infrastructure.Persistence;
 using Infrastructure.Persistence.DbContexts;
-using Infrastructure.Persistence.Providers.MsSql;
+//using Infrastructure.Persistence.Providers.MsSql;
 //using Infrastructure.Persistence.Providers.MySql;
 using Infrastructure.X.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -30,7 +30,7 @@ namespace Infrastructure
             var baseDirectory = AppContext.BaseDirectory;
             var r = new StreamReader($"{baseDirectory}/InfrastructureSettings.json");
             var jsonString = r.ReadToEnd();
-            var settings = jsonString.JsonDeserialize<InfrastructureSettings>();
+            var settings = jsonString.ToJsonDeserialize<InfrastructureSettings>();
 
             // add setting to ConfigurationBuilder
             var configuration = new ConfigurationBuilder()
@@ -42,7 +42,7 @@ namespace Infrastructure
             services.Configure<InfrastructureSettings>(configuration);
 
 
-            services.AddMsSqlDatabase();
+            //services.AddMsSqlDatabase();
             services.AddPersistence(settings);
 
             services.AddScoped<IUploadFile, UploadFile.UploadFile>();
@@ -67,16 +67,25 @@ namespace Infrastructure
 
             };
 
-            // services.AddSingleton(tokenValidationParameters);
+            var events = new JwtBearerEvents
+            {
+                OnMessageReceived = context =>
+                {
+                    context.Token = context.Request.Cookies["JwtToken"];
+                    return Task.CompletedTask;
+                }
+            };
+
             services.AddAuthentication(auth =>
-            {
-                auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                auth.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(options =>
-            {
-                options.SaveToken = true;
-                options.TokenValidationParameters = tokenValidationParameters;
-            });
+                {
+                    auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    auth.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                }).AddJwtBearer(options =>
+                {
+                    options.SaveToken = true;
+                    options.TokenValidationParameters = tokenValidationParameters;
+                    options.Events = events;
+                });
 
 
 
