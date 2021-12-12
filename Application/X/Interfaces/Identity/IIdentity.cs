@@ -10,9 +10,11 @@ namespace Application.X.Interfaces.Identity
     public interface IIdentity
     {
         bool IsAuthenticated { get; }
-        string Email { get; }
+        string Email { get; set; }
         IList<AuthorizeMenu> MenuAccess { get; set; }
         string JwtToken { get; set; }
         string RefreshToken { get; set; }
+
+        public void Logout();
     }
 }

@@ -19,6 +19,7 @@ using Application.X.Interfaces.Persistence;
 using Shared.X.Resources;
 using Application.X.Interfaces.Identity;
 using Shared.X.Classes;
+using Domain.Entities.Identity;
 
 namespace Application.Identity.Queries.LoginByEmail
 {
@@ -31,20 +32,26 @@ namespace Application.Identity.Queries.LoginByEmail
     public class Handler : IRequestHandler<LoginByEmailQuery, ResponseBuilder<LoginByEmailResponse>>
     {
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IJwtGenerator _jwtGenerator;
         private readonly IIdentityDbContext _identityDbContext;
         private readonly IIdentity _identity;
 
-        public Handler(UserManager<IdentityUser> userManager, IJwtGenerator jwtGenerator, IIdentityDbContext identityDbContext, IIdentity identity)
+        public Handler(UserManager<IdentityUser> userManager, IJwtGenerator jwtGenerator, IIdentityDbContext identityDbContext
+            , IIdentity identity, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _jwtGenerator = jwtGenerator;
             _identityDbContext = identityDbContext;
             _identity = identity;
+            _roleManager = roleManager;
         }
 
         public async Task<ResponseBuilder<LoginByEmailResponse>> Handle(LoginByEmailQuery query, CancellationToken cancellationToken)
         {
+
+            var authorizeMenu = new List<AuthorizeMenu>();
+
             // get user
             var user = await _userManager.FindByEmailAsync(query.Email);
 
@@ -57,11 +64,27 @@ namespace Application.Identity.Queries.LoginByEmail
             }
 
 
-            var authorizeMenu = new List<AuthorizeMenu> {
-                new AuthorizeMenu {MenuName = "Todo", ActionName = "List"},
-                new AuthorizeMenu {MenuName = "Todo", ActionName = "Create"},
-                new AuthorizeMenu {MenuName = "Todo", ActionName = "Delete"}
-            };
+            // get authorize menus
+            var menus = (
+                 from role in _identityDbContext.Instance.Set<IdentityRole>()
+                 from mr in _identityDbContext.MenuRoles.Where(w => w.RoleId.ToString() == role.Id).DefaultIfEmpty()
+                 from m in _identityDbContext.Menus.Where(w => w.Id == mr.MenuId)
+                 select new
+                 {
+                     MenuKey = m.MenuKey,
+                     Action = mr.Action
+                 }
+                ).ToList();
+
+            // build authorize Menus
+            menus.ForEach(data =>
+            {
+                data.Action.ToJsonDeserialize<List<string>>().ForEach(action =>
+                {
+                    authorizeMenu.Add(new AuthorizeMenu { MenuKey = data.MenuKey, MenuAction = action });
+                });
+            });
+
 
             _identity.MenuAccess = authorizeMenu;
 
@@ -87,7 +110,7 @@ namespace Application.Identity.Queries.LoginByEmail
         private async Task RevokeRefreshToken(IdentityUser user)
         {
             // get refresh token by user id
-            var refreshToken = await _identityDbContext.RefreshTokens.Where(w => w.UserId == user.Id)
+            var refreshToken = await _identityDbContext.RefreshTokens.Where(w => w.UserId == user.Id && w.RevokedDate == null)
                 .ToListAsync();
 
             // revoke semua 

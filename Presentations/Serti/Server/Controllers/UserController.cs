@@ -21,6 +21,8 @@ using Application.User.Queries.GetUser;
 using Shared.User.Queries.GetUser;
 using Application.User.Commands.DeleteUser;
 using Shared.User.Commands.DeleteUser;
+using Application.User.Commands.AddRolesToUser;
+using Shared.User.Commands.AddRolesToUser;
 
 namespace Serti.Server.Controllers
 {
@@ -48,6 +50,12 @@ namespace Serti.Server.Controllers
 
         [HttpDelete(UserEndpoint.User.Delete)]
         public async Task<ActionResult<ResponseBuilder<DeleteUserResponse>>> DeleteUser([FromBody] DeleteUserCommand query)
+        {
+            return await Mediator.Send(query);
+        }
+
+        [HttpPost(UserEndpoint.User.SetRole)]
+        public async Task<ActionResult<ResponseBuilder<AddRolesToUserResponse>>> AddRolesToUser([FromBody] AddRolesToUserCommand query)
         {
             return await Mediator.Send(query);
         }

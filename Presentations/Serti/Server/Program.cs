@@ -1,8 +1,10 @@
+using System.Globalization;
 using System.Reflection;
 using Application;
 using Application.X.Interfaces;
 using FluentValidation.AspNetCore;
 using Infrastructure;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.ResponseCompression;
 using Serti.Server.X;
 using Serti.Server.X.Extensions;
@@ -68,16 +70,17 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.UseSwaggerConfigure();
 
-//var cultures = new List<CultureInfo> {
-//                new CultureInfo("en-US"),
-//                new CultureInfo("id-ID")
-//            };
-//app.UseRequestLocalization(options =>
-//{
-//    options.DefaultRequestCulture = new RequestCulture("en-US");
-//    options.SupportedCultures = cultures;
-//    options.SupportedUICultures = cultures;
-//});
+var cultures = new List<CultureInfo> {
+        new CultureInfo("en-US"),
+        new CultureInfo("es-ES"),
+        new CultureInfo("id-ID"),
+            };
+app.UseRequestLocalization(options =>
+{
+    options.DefaultRequestCulture = new RequestCulture("en-US");
+    options.SupportedCultures = cultures;
+    options.SupportedUICultures = cultures;
+});
 
 
 app.MapRazorPages();

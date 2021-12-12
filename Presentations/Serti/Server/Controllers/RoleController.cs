@@ -1,8 +1,10 @@
 ﻿
 
 using Application.Role.Commands.CreateRole;
+using Application.Role.Queries.GetRoles;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Role.Commands.CreateRole;
+using Shared.Role.Queries.GetRoles;
 using Shared.Role.Resources;
 using Shared.X.Responses;
 
@@ -12,23 +14,16 @@ namespace Serti.Server.Controllers
     public class RoleController : ApiController
     {
         [HttpPost(RoleEndpoint.Role.Create)]
-        public async Task<ActionResult<ResponseBuilder<CreateRoleResponse>>> DeleteUser([FromBody] CreateRoleCommand query)
+        public async Task<ActionResult<ResponseBuilder<CreateRoleResponse>>> DeleteUser([FromForm] CreateRoleCommand query)
         {
             return await Mediator.Send(query);
         }
 
-
-        //[HttpGet(UserEndpoint.User.Profile)]
-        //public async Task<ActionResult<ResponseBuilder<GetProfileResponse>>> GetProfile(GetProfileQuery query)
-        //{
-        //    return await Mediator.Send(query);
-        //}
-
-        //[HttpGet(UserEndpoint.User.GetUsers)]
-        //public async Task<ActionResult<ResponseBuilder<List<GetUsersResponse>>>> GetUsers(GetUsersQuery query)
-        //{
-        //    return await Mediator.Send(query);
-        //}
+        [HttpGet(RoleEndpoint.Role.GetRoles)]
+        public async Task<ActionResult<ResponseBuilder<List<GetRolesResponse>>>> GetRoles(GetRolesQuery query)
+        {
+            return await Mediator.Send(query);
+        }
 
         //[HttpGet(UserEndpoint.User.GetUser)]
         //public async Task<ActionResult<ResponseBuilder<GetUserResponse>>> GetUser(GetUserQuery query)

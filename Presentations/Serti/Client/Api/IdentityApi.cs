@@ -18,6 +18,7 @@ using Shared.Identity.Queries.LoginByEmail;
 using Serti.Client.X.Extensions;
 using Shared.Identity.Queries.GetToken;
 using Shared.Identity.Queries.GetIdentity;
+using Shared.Identity.Queries.Logout;
 
 namespace Serti.Client.Api
 {
@@ -49,6 +50,12 @@ namespace Serti.Client.Api
         public async Task<ResponseBuilder<LoginByEmailResponse>> Login(LoginByEmailRequest request)
         {
             var result = await request.PostAsync<LoginByEmailResponse>($"{IdentityEndpoint.Identity.Login}");
+            return result;
+        }
+
+        public async Task<ResponseBuilder<LogoutResponse>> Logout(LogoutRequest request)
+        {
+            var result = await request.PostAsync<LogoutResponse>($"{IdentityEndpoint.Identity.Logout}");
             return result;
         }
 

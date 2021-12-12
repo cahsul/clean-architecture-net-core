@@ -12,6 +12,8 @@ namespace Infrastructure.Persistence.DbContexts.Identity
 {
     public class IdentityPostgreSqlDbContext : IdentityDbContext, IIdentityDbContext
     {
+        public DbContext Instance => this;
+
         public IdentityPostgreSqlDbContext(
            DbContextOptions<IdentityPostgreSqlDbContext> options,
            Application.X.Interfaces.Identity.IIdentity identity) : base(options)

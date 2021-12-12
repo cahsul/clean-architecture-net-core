@@ -6,12 +6,18 @@
 @code {
     protected async override Task OnAfterRenderAsync(bool firstRender)
     {
+        Console.WriteLine( "main layout => " + firstRender);
         if (firstRender)
         {
+          
             await js.InvokeVoidAsync("onBlazorReady");
-
         }
     }
+
+    //protected override void OnAfterRender(bool firstRender)
+    //{  Console.WriteLine( "main layout => firstRender " + firstRender);
+    //    base.OnAfterRender(firstRender);
+    //}
 }
 
 
@@ -43,7 +49,7 @@
     <div class="content-wrapper">
 
         <!-- Page header -->
-        <div class="page-header page-header-light">
+        @*<div class="page-header page-header-light">
             <div class="page-header-content d-sm-flex">
                 <div class="page-title">
                     <h4><span class="font-weight-semibold">Seed</span> - Static layout</h4>
@@ -87,7 +93,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>*@
         <!-- /page header -->
         <!-- Content area -->
         <div class="content">

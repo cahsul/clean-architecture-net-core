@@ -28,7 +28,7 @@ namespace Application.Role.Commands.CreateRole
 
         public async Task<ResponseBuilder<CreateRoleResponse>> Handle(CreateRoleCommand request, CancellationToken cancellationToken)
         {
-            var newRole = new IdentityRole { Name = "role pertama" };
+            var newRole = new IdentityRole { Name = request.RoleName };
 
             // creaate role
             var role = await _roleManager.CreateAsync(newRole);

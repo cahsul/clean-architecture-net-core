@@ -23,6 +23,11 @@
     <div class="d-flex justify-content-end align-items-center flex-1 flex-lg-0 order-1 order-lg-2">
         <ul class="navbar-nav flex-row">
             <Culture />
+            <li class="nav-item">
+                <a href="/logout" class="navbar-nav-link navbar-nav-link-toggler">
+                    <i class="icon-switch2"></i>
+                </a>
+            </li>
         </ul>
     </div>
 </div>
@@ -40,7 +45,10 @@
         if (firstRender)
         {
             var identity = await IdentityApi.GetIdentity(new Shared.Identity.Queries.GetIdentity.GetIdentityRequest());
-            Dispatcher.Dispatch(new IdentitySetValueAction(identity.Data.Email, "nama_depan", "nama_belakang"));
+            if (identity.IsError == false)
+            {
+                Dispatcher.Dispatch(new IdentitySetValueAction(identity.Data.Email, "nama_depan", "nama_belakang"));
+            }
             base.OnAfterRender(firstRender);
         }
     }

@@ -14,6 +14,7 @@ using Application.X.Interfaces.Persistence;
 using Shared.X.Classes;
 using Infrastructure.X.Settings;
 using Microsoft.Extensions.Options;
+using Application.X.Interfaces.Library;
 
 namespace Infrastructure.Jwt
 {
@@ -23,11 +24,14 @@ namespace Infrastructure.Jwt
     public class JwtGenerator : IJwtGenerator
     {
         private readonly IIdentityDbContext _identityDbContext;
+        private readonly ICryptography _cryptography;
         private readonly InfrastructureSettings _infrastructureSettings;
 
-        public JwtGenerator(IIdentityDbContext identityDbContext, IOptions<InfrastructureSettings> infrastructureSettings)
+        public JwtGenerator(IIdentityDbContext identityDbContext, IOptions<InfrastructureSettings> infrastructureSettings
+            , ICryptography cryptography)
         {
             _identityDbContext = identityDbContext;
+            _cryptography = cryptography;
             _infrastructureSettings = infrastructureSettings.Value;
         }
 
@@ -40,7 +44,7 @@ namespace Infrastructure.Jwt
                 issuer: "issuer",
                 audience: "audience",
                 claims: claims,
-                expires: DateTime.UtcNow.AddMinutes(1),
+                expires: DateTime.UtcNow.AddSeconds(1),
                 signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256));
 
             var tokenAsString = new JwtSecurityTokenHandler().WriteToken(token);

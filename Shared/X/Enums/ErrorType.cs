@@ -13,5 +13,6 @@ namespace Shared.X.Enums
         [Description("Unknown")] Unknown,
         [Description("Bad Request")] BadRequest,
         [Description("Unauthorized Access")] UnauthorizedAccess,
+        [Description("Unauthenticated")] Unauthenticated,
     }
 }

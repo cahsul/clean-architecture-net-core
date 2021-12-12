@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Shared.X.Extensions;
 using Shared.X.Classes;
+using Application.X.Interfaces.Library;
 
 namespace Infrastructure
 {
@@ -17,10 +18,12 @@ namespace Infrastructure
     public class Identity : IIdentity
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly ICryptography _cryptography;
 
-        public Identity(IHttpContextAccessor httpContextAccessor)
+        public Identity(IHttpContextAccessor httpContextAccessor, ICryptography cryptography)
         {
             _httpContextAccessor = httpContextAccessor;
+            _cryptography = cryptography;
         }
         public bool IsAuthenticated => _httpContextAccessor.HttpContext is not null && _httpContextAccessor.HttpContext.User.Identity.IsAuthenticated;
         public string Email
@@ -28,11 +31,28 @@ namespace Infrastructure
             get
             {
                 if (_httpContextAccessor.HttpContext is null)
-                {
-                    return "SystemBackgroundJob";
-                }
+                { return "SystemBackgroundJob"; }
+                if (_httpContextAccessor.HttpContext.Request.Cookies["E"] is null)
+                { return "[Unknown_User]"; }
+                var raw = _cryptography.AES_Decrypt(_httpContextAccessor.HttpContext.Request.Cookies["E"]);
+                return raw ?? "[Unknown_User]";
+            }
 
-                return _httpContextAccessor?.HttpContext?.User?.FindFirstValue("Email") ?? "Unknown";
+            set
+            {
+
+                if (value != null)
+                {
+                    _httpContextAccessor.HttpContext.Response.Cookies.Append(
+                        "E"
+                        , _cryptography.AES_Encrypt(value)
+                        , new CookieOptions
+                        {
+                            HttpOnly = true,
+                            Expires = DateTime.UtcNow.AddDays(7),
+
+                        });
+                }
             }
         }
 
@@ -44,14 +64,10 @@ namespace Infrastructure
                 { return null; }
                 if (_httpContextAccessor.HttpContext.Request.Cookies["MenuAccess"] is null)
                 { return null; }
-                return _httpContextAccessor.HttpContext.Request.Cookies["MenuAccess"].ToJsonDeserialize<IList<AuthorizeMenu>>();
 
-                //if (_httpContextAccessor.HttpContext is null)
-                //{
-                //    return new List<string>();
-                //}
+                var raw = _cryptography.AES_Decrypt(_httpContextAccessor.HttpContext.Request.Cookies["MenuAccess"]);
+                return raw.ToJsonDeserialize<IList<AuthorizeMenu>>();
 
-                // return _httpContextAccessor.HttpContext.User.FindAll("MenuAccess").Select(x => x.Value).ToList();
             }
 
             set
@@ -59,12 +75,15 @@ namespace Infrastructure
 
                 if (value != null)
                 {
-                    _httpContextAccessor.HttpContext.Response.Cookies.Append("MenuAccess", value.ToJson(), new CookieOptions
-                    {
-                        HttpOnly = true,
-                        Expires = DateTime.UtcNow.AddDays(7),
+                    _httpContextAccessor.HttpContext.Response.Cookies.Append(
+                        "MenuAccess"
+                        , _cryptography.AES_Encrypt(value.ToJson())
+                        , new CookieOptions
+                        {
+                            HttpOnly = true,
+                            Expires = DateTime.UtcNow.AddDays(7),
 
-                    });
+                        });
                 }
             }
         }
@@ -103,7 +122,8 @@ namespace Infrastructure
                 { return null; }
                 if (_httpContextAccessor.HttpContext.Request.Cookies["RefreshToken"] is null)
                 { return null; }
-                return _httpContextAccessor.HttpContext.Request.Cookies["RefreshToken"].ToString();
+                var raw = _cryptography.AES_Decrypt(_httpContextAccessor.HttpContext.Request.Cookies["RefreshToken"]);
+                return raw.ToString();
             }
 
             set
@@ -111,22 +131,25 @@ namespace Infrastructure
 
                 if (value != null)
                 {
-                    _httpContextAccessor.HttpContext.Response.Cookies.Append("RefreshToken", value, new CookieOptions
-                    {
-                        HttpOnly = true,
-                        Expires = DateTime.UtcNow.AddDays(7),
-                    });
+                    _httpContextAccessor.HttpContext.Response.Cookies.Append(
+                        "RefreshToken"
+                        , _cryptography.AES_Encrypt(value)
+                        , new CookieOptions
+                        {
+                            HttpOnly = true,
+                            Expires = DateTime.UtcNow.AddDays(7),
+                        });
                 }
             }
         }
 
         public void Logout()
         {
-
+            foreach (var cookie in _httpContextAccessor.HttpContext.Request.Cookies.Keys)
+            {
+                _httpContextAccessor.HttpContext.Response.Cookies.Delete(cookie);
+            }
         }
-
-
-
 
     }
 }

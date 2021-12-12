@@ -17,6 +17,8 @@ using Shared.Identity.Queries.GetToken;
 using Application.X.Interfaces.Identity;
 using Application.Identity.Queries.GetIdentity;
 using Shared.Identity.Queries.GetIdentity;
+using Application.Identity.Queries.Logout;
+using Shared.Identity.Queries.Logout;
 
 namespace Serti.Server.Controllers
 {
@@ -50,17 +52,17 @@ namespace Serti.Server.Controllers
         public async Task<ActionResult<ResponseBuilder<LoginByEmailResponse>>> LoginByEmail([FromBody] LoginByEmailQuery query)
         {
             var response = await Mediator.Send(query);
-            SetTokenCookie(response.Data.JwtToken, response.Data.RefreshToken);
+            SetTokenCookie(response.Data.JwtToken, response.Data.RefreshToken, response.Data.Email);
             return response;
         }
 
-        [HttpPost(IdentityEndpoint.Identity.RefreshToken)]
-        public async Task<ActionResult<ResponseBuilder<RefreshTokenResponse>>> RefreshToken([FromBody] RefreshTokenCommand q)
-        {
-            var response = await Mediator.Send(q);
-            SetTokenCookie(response.Data.Token, response.Data.RefreshToken);
-            return response;
-        }
+        //[HttpPost(IdentityEndpoint.Identity.RefreshToken)]
+        //public async Task<ActionResult<ResponseBuilder<RefreshTokenResponse>>> RefreshToken([FromBody] RefreshTokenCommand q)
+        //{
+        //    var response = await Mediator.Send(q);
+        //    SetTokenCookie(response.Data.Token, response.Data.RefreshToken);
+        //    return response;
+        //}
 
         [HttpPost(IdentityEndpoint.Identity.GetToken)]
         public async Task<ActionResult<ResponseBuilder<GetTokenResponse>>> GetToken()
@@ -83,24 +85,18 @@ namespace Serti.Server.Controllers
             return response;
         }
 
-        private void SetTokenCookie(string jwtToken, string refreshToken)
+        [HttpPost(IdentityEndpoint.Identity.Logout)]
+        public async Task<ActionResult<ResponseBuilder<LogoutResponse>>> Logout(LogoutQuery query)
         {
+            var response = await Mediator.Send(query);
+            return response;
+        }
 
+        private void SetTokenCookie(string jwtToken, string refreshToken, string email = "")
+        {
             _identity.JwtToken = jwtToken;
             _identity.RefreshToken = refreshToken;
-
-            //Response.Cookies.Append("JwtToken", jwtToken, new CookieOptions
-            //{
-            //    HttpOnly = true,
-            //    Expires = DateTime.UtcNow.AddDays(7),
-
-            //});
-
-            //Response.Cookies.Append("RefreshToken", refreshToken, new CookieOptions
-            //{
-            //    HttpOnly = true,
-            //    Expires = DateTime.UtcNow.AddDays(7)
-            //});
+            _identity.Email = email;
         }
 
 

@@ -40,7 +40,7 @@ Add-Migration TODO -Context MsSqlTodoDbContext -Project Infrastructure -OutputDi
 
 
 # IDENTITY #
-Remove-Migration -Context MsSqlIdentityDbContext -Project Infrastructure
+Remove-Migration -Context IdentityPostgreSqlDbContext -StartupProject Serti.Server -Project Infrastructure
 Update-Database -Context IdentityPostgreSqlDbContext -Project Infrastructure
 
 Add-Migration IDENTITY -Context IdentityPostgreSqlDbContext -StartupProject Serti.Server -Project Infrastructure  -OutputDir Persistence/DbContexts/Identity/Migrations

@@ -7,21 +7,35 @@ import path from 'path';
 
 export default {
 
-    input: globby.sync(['../Shared/**/*.js', '../Pages/**/*.js']),
+    input: globby.sync(['../SharedPage/**/*.js', '../Pages/**/*.js']),
     output: {
 
         //The root folder for all bundled .js files
-        dir: 'js/',
+        dir: 'js-page/', 
 
         // bundle the files as ES modules
         format: 'es',
 
         entryFileNames: ({ facadeModuleId }) => {
 
+
             let root = path.resolve('.');
-            let filePath = path.parse(facadeModuleId.substr(-(facadeModuleId.length - root.length) + -1));
+            //let filePath = path.parse(facadeModuleId.substr(-(facadeModuleId.length - root.length) + -1));
+            let filePath = path.parse(facadeModuleId.substr(root.replace("\wwwroot", "").length));
 
             let fileName = `${filePath.dir}/[name].js`;
+
+            //console.log(fileName);
+            //console.log(filePath.dir);
+            //console.log(path.resolve('.'));
+            //console.log(facadeModuleId);
+            //console.log(facadeModuleId.substr(root.replace("\wwwroot","").length) );
+            //console.log(path.parse(facadeModuleId.substr(root.replace("\wwwroot","").length)).dir );
+            //return;
+            //console.log(facadeModuleId.replace("\Client", "\Client\\wwwroot") ); return;
+            //return facadeModuleId.replace("\Client", "\Client\\wwwroot\\js");
+
+            console.log(fileName);
             return fileName;
         }
     },

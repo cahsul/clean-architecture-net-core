@@ -1,5 +1,6 @@
 ﻿using Application.X.Interfaces.Identity;
 using Application.X.Interfaces.Jwt;
+using Application.X.Interfaces.Library;
 using Application.X.Interfaces.Persistence;
 using Application.X.Interfaces.UploadFile;
 using Infrastructure.Jwt;
@@ -45,9 +46,11 @@ namespace Infrastructure
             //services.AddMsSqlDatabase();
             services.AddPersistence(settings);
 
+            // Libs
             services.AddScoped<IUploadFile, UploadFile.UploadFile>();
             services.AddScoped<IJwtGenerator, JwtGenerator>();
-            services.AddSingleton<IIdentity, Identity>();
+            services.AddScoped<ICryptography, Cryptography.Cryptography>();
+            services.AddScoped<IIdentity, Identity>();
 
             services.AddSingleton<ITodoDbContextDapper, TodoDbContextDapper>();
             services.AddSingleton<InfrastructureSettings>();

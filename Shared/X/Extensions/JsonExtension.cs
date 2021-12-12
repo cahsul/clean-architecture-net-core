@@ -17,8 +17,9 @@ namespace Shared.X.Extensions
                 PropertyNameCaseInsensitive = true,
             };
 
-            if (result == null)
-            { result = ""; }
+            if (result == null || result == "")
+            { return default; }
+
             var rtn = JsonSerializer.Deserialize<T>(result, options);
             return rtn;
         }

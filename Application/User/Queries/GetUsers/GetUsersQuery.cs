@@ -9,12 +9,13 @@ using Application.X.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Shared.User.Queries.GetUsers;
+using Shared.X.Enums;
 using Shared.X.Responses;
 
 namespace Application.User.Queries.GetUsers
 {
 
-    [Authorize("Todo", "List")]
+    [Authorize(MenuKey.User, MenuAction.List)]
     public class GetUsersQuery : GetUsersRequest, IRequest<ResponseBuilder<List<GetUsersResponse>>>
     {
 

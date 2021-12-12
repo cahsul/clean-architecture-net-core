@@ -1,0 +1,26 @@
+﻿@page "/role/create"
+
+@using Serti.Client.X.Extensions;
+@inject IJSRuntime JSRuntime
+
+<div class="card">
+    <div class="card-body">
+        <form action="your-action" id="form-container">
+            <div id="form"></div>
+        </form>
+    </div>
+</div>
+
+@code {
+    IJSObjectReference _jsModule;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _jsModule = await JSRuntime.ReadJsFile<CreateRole>();
+            await _jsModule.InvokeVoidAsync("OnLoad");
+        }
+
+    }
+}

@@ -40,20 +40,19 @@ namespace Application.X.Behaviours
                     var result = await RefreshToken();
                     if (result == false)
                     {
-                        throw new UnauthorizedAccessException("Current User is not authenticated."); // TODO : hardcode
+                        throw new UnauthenticatedException("Current User is not authenticated."); // TODO : hardcode
                     }
-
                 }
 
-                var authorizeAttributesWithPolicies = authorizeAttributes.Where(a => a.MenuName != null).ToList();
+                var authorizeAttributesWithPolicies = authorizeAttributes.Where(a => a.MenuKey != null).ToList();
 
-                foreach (var menuName in authorizeAttributesWithPolicies.Select(a => a.MenuName))
+                foreach (var menuName in authorizeAttributesWithPolicies.Select(a => a.MenuKey))
                 {
                     // action
-                    foreach (var actionName in authorizeAttributesWithPolicies.Select(a => a.ActionName))
+                    foreach (var actionName in authorizeAttributesWithPolicies.Select(a => a.MenuAction))
                     {
                         var menuWithAction = $"{menuName}.{actionName}";
-                        var haveMenuAccess = _identity.MenuAccess.Any(x => x.MenuName.ToLower() == menuName.ToLower() && x.ActionName.ToLower() == actionName.ToLower());
+                        var haveMenuAccess = _identity.MenuAccess.Any(x => x.MenuKey.ToLower() == menuName.ToLower() && x.MenuAction.ToLower() == actionName.ToLower());
 
                         if (!haveMenuAccess)
                         {
@@ -91,21 +90,9 @@ namespace Application.X.Behaviours
             _identityDbContext.RefreshTokens.UpdateRange(refreshToken);
             await _identityDbContext.SaveChangesAsync();
 
-            // create claim
-            var claims = new[]
-            {
-                new Claim("Email", "query.Email"),
-                new Claim(ClaimTypes.NameIdentifier, refreshToken[0].UserId),
-
-				//  menu akses
-				new Claim("MenuAccess", "Todo.List"),
-                new Claim("MenuAccess", "Todo.Create"),
-                new Claim("MenuAccess", "Todo.Delete"),
-
-            };
 
             // create JWT
-            var jwtToken = await _jwtGenerator.GetToken(claims, refreshToken[0].UserId);
+            var jwtToken = await _jwtGenerator.GetToken(null, refreshToken[0].UserId);
 
             _identity.JwtToken = jwtToken.Token;
             _identity.RefreshToken = jwtToken.RefreshToken;

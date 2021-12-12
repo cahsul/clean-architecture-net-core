@@ -1,7 +1,6 @@
 ﻿
 export function OnAfterRender(url) {
 
-
     //DotNet.invokeMethodAsync('Serti.Client', 'JStoCSCall');
     LoadData(url);
 
@@ -11,16 +10,17 @@ export function OnAfterRender(url) {
 
 function LoadData(url) {
     $('#userTable').dxDataGrid({
-        dataSource: DevExpress.data.AspNet.createStore({
-            key: 'id',
-            loadUrl: url,
-            insertUrl: `${url}/InsertOrder`,
-            updateUrl: `${url}/UpdateOrder`,
-            deleteUrl: `${url}/DeleteOrder`,
-            onBeforeSend(method, ajaxOptions) {
-                ajaxOptions.xhrFields = { withCredentials: true };
-            },
-        }),
+        //dataSource: DevExpress.data.AspNet.createStore({
+        //    key: 'id',
+        //    loadUrl: url,
+        //    insertUrl: `${url}/InsertOrder`,
+        //    updateUrl: `${url}/UpdateOrder`,
+        //    deleteUrl: `${url}/DeleteOrder`,
+        //    onBeforeSend(method, ajaxOptions) {
+        //        ajaxOptions.xhrFields = { withCredentials: true };
+        //    },
+        //}),
+        dataSource: DX_CustomStore(url, 'id'),
         editing: {
             refreshMode: 'reshape',
             mode: 'cell',

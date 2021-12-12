@@ -4,21 +4,25 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-
 	  <!--<RunAOTCompilation>true</RunAOTCompilation>-->
-	  <BlazorEnableTimeZoneSupport>false</BlazorEnableTimeZoneSupport>
+	  <BlazorEnableTimeZoneSupport>true</BlazorEnableTimeZoneSupport>
 	  <BlazorWebAssemblyPreserveCollationData>false</BlazorWebAssemblyPreserveCollationData>
+	  <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="Pages\Event\EventUpdate\**" />
     <Compile Remove="Pages\TEST\**" />
+    <Compile Remove="wwwroot\js-page\**" />
     <Content Remove="Pages\Event\EventUpdate\**" />
     <Content Remove="Pages\TEST\**" />
+    <Content Remove="wwwroot\js-page\**" />
     <EmbeddedResource Remove="Pages\Event\EventUpdate\**" />
     <EmbeddedResource Remove="Pages\TEST\**" />
+    <EmbeddedResource Remove="wwwroot\js-page\**" />
     <None Remove="Pages\Event\EventUpdate\**" />
     <None Remove="Pages\TEST\**" />
+    <None Remove="wwwroot\js-page\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,6 +44,7 @@
     <PackageReference Include="Fluxor.Blazor.Web" Version="4.2.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.Extensions.Localization" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -50,6 +55,8 @@
 
   <ItemGroup>
     <Folder Include="Pages\Event\ListEvents\" />
+    <Folder Include="Pages\Menu\CreateMenu\" />
+    <Folder Include="Pages\Menu\UpdateMenu\" />
   </ItemGroup>
 
 </Project>

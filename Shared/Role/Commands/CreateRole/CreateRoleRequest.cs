@@ -6,5 +6,6 @@ namespace Shared.Role.Commands.CreateRole
 {
     public class CreateRoleRequest
     {
+        public string RoleName { get; set; }
     }
 }

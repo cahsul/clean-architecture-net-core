@@ -14,6 +14,8 @@ namespace Shared.User.Resources
             public const string Delete = "/" + nameof(User) + "/" + nameof(Delete);
             public const string GetUsers = "/" + nameof(User) + "/" + nameof(GetUsers);
             public const string GetUser = "/" + nameof(User) + "/" + nameof(GetUser);
+
+            public const string SetRole = "/" + nameof(User) + "/" + nameof(SetRole);
         }
 
     }

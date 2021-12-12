@@ -584,7 +584,7 @@ const App = function () {
         initCore: function() {
             App.initBeforeLoad();
             App.initSidebars();
-            App.initNavigations();
+            //App.initNavigations();
             App.initComponents();
             App.initCardActions();
             App.initDropdowns();

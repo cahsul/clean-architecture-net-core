@@ -4,17 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.X.Attributes;
 using Application.X.Extensions;
 using Application.X.Interfaces.Identity;
 using Application.X.Interfaces.Persistence;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Shared.Identity.Queries.GetIdentity;
+using Shared.X.Exceptions;
 using Shared.X.Responses;
 
 namespace Application.Identity.Queries.GetIdentity
 {
-
+    //[Authorize("Todo", "List")]
     public class GetIdentityQuery : GetIdentityRequest, IRequest<ResponseBuilder<GetIdentityResponse>>
     {
 
@@ -38,7 +40,17 @@ namespace Application.Identity.Queries.GetIdentity
             // get user by refresh token
             var refreshToken = _identityDbContext.RefreshTokens.FirstOrDefault(w => w.Token == _identity.RefreshToken);
 
+            if (refreshToken == null)
+            {
+                throw new UnauthenticatedException();
+            }
+
             var user = await _userManager.FindByIdAsync(refreshToken.UserId.ToString());
+
+            if (user == null)
+            {
+                throw new UnauthenticatedException();
+            }
 
             return new GetIdentityResponse
             {

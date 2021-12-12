@@ -89,10 +89,10 @@ namespace Serti.Client.X.Extensions
                 var request = new HttpRequestMessage(httpMethod, url);
                 //request.Headers.Add("Accept-Language", "id-ID");
                 //request.Headers.Add("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6ImFAYS5jb20iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjE4MGM2M2UxLTY3ZTAtNGRhNS1hM2UyLTk1MDczM2ZlOTllYiIsIk1lbnVBY2Nlc3MiOlsiVG9kby5MaXN0IiwiVG9kby5DcmVhdGUiLCJUb2RvLkRlbGV0ZSJdLCJleHAiOjE2MzYyOTgzMzYsImlzcyI6Imlzc3VlciIsImF1ZCI6ImF1ZGllbmNlIn0.e9H_6WzjS9wpI8fLiq7sgf2LlMqll8JfWtU2AZiqXik");
-                if (token != null)
-                {
-                    request.Headers.Add("Authorization", @$"Bearer {token.JwtToken}");
-                }
+                //if (token != null)
+                //{
+                //    request.Headers.Add("Authorization", @$"Bearer {token.JwtToken}");
+                //}
 
                 if (httpMethod != HttpMethod.Get)
                 {
@@ -102,6 +102,12 @@ namespace Serti.Client.X.Extensions
                 var response = await _client.SendAsync(request);
                 var content = await response.Content.ReadAsStringAsync();
                 var contentObject = content.ToJsonDeserialize<ResponseBuilder<T>>();
+
+                // belum login
+                if (contentObject?.IsError == true && contentObject?.ErrorType == ErrorType.Unauthenticated.GetDescription())
+                {
+                    _navigationManager.NavigateTo("/login");
+                }
 
                 // Unauthorized
                 if (contentObject?.IsError == true && contentObject?.ErrorType == ErrorType.UnauthorizedAccess.GetDescription() && contentObject?.ErrorsMessage?.Count > 0)

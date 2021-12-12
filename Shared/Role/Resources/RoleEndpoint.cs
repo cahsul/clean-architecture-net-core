@@ -9,11 +9,11 @@ namespace Shared.Role.Resources
     {
         public static class Role
         {
-            public const string Create = "/" + nameof(Role) + "/" + nameof(Create);
-            public const string Update = "/" + nameof(Role) + "/" + nameof(Update);
-            public const string Delete = "/" + nameof(Role) + "/" + nameof(Delete);
-            public const string GetRoles = "/" + nameof(Role) + "/" + nameof(GetRoles);
-            public const string GetRole = "/" + nameof(Role) + "/" + nameof(GetRole);
+            public const string Create = "/api/" + nameof(Role);
+            public const string Update = "/api/" + nameof(Role);
+            public const string Delete = "/api/" + nameof(Role) + "/" + nameof(Delete);
+            public const string GetRoles = "/api/" + nameof(Role);
+            public const string GetRole = "/api/" + nameof(Role);
         }
 
     }

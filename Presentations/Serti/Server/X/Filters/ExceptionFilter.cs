@@ -88,6 +88,30 @@ namespace Serti.Server.X.Filters
                 return;
             }
 
+            // UnauthenticatedException
+            if (type == typeof(UnauthenticatedException))
+            {
+                var exception = context.Exception as UnauthenticatedException;
+
+                var unauthorizedAccessException = new ResponseBuilder<List<string>>
+                {
+                    IsError = true,
+                    ErrorType = ErrorType.Unauthenticated.GetDescription(),
+                    ErrorsMessage = new List<string> { exception.Message }
+                };
+
+                if (_env.EnvironmentName.ToLower().Contains("dev"))
+                {
+                    unauthorizedAccessException.ErrorsMessage.Add(context.Exception.StackTrace);
+                }
+
+
+                context.Result = new UnauthorizedObjectResult(unauthorizedAccessException);
+
+                context.ExceptionHandled = true;
+                return;
+            }
+
 
             // untuk error yang belum di handle
             var unknownError = new ResponseBuilder<List<string>>

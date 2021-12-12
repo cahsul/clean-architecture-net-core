@@ -6,7 +6,7 @@ namespace Shared.X.Classes
 {
     public class AuthorizeMenu
     {
-        public string MenuName { get; set; }
-        public string ActionName { get; set; }
+        public string MenuKey { get; set; }
+        public string MenuAction { get; set; }
     }
 }
