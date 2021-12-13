@@ -16,36 +16,34 @@ function LoadForm() {
             editorOptions: {
                 disabled: true,
             },
-        }, {
-            dataField: 'HireDate',
-            editorType: 'dxDateBox',
+        }
+
+
+            , {
+            dataField: 'HireDate', editorType: 'dxDateBox',
             editorOptions: {
-                value: null,
-                width: '100%',
+                value: null, width: '100%',
             },
             validationRules: [{
-                type: 'required',
-                message: 'Hire date is required',
+                type: 'required', message: 'Hire date is required',
             }],
-        }, {
-            dataField: 'BirthDate',
-            editorType: 'dxDateBox',
+        }
+            , {
+            dataField: 'BirthDate', editorType: 'dxDateBox',
             editorOptions: {
-                disabled: true,
-                width: '100%',
+                disabled: true, width: '100%',
             },
-        }, 'Address', {
-            colSpan: 2,
-            dataField: 'Notes',
-            editorType: 'dxTextArea',
+        }
+            , 'Address', {
+            colSpan: 2, dataField: 'Notes', editorType: 'dxTextArea',
             editorOptions: {
                 height: 90,
             },
-        }, {
+        }
+            , {
             dataField: 'Phone',
             editorOptions: {
-                mask: '+1 (X00) 000-0000',
-                maskRules: { X: /[02-9]/ },
+                mask: '+1 (X00) 000-0000', maskRules: { X: /[02-9]/ },
             },
         }
             , 'Email'
@@ -53,9 +51,7 @@ function LoadForm() {
             itemType: 'button',
             horizontalAlignment: 'left',
             buttonOptions: {
-                text: 'Register',
-                type: 'success',
-                useSubmitBehavior: true,
+                text: 'Register', type: 'success', useSubmitBehavior: true,
             },
         }
         ],

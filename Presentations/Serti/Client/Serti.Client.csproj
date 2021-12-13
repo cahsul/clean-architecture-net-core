@@ -57,6 +57,7 @@
     <Folder Include="Pages\Event\ListEvents\" />
     <Folder Include="Pages\Menu\CreateMenu\" />
     <Folder Include="Pages\Menu\UpdateMenu\" />
+    <Folder Include="SharedPage\DX\Popup\" />
   </ItemGroup>
 
 </Project>

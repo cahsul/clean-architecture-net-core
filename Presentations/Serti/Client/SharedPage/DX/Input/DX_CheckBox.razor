@@ -1,0 +1,26 @@
+﻿<div id="@(Id ?? Name)"></div>
+
+@using Serti.Client.X.Extensions;
+@inject IJSRuntime JSRuntime
+
+@code {
+    IJSObjectReference _jsModule;
+
+    [Parameter, EditorRequired] public string Name { get; set; }
+    [Parameter] public string Id { get; set; }
+    [Parameter] public string Text { get; set; }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        var options = new DX_CheckBox_Options
+            {
+                Target = "#" + (Id == null ? Name : Id),
+                Name = Name,
+                Text = Text
+            };
+
+        _jsModule = await JSRuntime.ReadJsFile<DX_CheckBox>();
+        await _jsModule.InvokeVoidAsync("DX_CheckBox", options);
+    }
+}

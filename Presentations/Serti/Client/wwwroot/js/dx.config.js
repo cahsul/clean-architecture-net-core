@@ -187,3 +187,12 @@ function DX_TreeList_Buider(url, target, form, columns) {
 
     return $treeList;
 }
+
+
+
+// form
+function DX_Form_Input(target) {
+    $(target).dxTextBox({
+        value: 'San Diego',
+    });
+}

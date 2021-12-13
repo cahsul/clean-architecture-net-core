@@ -1,20 +1,53 @@
 ﻿@page "/role"
 
+
 @using Serti.Client.X.Extensions;
+@using Serti.Client.SharedPage.DX.Input;
+@using Shared.Role.Commands.CreateRole
 @using Shared.Role.Resources
 @inject IJSRuntime JSRuntime
 
 <PageTitle>Role</PageTitle>
 
 <div class="card">
-    <div class="card-header">
-        <h5 class="card-title">Role</h5>
-    </div>
-
     <div class="card-body">
         <div id="grid-role"></div>
     </div>
 </div>
+<div id="popup-form">
+
+    <form id="form-container" action="/role" method="post">
+
+        <div class="form-group row">
+            <div class="col-md-12">
+                <DX_TexBox Label="Role Name" Id="role-name" Name="roleName">
+                    <DX_Validation_Rule Type="required" />
+                    <DX_Validation_Rule Type="email" />
+                </DX_TexBox>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-12 col-md-2"> Menu</div>
+            <div class="col-sm-12 col-md-10">
+                <div class="row">
+                    <div class="mb-2 col-md-3"> <DX_CheckBox Text="List" Name="checkbox_1"></DX_CheckBox> </div>
+                    <div class="mb-2 col-md-3"> <DX_CheckBox Text="Create" Name="checkbox_2"></DX_CheckBox> </div>
+                    <div class="mb-2 col-md-3"> <DX_CheckBox Text="Update" Name="checkbox_3"></DX_CheckBox> </div>
+                    <div class="mb-2 col-md-3"> <DX_CheckBox Text="Delete" Name="checkbox_4"></DX_CheckBox> </div>
+                    <div class="mb-2 col-md-3"> <DX_CheckBox Text="Export" Name="checkbox_5"></DX_CheckBox> </div>
+                    <div class="mb-2 col-md-3"> <DX_CheckBox Text="Print Original" Name="checkbox_6"></DX_CheckBox> </div>
+                    <div class="mb-2 col-md-3"> <DX_CheckBox Text="Print Duplicate" Name="checkbox_7"></DX_CheckBox> </div>
+                    <div class="mb-2 col-md-3"> <DX_CheckBox Text="asdasd" Name="checkbox_8"></DX_CheckBox> </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+</div>
+
 
 @code {
 
@@ -22,7 +55,13 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        _jsModule = await JSRuntime.ReadJsFile<ListRole>();
-        await _jsModule.InvokeVoidAsync("OnLoad", RoleEndpoint.Role.GetRoles);
+        if (firstRender)
+        {
+            _jsModule = await JSRuntime.ReadJsFile<ListRole>();
+            await _jsModule.InvokeVoidAsync("OnLoad", RoleEndpoint.Role.GetRoles);
+        }
     }
+
+
+
 }

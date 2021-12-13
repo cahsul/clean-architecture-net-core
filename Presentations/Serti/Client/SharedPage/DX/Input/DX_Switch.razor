@@ -1,0 +1,21 @@
+﻿<div id="@Id"></div>
+
+@using Serti.Client.X.Extensions;
+@inject IJSRuntime JSRuntime
+
+@code {
+    IJSObjectReference _jsModule;
+
+    [Parameter, EditorRequired] public string Id { get; set; } = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        var options = new DX_Switch_Options
+            {
+                Target = "#" + Id,
+            };
+
+        _jsModule = await JSRuntime.ReadJsFile<DX_Switch>();
+        await _jsModule.InvokeVoidAsync("DX_Switch", options);
+    }
+}

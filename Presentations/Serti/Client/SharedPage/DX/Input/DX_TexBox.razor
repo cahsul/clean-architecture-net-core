@@ -1,0 +1,48 @@
+﻿<div id="@Id"></div>
+
+<CascadingValue Value=this>
+    @ChildContent
+</CascadingValue>
+
+@using Serti.Client.X.Extensions;
+@inject IJSRuntime JSRuntime
+
+@code {
+    IJSObjectReference _jsModule;
+
+    [Parameter, EditorRequired] public string Id { get; set; } = "";
+    [Parameter] public string Name { get; set; } = "";
+    [Parameter] public string Label { get; set; } = "";
+    [Parameter] public string Placeholder { get; set; } = "";
+
+    [Parameter] public RenderFragment ChildContent { get; set; }
+
+    private List<DX_Validation_Rule> _validator = new List<DX_Validation_Rule>();
+
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var options = new DX_TexBox_Options
+                {
+                    Target = "#" + Id,
+                    Placeholder = Placeholder,
+                    Label = Label,
+                    Name = Name,
+                    Validator = _validator.Select(s => new Validator { Type = s.Type }).ToList()
+                };
+
+
+            _jsModule = await JSRuntime.ReadJsFile<DX_TexBox>();
+            await _jsModule.InvokeVoidAsync("DX_Input_TexBox", options);
+        }
+    }
+
+
+    internal void AddValidator(DX_Validation_Rule validator)
+    {
+        _validator.Add(validator);
+        StateHasChanged();
+    }
+}
